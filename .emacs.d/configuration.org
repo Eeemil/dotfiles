@@ -1,0 +1,347 @@
+#+TITLE: Eeemil's Emacs Configuration
+* Emacs Configuration
+  By Emil Marklund, Initialized oct 2013.
+  Converted into org-file may 2017
+
+
+* General settings
+** Initialiation process.
+
+#+BEGIN_SRC emacs-lisp
+
+;; Initialize installed packages
+(add-to-list 'load-path "~/.emacs.d/myconf")
+(add-to-list 'load-path "~/.emacs.d/elpa")
+(add-to-list 'load-path "~/.emacs.d/myplugins/netlogo-mode")
+(require 'package-auto-installer)
+
+;iso-transl: Brings back dead keys to swedish keyboard layout (ex. tilde)
+(require 'iso-transl) 
+
+#+END_SRC
+
+** File management
+
+#+BEGIN_SRC emacs-lisp
+
+;; Keep file backups in ~/.emacs.backup
+(setq
+ backup-by-copying t      ; don't clobber symlinks
+ backup-directory-alist
+ '(("." . "~/.emacs.backup"))    ; don't litter my files system
+ delete-old-versions t
+ kept-new-versions 6
+ kept-old-versions 2
+ version-control t)
+
+#+END_SRC
+
+** Emacs cosmetics
+
+#+BEGIN_SRC emacs-lisp
+
+(setq column-number-mode t) ; Default to showing line and column
+#+END_SRC
+
+Uniquifies/resolves buffer name collisions 
+
+#+BEGIN_SRC emacs-lisp
+
+;; Buffer colliding file names resolvement
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+#+END_SRC
+
+I like Nyan Cat more than a scroll bar.
+
+#+BEGIN_SRC emacs-lisp
+
+;; Exchange scroll bar for nyan mode.
+(scroll-bar-mode 0)
+(nyan-mode 1)
+#+END_SRC
+
+** TODO This is a lot of emacs auto-setting variable-things, document them
+Fonts, sizes, colors etc.
+#+BEGIN_SRC emacs-lisp
+;; Emacs visual style etc
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#ad7fa8" "#8cc4ff" "#eeeeec"])
+ '(custom-enabled-themes (quote (wheatgrass)))
+ '(fringe-mode 0 nil (fringe))
+ '(safe-local-variable-values (quote ((flycheck-gcc-language-standard . gnu99))))
+ '(tool-bar-mode nil))
+ '(haskell-program-name "ghci \"+.\"")
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 83 :width normal)))))
+
+#+END_SRC
+
+* Editor configuration
+
+#+BEGIN_SRC emacs-lisp
+
+(setq-default fill-column 80)
+
+(setq Man-notify-method (quote pushy)) ;; Man pages appear in current window
+
+
+;(setq line-number-mode t)
+(setq-default c-basic-offset 4) ; Standard indent: 4 spaces
+
+#+END_SRC
+
+** Auto completion
+
+#+BEGIN_SRC emacs-lisp
+
+;; Enables smart auto-completion
+(require 'auto-complete-config)
+;(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+
+(define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
+
+#+END_SRC
+
+** Cursor movement, navigation, marking
+
+#+BEGIN_SRC emacs-lisp
+
+; Marks a word.
+(global-set-key (kbd "M-\"") 'mark-word)
+#+END_SRC
+
+** Window control, navigation
+
+I might want to expand on ace-functionalities...
+#+BEGIN_SRC emacs-lisp
+
+;; ace-window: give useful numbers to jump around to the correct window fast!
+(global-set-key (kbd "C-x o") 'ace-window)
+;; <prior>/<next> = up and down on my Microsoft Ergonomic 4000
+(global-set-key (kbd "<prior>") 'scroll-down-line)
+(global-set-key (kbd "<next>") 'scroll-up-line)
+
+
+;; Make Emacs full screen
+(global-set-key (kbd "<f11>") 'switch-full-screen)
+#+END_SRC
+
+* Various packages
+
+** TODO Org mode configuration
+Should perhaps exist in its own file. :)
+
+#+BEGIN_SRC emacs-lisp
+
+; Syntax higlighting for code within org mode
+(setq org-src-fontify-natively t)
+#+END_SRC
+
+** Erg: Emacs IRC Client
+
+#+BEGIN_SRC emacs-lisp
+
+;; Erc Config - Emacs IRC-client
+(add-hook 'erc-text-matched-hook 'erc-beep-on-match)
+(setq erc-beep-match-types '(current-nick keyword))
+
+#+END_SRC
+
+** Auctex: Latex wizardry
+
+#+BEGIN_SRC emacs-lisp
+
+;; LaTeX/AucTEX
+(require 'tex-site)
+(setq TeX-command-extra-options "-shell-escape") ;For compile with minted
+(add-hook 'LaTeX-mode-hook 'auto-fill-mode)
+
+#+END_SRC
+
+* Custom functions
+
+** sudo-edit: Reopen file as root [C-x C-r]
+
+#+BEGIN_SRC emacs-lisp
+
+; Reopen file as emacs
+(defun sudo-edit (&optional arg)
+  "Edit currently visited file as root.
+
+With a prefix ARG prompt for a file to visit.
+Will also prompt for a file to visit if current
+buffer is not visiting a file."
+  (interactive "P")
+  (if (or arg (not buffer-file-name))
+      (find-file (concat "/sudo:root@localhost:"
+                         (ido-read-file-name "Find file(as root): ")))
+    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+
+
+(global-set-key (kbd "C-x C-r") 'sudo-edit)
+
+#+END_SRC
+
+** indent-region
+
+#+BEGIN_SRC emacs-lisp
+
+;; Indents whole buffer
+(defun indent-whole-buffer ()
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
+
+#+END_SRC
+
+** surround-region
+
+#+BEGIN_SRC emacs-lisp
+
+(defun surround-region (begin end char)
+  "Surrounds a region with a string"
+  (interactive  "r\nsString: ")
+   (save-excursion
+    (goto-char end)
+    (insert char)
+    (goto-char begin)
+    (insert char)))
+
+#+END_SRC
+
+** load-emacs: Reload configuration
+
+#+BEGIN_SRC emacs-lisp
+
+;; Reloads .emacs
+(defun load-emacs ()
+  (interactive)
+  (load-file '"~/.emacs"))
+
+#+END_SRC
+
+* Major mode configurations
+
+** C mode
+
+Hs-minor-mode: for hiding {blocks} etc.
+#+BEGIN_SRC emacs-lisp
+(add-hook 'c-mode-hook 'hs-minor-mode) ;; Enables hide/show of code blocks.
+;; Hide/show blocks of code
+(global-set-key (kbd "C-c M-s") 'hs-show-all)
+(global-set-key (kbd "C-c M-h") 'hs-hide-all)
+(global-set-key (kbd "C-.") 'hs-toggle-hiding)
+#+END_SRC
+Show line & column number
+#+BEGIN_SRC emacs-lisp
+(add-hook 'c-mode-hook 'column-number-mode) ;; Shows column.
+(add-hook 'c-mode-hook 'linum-mode) ;; Shows line-numbering
+#+END_SRC
+Electric pair mode automatically pairs ( parentheses ).
+#+BEGIN_SRC emacs-lisp
+(add-hook 'c-mode-hook 'electric-pair-mode)
+#+END_SRC
+
+** Octave mode
+
+#+BEGIN_SRC emacs-lisp
+
+;; Octave
+(add-hook 'octave-mode-hook (lambda()
+			      (local-set-key (kbd "C-c C-c") 'octave-send-region)
+			      (local-set-key (kbd "C-c C-l") 'octave-send-line)
+			      )
+	  )
+(setq inferior-octave-prompt ">> ")
+
+#+END_SRC
+
+** Java mode
+
+#+BEGIN_SRC emacs-lisp
+
+;; Java programming hooks
+(add-hook 'java-mode-hook (lambda()
+                            (setq c-basic-offset 4)
+                            ))
+
+
+#+END_SRC
+
+** Markdown mode
+
+#+BEGIN_SRC emacs-lisp
+
+(add-hook 'markdown-mode-hook (lambda()
+				(set-fill-column 80)
+				(auto-fill-mode)
+				(flyspell-mode)
+				))
+
+#+END_SRC
+
+
+* Various keybindings
+
+** Useful when programming
+
+#+BEGIN_SRC emacs-lisp
+
+; Read man files
+(global-set-key (kbd "C-h m") 'man)
+; Compiling is nice
+(global-set-key (kbd "C-M-x") 'compile)
+; Jumps to tag when TAGS file exists
+(global-set-key (kbd "M-.") 'find-tag)
+(global-set-key (kbd "M-,") '(lambda () (interactive) (find-tag nil t)))
+
+#+END_SRC
+
+** Fixes for swedish/strange input devices etc
+
+#+BEGIN_SRC emacs-lisp
+
+;; Get back some unusable keys for swedish keyboard
+(global-set-key (kbd "<S-dead-circumflex>") "^")
+(global-set-key (kbd "<S-dead-grave>") "`")
+(define-key key-translation-map [dead-grave] "`")
+(define-key key-translation-map [dead-acute] "'")
+(define-key key-translation-map [dead-circumflex] "^")
+(define-key key-translation-map [dead-diaeresis] "\"")
+(define-key key-translation-map [dead-tilde] "~")
+(put 'downcase-region 'disabled nil)
+#+END_SRC
+
+** Other
+
+#+BEGIN_SRC emacs-lisp
+
+;; I dont remember why or how, but this fixed some problem some time...
+(global-set-key (kbd "RET") 'newline-and-indent)
+
+;; Display documentation of current major mode and minor modes.
+(global-set-key (kbd "C-h M") 'describe-mode)
+
+#+END_SRC
+
+* Archived stuff
+
+#+BEGIN_SRC emacs-lisp
+;; Legacy of an old experiment
+;; (global-set-key (kbd "C-c m RET") 'music-player-play-pause)
+;; (global-set-key (kbd "C-c m p") 'music-player-prev)
+;; (global-set-key (kbd "C-c m n") 'music-player-next)
+;; (global-set-key (kbd "C-c m <up>") 'music-player-volume-up)
+;; (global-set-key (kbd "C-c m <down>") 'music-player-volume-down)
+#+END_SRC
