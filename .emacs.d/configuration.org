@@ -20,7 +20,7 @@
 
 #+END_SRC
 
-** File management
+** File settings
 
 #+BEGIN_SRC emacs-lisp
 
@@ -36,46 +36,68 @@
 
 #+END_SRC
 
-** Emacs cosmetics
+Safe file variables
 
 #+BEGIN_SRC emacs-lisp
-
-(setq column-number-mode t) ; Default to showing line and column
+(setq safe-local-variable-values (quote ((flycheck-gcc-language-standard . gnu99))))
 #+END_SRC
+
+** Emacs cosmetics
 
 Uniquifies/resolves buffer name collisions 
 
 #+BEGIN_SRC emacs-lisp
-
 ;; Buffer colliding file names resolvement
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 #+END_SRC
 
+I don't like the fringe thing...
+#+BEGIN_SRC emacs-lisp
+(fringe-mode 0)
+#+END_SRC
+
+I don't need a tool bar...
+#+BEGIN_SRC emacs-lisp
+(tool-bar-mode nil)
+#+END_SRC
+
+*** Mode line
+
+Show column in mode line
+#+BEGIN_SRC emacs-lisp
+(setq column-number-mode t) ; Default to showing line and column
+#+END_SRC
+
 I like Nyan Cat more than a scroll bar.
 
 #+BEGIN_SRC emacs-lisp
-
 ;; Exchange scroll bar for nyan mode.
 (scroll-bar-mode 0)
 (nyan-mode 1)
 #+END_SRC
 
-** TODO This is a lot of emacs auto-setting variable-things, document them
-Fonts, sizes, colors etc.
+
+*** Fonts, sizes, colors etc
+
+/Please note that custom-set-{variables|faces} are part of the [[https://www.emacswiki.org/emacs/CustomizingAndSaving][Customize]] system
+and should only be set once/
+
+Shell-mode text colors
 #+BEGIN_SRC emacs-lisp
-;; Emacs visual style etc
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#ad7fa8" "#8cc4ff" "#eeeeec"])
- '(custom-enabled-themes (quote (wheatgrass)))
- '(fringe-mode 0 nil (fringe))
- '(safe-local-variable-values (quote ((flycheck-gcc-language-standard . gnu99))))
- '(tool-bar-mode nil))
- '(haskell-program-name "ghci \"+.\"")
+  '(ansi-color-names-vector ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#ad7fa8" "#8cc4ff" "#eeeeec"])
+#+END_SRC
+
+Color theme: wheatgrass, some kind of dark theme.Text
+
+#+BEGIN_SRC emacs-lisp
+ '(custom-enabled-themes (quote (wheatgrass)))  
+)
+#+END_SRC
+
+Font
+#+BEGIN_SRC emacs-lisp
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -87,29 +109,37 @@ Fonts, sizes, colors etc.
 
 * Editor configuration
 
+80 char width
 #+BEGIN_SRC emacs-lisp
-
 (setq-default fill-column 80)
+#+END_SRC
 
+I want manual pages to appear in current window
+#+BEGIN_SRC emacs-lisp
 (setq Man-notify-method (quote pushy)) ;; Man pages appear in current window
+#+END_SRC
 
-
-;(setq line-number-mode t)
+Standard indent length: 4 spaces
+#+BEGIN_SRC emacs-lisp
 (setq-default c-basic-offset 4) ; Standard indent: 4 spaces
 
 #+END_SRC
 
 ** Auto completion
 
-#+BEGIN_SRC emacs-lisp
+*** TODO I may want to change auto complete system...
 
+#+BEGIN_SRC emacs-lisp
 ;; Enables smart auto-completion
 (require 'auto-complete-config)
 ;(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
 
-(define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
 
+#+END_SRC
+Auto complete on [C-<tab>]
+#+BEGIN_SRC emacs-lisp
+(define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
 #+END_SRC
 
 ** Cursor movement, navigation, marking
@@ -136,21 +166,20 @@ I might want to expand on ace-functionalities...
 (global-set-key (kbd "<f11>") 'switch-full-screen)
 #+END_SRC
 
-* Various packages
+* Various special packages
 
 ** TODO Org mode configuration
 Should perhaps exist in its own file. :)
 
+Force syntax highlighting within #+BEGIN_SRC blocks
 #+BEGIN_SRC emacs-lisp
-
 ; Syntax higlighting for code within org mode
 (setq org-src-fontify-natively t)
 #+END_SRC
 
-** Erg: Emacs IRC Client
+** Erc: Emacs IRC Client
 
 #+BEGIN_SRC emacs-lisp
-
 ;; Erc Config - Emacs IRC-client
 (add-hook 'erc-text-matched-hook 'erc-beep-on-match)
 (setq erc-beep-match-types '(current-nick keyword))
@@ -265,6 +294,12 @@ Electric pair mode automatically pairs ( parentheses ).
 	  )
 (setq inferior-octave-prompt ">> ")
 
+#+END_SRC
+
+** Haskell mode
+
+#+BEGIN_SRC emacs-lisp
+(setq haskell-program-name "ghci \"+.\"")
 #+END_SRC
 
 ** Java mode
