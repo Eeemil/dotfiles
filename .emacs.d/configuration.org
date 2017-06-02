@@ -59,7 +59,7 @@ I don't like the fringe thing...
 
 I don't need a tool bar...
 #+BEGIN_SRC emacs-lisp
-(tool-bar-mode nil)
+(tool-bar-mode 0)
 #+END_SRC
 
 *** Mode line
@@ -175,6 +175,17 @@ Force syntax highlighting within #+BEGIN_SRC blocks
 #+BEGIN_SRC emacs-lisp
 ; Syntax higlighting for code within org mode
 (setq org-src-fontify-natively t)
+#+END_SRC
+
+Less stars
+#+BEGIN_SRC emacs-lisp
+(setq org-hide-leading-stars t)
+#+END_SRC
+
+Pretty bullets
+#+BEGIN_SRC emacs-lisp
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 #+END_SRC
 
 ** Erc: Emacs IRC Client
