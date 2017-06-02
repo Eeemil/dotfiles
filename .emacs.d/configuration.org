@@ -69,6 +69,13 @@ Uniquifies/resolves buffer name collisions
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 #+END_SRC
 
+I want a pretty mode line!
+[[./images/powerline.png]]
+#+BEGIN_SRC emacs-lisp
+(use-package smart-mode-line)
+(use-package smart-mode-line-powerline-theme)
+(setq sml/theme 'powerline)
+#+END_SRC
 
 I don't like the fringe thing...
 #+BEGIN_SRC emacs-lisp
@@ -199,6 +206,11 @@ Less stars
 #+BEGIN_SRC emacs-lisp
 (setq org-hide-leading-stars t)
 #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(setq org-startup-with-inline-images t)
+#+END_SRC
+
 
 Pretty bullets
 #+BEGIN_SRC emacs-lisp
