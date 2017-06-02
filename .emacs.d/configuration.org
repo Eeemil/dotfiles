@@ -202,6 +202,11 @@ Force syntax highlighting within #+BEGIN_SRC blocks
 (setq org-src-fontify-natively t)
 #+END_SRC
 
+Down arrow for indicating collapsed blocks instead of "..."
+#+BEGIN_SRC emacs-lisp
+(setq org-ellipsis "⬇")
+#+END_SRC
+
 Less stars
 #+BEGIN_SRC emacs-lisp
 (setq org-hide-leading-stars t)
