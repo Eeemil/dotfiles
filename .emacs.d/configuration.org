@@ -95,6 +95,11 @@ I don't need a tool bar...
 (tool-bar-mode 0)
 #+END_SRC
 
+It's time to get rid of the menu bar
+#+BEGIN_SRC emacs-lisp
+(menu-bar-mode 0)
+#+END_SRC
+
 TODO I'm a bit unsure what this does
 #+BEGIN_SRC emacs-lisp
 (use-package popup)
