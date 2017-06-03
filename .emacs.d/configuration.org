@@ -16,9 +16,6 @@
 (add-to-list 'load-path "~/.emacs.d/myplugins/netlogo-mode")
 (require 'package-auto-installer)
 
-;iso-transl: Brings back dead keys to swedish keyboard layout (ex. tilde)
-(require 'iso-transl) 
-
 #+END_SRC
 
 Install use package
@@ -31,11 +28,12 @@ Install use package
 (setq use-package-always-ensure t)
 #+END_SRC
 
+*** TODO Investigate
+    I'm not quite sure what this is anymore, and why I cannot use-package it...
 #+BEGIN_SRC emacs-lisp
-
-
+;iso-transl: Brings back dead keys to swedish keyboard layout (ex. tilde)
+(require 'iso-transl) 
 #+END_SRC
-
 
 ** File settings
 
@@ -231,7 +229,7 @@ Less stars
 
 Pretty bullets
 #+BEGIN_SRC emacs-lisp
-(require 'org-bullets)
+(use-package org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 #+END_SRC
 
@@ -249,6 +247,9 @@ Pretty bullets
 #+BEGIN_SRC emacs-lisp
 
 ;; LaTeX/AucTEX
+(use-package auctex
+:defer t
+:ensure t)
 (require 'tex-site)
 (setq TeX-command-extra-options "-shell-escape") ;For compile with minted
 (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
