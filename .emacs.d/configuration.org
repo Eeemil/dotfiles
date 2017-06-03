@@ -167,6 +167,8 @@ Font
                 :height 83 
                 :width normal
                 :background "#211E1E"))))
+ '(mode-line ((t (:background "#100000" :foreground "#800000"
+                  :box (:line-width -1 :color "#400000")))))
  '(term-color-blue ((t (:foreground "DodgerBlue3" :background "DodgerBlue3"))))
 )
 
