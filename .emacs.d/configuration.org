@@ -3,19 +3,37 @@
   By Emil Marklund, Initialized oct 2013.
   Converted into org-file may 2017
 
+  Remember: writing "<s" followed by <TAB> is [[http://orgmode.org/manual/Easy-Templates.html][using Org-mode easy template!]]
+
+** Work needed
+
+*** TODO Document everything
+
+*** TODO Clean old/unused packages
+
+*** TODO Investigate git tool
 
 * General settings
 ** Initialiation process.
 
-
-
 #+BEGIN_SRC emacs-lisp
-;; Initialize installed packages
-(add-to-list 'load-path "~/.emacs.d/myconf")
-(add-to-list 'load-path "~/.emacs.d/elpa")
-(add-to-list 'load-path "~/.emacs.d/myplugins/netlogo-mode")
-(require 'package-auto-installer)
-
+  ;; Initialize installed packages
+  (add-to-list 'load-path "~/.emacs.d/elpa")
+  (add-to-list 'load-path "~/.emacs.d/myplugins/netlogo-mode")
+  ;(require 'package-auto-installer)
+  
+  (require 'package)
+  (require 'cl)
+  (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                           ("melpa" . "http://melpa.milkbox.net/packages/")))
+  (package-initialize)
+  
+  (setq url-http-attempt-keepalives nil)
+  
+  ; This is some string manipulation library that a lot of other packages depend
+  ; on...
+  (use-package s)
+  
 #+END_SRC
 
 Install use package
@@ -67,6 +85,23 @@ Uniquifies/resolves buffer name collisions
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 #+END_SRC
 
+I don't like the fringe thing...
+#+BEGIN_SRC emacs-lisp
+(fringe-mode 0)
+#+END_SRC
+
+I don't need a tool bar...
+#+BEGIN_SRC emacs-lisp
+(tool-bar-mode 0)
+#+END_SRC
+
+TODO I'm a bit unsure what this does
+#+BEGIN_SRC emacs-lisp
+(use-package popup)
+#+END_SRC
+
+*** Mode line
+
 I want a pretty mode line!
 [[./images/powerline.png]]
 #+BEGIN_SRC emacs-lisp
@@ -85,18 +120,6 @@ A clock in the mode line would be nice...
 (display-time-mode)
 #+END_SRC
 
-I don't like the fringe thing...
-#+BEGIN_SRC emacs-lisp
-(fringe-mode 0)
-#+END_SRC
-
-I don't need a tool bar...
-#+BEGIN_SRC emacs-lisp
-(tool-bar-mode 0)
-#+END_SRC
-
-*** Mode line
-
 Show column in mode line
 #+BEGIN_SRC emacs-lisp
 (setq column-number-mode t) ; Default to showing line and column
@@ -106,6 +129,7 @@ I like Nyan Cat more than a scroll bar.
 
 #+BEGIN_SRC emacs-lisp
 ;; Exchange scroll bar for nyan mode.
+(use-package nyan-mode)
 (scroll-bar-mode 0)
 (nyan-mode 1)
 #+END_SRC
@@ -157,7 +181,6 @@ I want manual pages to appear in current window
 Standard indent length: 4 spaces
 #+BEGIN_SRC emacs-lisp
 (setq-default c-basic-offset 4) ; Standard indent: 4 spaces
-
 #+END_SRC
 
 ** Auto completion
@@ -165,6 +188,7 @@ Standard indent length: 4 spaces
 *** TODO I may want to change auto complete system...
 
 #+BEGIN_SRC emacs-lisp
+(use-package auto-complete)
 ;; Enables smart auto-completion
 (require 'auto-complete-config)
 ;(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
@@ -189,7 +213,7 @@ Auto complete on [C-<tab>]
 
 I might want to expand on ace-functionalities...
 #+BEGIN_SRC emacs-lisp
-
+(use-package ace-window)
 ;; ace-window: give useful numbers to jump around to the correct window fast!
 (global-set-key (kbd "C-x o") 'ace-window)
 ;; <prior>/<next> = up and down on my Microsoft Ergonomic 4000
@@ -201,6 +225,11 @@ I might want to expand on ace-functionalities...
 (global-set-key (kbd "<f11>") 'switch-full-screen)
 #+END_SRC
 
+
+** TODO YASnippet: I should learn it
+#+BEGIN_SRC emacs-lisp
+ (use-package yasnippet)
+#+END_SRC
 * Various special packages
 
 ** TODO Org mode configuration
@@ -250,12 +279,31 @@ Pretty bullets
 (use-package auctex
 :defer t
 :ensure t)
+(use-package auctex-latexmk)
 (require 'tex-site)
 (setq TeX-command-extra-options "-shell-escape") ;For compile with minted
 (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
 
 #+END_SRC
 
+** W3: Web browsing in Emacs
+#+BEGIN_SRC emacs-lisp
+(use-package w3)
+#+END_SRC
+** Git management
+*** TODO Magit
+    TODO: decide if I'm going to keep magit or move on to other stuff...
+    Pros: I like the merging
+    Cons: It's in the way sometimes
+#+BEGIN_SRC emacs-lisp
+(use-package magit)
+(setq magit-last-seen-setup-instructions "1.4.0")
+#+END_SRC
+*** Just git
+#+BEGIN_SRC emacs-lisp
+(use-package git-commit-mode)
+(use-package git-rebase-mode)
+#+END_SRC
 * Custom functions
 
 ** sudo-edit: Reopen file as root [C-x C-r]
@@ -321,6 +369,12 @@ buffer is not visiting a file."
 
 * Major mode configurations
 
+** Matlab mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package matlab-mode)
+#+END_SRC
+
 ** C mode
 
 Hs-minor-mode: for hiding {blocks} etc.
@@ -358,6 +412,12 @@ Electric pair mode automatically pairs ( parentheses ).
 ** Haskell mode
 
 #+BEGIN_SRC emacs-lisp
+(use-package flymake-haskell-multi)
+(use-package ac-haskell-process)
+(use-package haskell-mode)
+(use-package haskell-emacs)
+(use-package haskell-emacs-base)
+
 (setq haskell-program-name "ghci \"+.\"")
 #+END_SRC
 
@@ -376,7 +436,8 @@ Electric pair mode automatically pairs ( parentheses ).
 ** Markdown mode
 
 #+BEGIN_SRC emacs-lisp
-
+(use-package markdown-mode)
+(use-package markdown-mode+)
 (add-hook 'markdown-mode-hook (lambda()
 				(set-fill-column 80)
 				(auto-fill-mode)
@@ -385,7 +446,18 @@ Electric pair mode automatically pairs ( parentheses ).
 
 #+END_SRC
 
+   
+** Php mode
 
+#+BEGIN_SRC emacs-lisp
+(use-package php-mode)
+#+END_SRC
+** MAY BE DELETED
+
+*** Bison mode: almost never used
+#+BEGIN_SRC emacs-lisp
+(use-package bison-mode)
+#+END_SRC
 * Various keybindings
 
 ** Useful when programming
