@@ -75,6 +75,16 @@ I want a pretty mode line!
 (use-package smart-mode-line)
 (use-package smart-mode-line-powerline-theme)
 (setq sml/theme 'powerline)
+(use-package powerline)
+(powerline-default-theme)
+#+END_SRC
+
+A clock in the mode line would be nice...
+#+BEGIN_SRC emacs-lisp
+(setq display-time-24hr-format t)
+;TODO someday I might want to use this mail functionality...
+(setq display-time-mail-string "")
+(display-time-mode)
 #+END_SRC
 
 I don't like the fringe thing...
