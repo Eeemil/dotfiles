@@ -426,6 +426,30 @@ Electric pair mode automatically pairs ( parentheses ).
 
 #+END_SRC
 
+* Notes
+
+** Make Emacs mirror ansi-term mirror
+
+   Putting the following in [[~/.zshrc][zshrc configuration]] will make Emacs understand local
+   directory so that C-x C-f will open files accordingly, see
+   [[https://www.emacswiki.org/emacs/AnsiTermHints#toc5]]
+#+BEGIN_SRC bash
+precmd() {
+    if [ -z "$EMACS" ]; then
+	return
+    fi
+    echo -e "\033AnSiTu" "$LOGNAME" # $LOGNAME is more portable than using whoami.
+    echo -e "\033AnSiTc" "$(pwd)"
+    if [ $(uname) = "SunOS" ]; then
+ # The -f option does something else on SunOS and is not needed anyway.
+   	    hostname_options="";
+    else
+        hostname_options="-f";
+    fi
+    echo -e "\033AnSiTh" "$(hostname $hostname_options)" # Using the -f option can
+                                                         # cause problems on some OSes.
+}
+#+END_SRC
 * Archived stuff
 
 #+BEGIN_SRC emacs-lisp
