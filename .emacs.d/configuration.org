@@ -170,6 +170,13 @@ Font
 
 #+END_SRC
 
+*** Themes etc
+
+Beautify org!
+#+BEGIN_SRC emacs-lisp
+(use-package org-beautify-theme)
+#+END_SRC
+
 *** Customize configuration
 
 **** Variables
@@ -221,6 +228,24 @@ Default editorlook
                 :height 83 
                 :width normal
                 :background "#211E1E"))))
+#+END_SRC
+[[https://github.com/jonnay/org-beautify-theme][Beautify org-mode]] settings
+#+NAME: org-beautify
+#+BEGIN_SRC emacs-lisp
+  ;Default settings makes BEGIN_SRC lines be highlighted, (and the code block not
+  ;highlighted). I want the opposite...
+   '(org-block ((t (:inherit shadow :background "#211E1E" :foreground "wheat" :box nil))))
+   '(org-block-background ((t (:background "#242424"))))
+   '(org-block-begin-line ((t (:foreground unspecified :inherit org-meta-line :background "#211E1E"))) t)
+   '(org-block-end-line ((t (:foreground unspecified :inherit org-meta-line :background "#211E1E"))) t)
+  
+  ;org-beautify wants to put boxes around headings (to make more space around
+  ;them?). Make the boxes have the correct background.
+   '(org-document-title ((t (:inherit org-level-1 :box (:line-width 5 :color "#211E1E") :underline nil :height 2.0))))
+   '(org-level-1 ((t (:inherit default :foreground "wheat" :box (:line-width 5 :color "#211E1E") :slant normal :weight normal :height 1.5 :width normal :foundry "microsoft" :family "Verdana"))))
+   '(org-level-2 ((t (:inherit default :foreground "wheat" :box (:line-width 5 :color "#211E1E") :slant normal :weight normal :height 1.25 :width normal :foundry "microsoft" :family "Verdana"))))
+   '(org-level-3 ((t (:inherit default :foreground "wheat" :box (:line-width 5 :color "#211E1E")))))
+  
 #+END_SRC
 
 Mode line customization
@@ -323,6 +348,11 @@ I might want to expand on ace-functionalities...
 
 ** TODO Org mode configuration
 Should perhaps exist in its own file. :)
+
+Prettify org, [[org-beautify][see customization]]
+#+BEGIN_SRC emacs-lisp
+(use-package org-beautify-theme)
+#+END_SRC
 
 Force syntax highlighting within #+BEGIN_SRC blocks
 #+BEGIN_SRC emacs-lisp
