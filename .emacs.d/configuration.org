@@ -332,7 +332,7 @@ Force syntax highlighting within #+BEGIN_SRC blocks
 
 Down arrow for indicating collapsed blocks instead of "..."
 #+BEGIN_SRC emacs-lisp
-(setq org-ellipsis "⬇")
+(setq org-ellipsis "⤵")
 #+END_SRC
 
 Less stars
@@ -624,3 +624,4 @@ precmd() {
 ;; (global-set-key (kbd "C-c m <up>") 'music-player-volume-up)
 ;; (global-set-key (kbd "C-c m <down>") 'music-player-volume-down)
 #+END_SRC
+
