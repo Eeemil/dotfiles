@@ -28,8 +28,6 @@
                            ("melpa" . "http://melpa.milkbox.net/packages/")))
   (package-initialize)
   
-  (setq url-http-attempt-keepalives nil)
-  
   ; This is some string manipulation library that a lot of other packages depend
   ; on...
   (use-package s)
