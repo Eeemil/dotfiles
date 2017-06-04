@@ -1,0 +1,8 @@
+#+Title: My dotfiles
+
+This repository is mostly for myself. I plan to make it easier to understand
+some day, but not today.
+
+* Work needed
+
+** TODO Add .zshrc
