@@ -14,7 +14,7 @@
 *** TODO Investigate git tool
 
 * General settings
-** Initialiation process.
+** Initialization process.
 
 #+BEGIN_SRC emacs-lisp
   ;; Initialize installed packages
