@@ -256,7 +256,7 @@ Mode line customization
  '(powerline-active2 ((t :background "#600000" :inherit sml/global :foreground "gold")))
  '(mode-line-inactive ((t (:background "#150015" :foreground "#404080" :box (:line-width 1 :color "#100010") :slant italic))))
  '(powerline-inactive1 ((t :background "#000025" :inherit mode-line-inactive)))
- '(powerline-inactive2 ((t :background "#000065" :inherit mode-line-inactive)))
+ '(powerline-inactive2 ((t :background "#050545" :inherit mode-line-inactive)))
  ;File name indicator has mode-line background (but can't inherit it for some reason)
  '(sml/filename ((t :inherit mode-line :foreground "gold" :background "#150015")))
  '(sml/global ((t (:foreground "GoldenRod2" :inverse-video nil))))
