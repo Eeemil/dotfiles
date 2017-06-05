@@ -361,8 +361,14 @@ Less stars
 (setq org-hide-leading-stars t)
 #+END_SRC
 
+Show images by default
 #+BEGIN_SRC emacs-lisp
 (setq org-startup-with-inline-images t)
+#+END_SRC
+
+By default, give todo-items a closing timestamp. 
+#+BEGIN_SRC emacs-lisp
+(setq org-log-done 'time)
 #+END_SRC
 
 
