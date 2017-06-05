@@ -1,0 +1,10 @@
+#+Title: Dotfiles project
+* Goal
+  Fully automated deployment when installing my devops-configuration on a new computor
+* Work needed
+
+** TODO Add .zshrc
+
+* Notes when installing my setup on a new computer
+
+** Mail configuration includes sensitive data - how to sync?
