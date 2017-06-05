@@ -20,17 +20,12 @@
   ;; Initialize installed packages
   (add-to-list 'load-path "~/.emacs.d/elpa")
   (add-to-list 'load-path "~/.emacs.d/myplugins/netlogo-mode")
-  ;(require 'package-auto-installer)
   
   (require 'package)
   (require 'cl)
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("melpa" . "http://melpa.milkbox.net/packages/")))
   (package-initialize)
-  
-  ; This is some string manipulation library that a lot of other packages depend
-  ; on...
-  (use-package s)
   
 #+END_SRC
 
@@ -49,6 +44,10 @@ Install use package
 #+BEGIN_SRC emacs-lisp
 ;iso-transl: Brings back dead keys to swedish keyboard layout (ex. tilde)
 (require 'iso-transl) 
+
+  ; This is some string manipulation library that a lot of other packages depend
+  ; on...
+  (use-package s)
 #+END_SRC
 
 ** File settings
