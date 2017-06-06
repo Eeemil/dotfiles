@@ -66,10 +66,14 @@ Install use package
 
 #+END_SRC
 
-Safe file variables
+Define the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html#Specifying-File-Variables][local file variables]] that [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Safe-File-Variables.html][should be considered safe]].
 
 #+BEGIN_SRC emacs-lisp
-(setq safe-local-variable-values (quote ((flycheck-gcc-language-standard . gnu99))))
+(setq safe-local-variable-values 
+  (quote (
+  ;;Flycheck should not complain about gnu99
+    (flycheck-gcc-language-standard . gnu99)
+  )))
 #+END_SRC
 
 ** Emacs cosmetics
