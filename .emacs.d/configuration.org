@@ -382,6 +382,12 @@ Pretty bullets
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 #+END_SRC
 
+Global keybindings
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+#+END_SRC
+
 ** Erc: Emacs IRC Client
 
 #+BEGIN_SRC emacs-lisp
