@@ -386,7 +386,24 @@ Global keybindings
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
 #+END_SRC
+
+Where are org files located?
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-files '("~/life"))
+(setq org-archive-location '("~/life/archive/"))
+#+END_SRC
+
+Capture templates
+#+BEGIN_SRC emacs-lisp
+(setq org-capture-templates
+  '(("t" "Todo" entry (file+headline "~/life/tasks.org" "Tasks")
+    "* TODO %?\n  %i\n (Task filed from %a)")
+  ("j" "Journal" entry (file+datetree "~/life/notes.org")
+    "* %?\nEntered on %U\n  %i\n  %a")))
+#+END_SRC
+
 
 ** Erc: Emacs IRC Client
 
