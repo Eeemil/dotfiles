@@ -404,6 +404,10 @@ Capture templates
     "* %?\nEntered on %U\n  %i\n  %a")))
 #+END_SRC
 
+Readable latex.
+#+BEGIN_SRC emacs-lisp
+(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
+#+END_SRC
 
 ** Erc: Emacs IRC Client
 
