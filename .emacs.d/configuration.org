@@ -446,11 +446,6 @@ Readable latex.
 ;(use-package magit)
 ;(setq magit-last-seen-setup-instructions "1.4.0")
 #+END_SRC
-*** Just git
-#+BEGIN_SRC emacs-lisp
-(use-package git-commit-mode)
-(use-package git-rebase-mode)
-#+END_SRC
 * Custom functions
 
 ** sudo-edit: Reopen file as root [C-x C-r]
