@@ -165,13 +165,6 @@ Font
 #+END_SRC
 
 *** Themes etc
-
-Beautify org!
-
-#+BEGIN_SRC emacs-lisp
-(use-package org-beautify-theme)
-#+END_SRC
-
 *** Customize configuration
 
 **** Variables
@@ -346,7 +339,10 @@ Should perhaps exist in its own file. :)
 
 Prettify org, [[org-beautify][see customization]]
 #+BEGIN_SRC emacs-lisp
-(use-package org-beautify-theme)
+(if (display-graphic-p)
+    (progn
+    ;; if graphic X session or similar is run (beautify does not work otherwise)
+      (use-package org-beautify-theme)))
 #+END_SRC
 
 Force syntax highlighting within #+BEGIN_SRC blocks
