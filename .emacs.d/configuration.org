@@ -139,32 +139,6 @@ I like Nyan Cat more than a scroll bar.
 (scroll-bar-mode 0)
 (nyan-mode 1)
 #+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(custom-set-variables
-  '(ansi-color-names-vector ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#ad7fa8" "#8cc4ff" "#eeeeec"])
-#+END_SRC
-
-
-
-#+BEGIN_SRC emacs-lisp
- '(custom-enabled-themes (quote (wheatgrass)))  
-)
-#+END_SRC
-
-Font
-#+BEGIN_SRC emacs-lisp
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(term-color-blue ((t (:foreground "DodgerBlue3" :background "DodgerBlue3"))))
-)
-
-#+END_SRC
-
-*** Themes etc
 *** Customize configuration
 
 **** Variables
@@ -178,7 +152,7 @@ Shell-mode text colors
  '(ansi-color-names-vector ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#ad7fa8" "#8cc4ff" "#eeeeec"])
 #+END_SRC
 
-Color theme: wheatgrass, some kind of dark theme.Text
+Color theme: wheatgrass, some kind of dark theme.
 
 #+BEGIN_SRC emacs-lisp
  '(custom-enabled-themes (quote (wheatgrass)))
@@ -213,7 +187,7 @@ Default editorlook
                 :foundry "unknown" 
                 :slant normal 
                 :weight normal 
-                :height 83 
+                :height 95 
                 :width normal
                 :background "#211E1E"))))
 #+END_SRC
