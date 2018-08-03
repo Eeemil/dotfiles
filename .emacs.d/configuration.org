@@ -579,12 +579,15 @@ Electric pair mode automatically pairs ( parentheses ).
 
    
 ** Php mode
-
 #+BEGIN_SRC emacs-lisp
 (use-package php-mode)
 #+END_SRC
+** Jsx mode
+#+BEGIN_SRC emacs-lips
+(use-package jsx-mode)
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
+#+END_SRC
 ** MAY BE DELETED
-
 *** Bison mode: almost never used
 #+BEGIN_SRC emacs-lisp
 (use-package bison-mode)
