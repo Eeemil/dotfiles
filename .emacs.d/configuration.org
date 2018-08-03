@@ -123,6 +123,8 @@ A clock in the mode line would be nice...
 (setq display-time-24hr-format t)
 ;TODO someday I might want to use this mail functionality...
 (setq display-time-mail-string "")
+; I dont want system load average next to time
+(setq display-time-default-load-average nil)
 (display-time-mode)
 #+END_SRC
 
