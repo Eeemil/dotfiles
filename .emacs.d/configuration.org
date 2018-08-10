@@ -142,7 +142,15 @@ I like Nyan Cat more than a scroll bar.
 (nyan-mode 1)
 #+END_SRC
 *** Customize configuration
+Setting custom-file to custom.el will make Custom system save variables to that
+file instead of clobbering my .emacs
 
+Bear in mind that the file is never loaded, so if I need to update variables I
+will have to manually extract the new customized variables from custom.el into
+configuration.org. [[https://github.com/Eeemil/dotfiles/issues/3][Read this for more information]]
+#+BEGIN_SRC emacs-lisp
+(setq custom-file "~/.emacs.d/custom.el")
+#+END_SRC
 **** Variables
 Shell-mode text colors
 #+BEGIN_SRC emacs-lisp
