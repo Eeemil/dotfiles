@@ -256,7 +256,7 @@ future: just add another lisp block)
 #+BEGIN_SRC emacs-lisp
 ;; Week begin on Monday
 (setq calendar-week-start-day 1)
-(setq org-agenda-start-on-weekday)
+(setq org-agenda-start-on-weekday 1)
 ;; Use "european" dates (day/month)
 (setq calendar-date-style 'european)
 
@@ -271,8 +271,10 @@ future: just add another lisp block)
       '(24-hours ":" minutes))
 
 #+END_SRC
+** Helm
+#+BEGIN_SRC emacs-lisp
 
-** 
+#+END_SRC
 * Editor configuration
 
 80 char width
