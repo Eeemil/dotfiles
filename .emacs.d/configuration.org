@@ -290,6 +290,7 @@ Much of the configuration is inspired by [[https://github.com/yusekiya/dotfiles/
     ;; Fuzzy matching
     (setq helm-buffers-fuzzy-matching t
      helm-M-x-fuzzy-match t
+     helm-mode-fuzzy-match t
     )
 
 )
@@ -298,10 +299,11 @@ Much of the configuration is inspired by [[https://github.com/yusekiya/dotfiles/
   (("M-o" . helm-swoop)
    ("M-O" . helm-swoop-back-to-last-point)
    ("C-c M-o" . helm-multi-swoop)
-   )
   )
-
-
+  :config ;By default swoop uses whatever is at point when swooping...
+  (setq helm-swoop-pre-input-function
+  (lambda() ""))
+  )
 #+END_SRC
 
 * Editor configuration
