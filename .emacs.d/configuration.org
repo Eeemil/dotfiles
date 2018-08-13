@@ -274,16 +274,20 @@ future: just add another lisp block)
 ** Helm
 Much of the configuration is inspired by [[https://github.com/yusekiya/dotfiles/blob/master/.emacs.d/config/packages/my-helm-config.el][this config]]
 #+BEGIN_SRC emacs-lisp
+
 (use-package helm
   :bind
     (("M-x" . helm-M-x)
      ("M-y" . helm-show-kill-ring)
      ("C-x b" . helm-mini)
      ("C-x C-f" . helm-find-files)
-))
-;; Find-file should auto-complete on tab
-(define-key helm-find-files-map "\t" 'helm-execute-persistent-action)
-
+    )
+  :config
+    ;; start helm-mode
+    (helm-mode 1)
+    ;; Find-file should auto-complete on tab
+    (define-key helm-find-files-map "\t" 'helm-execute-persistent-action)
+)
 (use-package helm-swoop
   :bind
   (("M-o" . helm-swoop)
@@ -291,12 +295,10 @@ Much of the configuration is inspired by [[https://github.com/yusekiya/dotfiles/
    ("C-c M-o" . helm-multi-swoop)
    )
   )
-;; start helm-mode
-(use-package helm-mode
-  :config
-  (diminish 'helm-mode "")
-  (helm-mode 1))
+
+
 #+END_SRC
+
 * Editor configuration
 
 80 char width
