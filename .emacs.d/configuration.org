@@ -630,6 +630,12 @@ Electric pair mode automatically pairs ( parentheses ).
 (use-package jsx-mode)
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
 #+END_SRC
+** Python mode
+#+BEGIN_SRC emacs-lisp
+(use-package pyvenv)
+(use-package elpy)
+(elpy-enable)
+#+END_SRC
 ** MAY BE DELETED
 *** Bison mode: almost never used
 #+BEGIN_SRC emacs-lisp
