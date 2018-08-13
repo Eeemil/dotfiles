@@ -287,6 +287,7 @@ Much of the configuration is inspired by [[https://github.com/yusekiya/dotfiles/
     (helm-mode 1)
     ;; Find-file should auto-complete on tab
     (define-key helm-find-files-map "\t" 'helm-execute-persistent-action)
+    (setq-default helm-M-x-fuzzy-match t)
 )
 (use-package helm-swoop
   :bind
@@ -304,6 +305,11 @@ Much of the configuration is inspired by [[https://github.com/yusekiya/dotfiles/
 80 char width
 #+BEGIN_SRC emacs-lisp
 (setq-default fill-column 80)
+#+END_SRC
+
+Show matching parenthesis when hovering over paren
+#+BEGIN_SRC emacs-lisp
+(show-paren-mode 1)
 #+END_SRC
 
 I want manual pages to appear in current window
@@ -615,7 +621,6 @@ Electric pair mode automatically pairs ( parentheses ).
 
 #+END_SRC
 
-   
 ** Php mode
 #+BEGIN_SRC emacs-lisp
 (use-package php-mode)
