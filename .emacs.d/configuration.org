@@ -100,12 +100,6 @@ It's time to get rid of the menu bar
 #+BEGIN_SRC emacs-lisp
 (menu-bar-mode 0)
 #+END_SRC
-
-TODO I'm a bit unsure what this does
-#+BEGIN_SRC emacs-lisp
-(use-package popup)
-#+END_SRC
-
 *** Mode line
 
 I want a pretty mode line!
@@ -329,23 +323,44 @@ Standard indent length: 4 spaces
 #+END_SRC
 
 ** Auto completion
-
-*** TODO I may want to change auto complete system...
-
+*** DONE I may want to change auto complete system...
+    CLOSED: [2018-08-13 mån 21:07]
+    Switched to Company <2018-08-13 mån 21:07>
 #+BEGIN_SRC emacs-lisp
-(use-package auto-complete)
-;; Enables smart auto-completion
-(require 'auto-complete-config)
-;(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-config-default)
+   (use-package company
+       :config
+       (global-company-mode)
+       (setq company-tooltip-limit 10)
+       (setq company-dabbrev-downcase 0)
+       (setq company-idle-delay 0.33)
+       (setq company-echo-delay 0)
+       (setq company-minimum-prefix-length 2)
+       (setq company-selection-wrap-around t)
+       (setq company-tooltip-align-annotations t)
+       (setq company-transformers '(company-sort-by-occurrence)) ; weight by frequency
+       (define-key company-active-map (kbd "C-n") 'company-select-next)
+       (define-key company-active-map (kbd "C-p") 'company-select-previous)
+       (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+       (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
+       (define-key company-active-map (kbd "S-TAB") 'company-select-previous)
+       (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
+       :custom-face
+       (company-preview ((t (:background "gray25"))))
+       (company-scrollbar-bg ((t (:background "chocolate4"))))
+       (company-scrollbar-fg ((t (:background "dark red"))))
+       (company-tooltip ((t (:background "#000075" :foreground "dark goldenrod"))))
+       (company-tooltip-selection ((t (:background "#000040"))))
+       )
 
+   (use-package company-quickhelp
+       :config
+       (company-quickhelp-mode)
+       :custom
+       (company-quickhelp-color-background "#000075")
+       (company-quickhelp-color-foreground "goldenrod")
+       )
 
 #+END_SRC
-Auto complete on [C-<tab>]
-#+BEGIN_SRC emacs-lisp
-(define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
-#+END_SRC
-
 ** Cursor movement, navigation, marking
 
 #+BEGIN_SRC emacs-lisp
@@ -642,6 +657,12 @@ Electric pair mode automatically pairs ( parentheses ).
 (use-package elpy)
 (elpy-enable)
 #+END_SRC
+Company-jedi as auto-completion framework
+#+BEGIN_SRC emacs-lisp
+(use-package company-jedi
+    :config
+    (add-to-list 'company-backends 'company-jedi))
+#+END_SRC
 ** MAY BE DELETED
 *** Bison mode: almost never used
 #+BEGIN_SRC emacs-lisp
@@ -723,5 +744,9 @@ precmd() {
 ;; (global-set-key (kbd "C-c m n") 'music-player-next)
 ;; (global-set-key (kbd "C-c m <up>") 'music-player-volume-up)
 ;; (global-set-key (kbd "C-c m <down>") 'music-player-volume-down)
+#+END_SRC
+The End.
+#+BEGIN_SRC emacs-lisp
+(print "Eeemil's configuration loaded!")
 #+END_SRC
 
