@@ -301,7 +301,13 @@ Much of the configuration is inspired by [[https://github.com/yusekiya/dotfiles/
 #+END_SRC
 
 * Editor configuration
-
+Use [[https://editorconfig.org/][editorconfig]]
+#+BEGIN_SRC emacs-lisp
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+#+END_SRC
 80 char width
 #+BEGIN_SRC emacs-lisp
 (setq-default fill-column 80)
