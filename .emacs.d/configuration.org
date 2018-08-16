@@ -669,6 +669,10 @@ Company-jedi as auto-completion framework
     :config
     (add-to-list 'company-backends 'company-jedi))
 #+END_SRC
+** Dockerfile mode
+#+BEGIN_SRC emacs-lisp
+(use-package dockerfile-mode)
+#+END_SRC
 ** MAY BE DELETED
 *** Bison mode: almost never used
 #+BEGIN_SRC emacs-lisp
