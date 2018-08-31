@@ -671,6 +671,10 @@ Company-jedi as auto-completion framework
 #+BEGIN_SRC emacs-lisp
 (use-package dockerfile-mode)
 #+END_SRC
+** YAML mode
+#+BEGIN_SRC emacs-lisp
+(use-package yaml-mode)
+#+END_SRC
 ** MAY BE DELETED
 *** Bison mode: almost never used
 #+BEGIN_SRC emacs-lisp
