@@ -8,7 +8,7 @@
 
 dotfiles="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" # dotfiles directory: same directory as calling script
 olddotfiles=$HOME/backup-dotfiles         # old dotfiles backup directory
-files=".emacs .emacs.d .config/terminator/config .gitconfig"  # list of configuration files to deploy
+files=".emacs .emacs.d .config/terminator/config .gitconfig .zshrc"  # list of configuration files to deploy
 
 ##########
 
