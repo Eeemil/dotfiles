@@ -1,0 +1,22 @@
+[user]
+        name = Emil Marklund
+        email = eeemil@acc.umu.se
+        signingkey = 2B3D4AD8
+[credential]
+        helper = cache --timeout=7200
+[github]
+        user = Eeemil
+[core]
+        editor = emacsclient
+[clean]
+        requireForce = true
+[alias]
+        s = status
+        c = commit
+        d = diff
+        l = log
+        a = add
+        co = checkout
+[push]
+        default = simple
+
