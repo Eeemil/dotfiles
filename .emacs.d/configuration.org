@@ -23,8 +23,11 @@
   
   (require 'package)
   (require 'cl)
+  ;; Add repositories
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("melpa" . "http://melpa.milkbox.net/packages/")))
+  ;; Stop adding package-initialize to .emacs...
+  (setq package--init-file-ensured t)
   (package-initialize)
   
 #+END_SRC
