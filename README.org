@@ -1,16 +1,26 @@
 #+Title: My dotfiles
-
 The primary purpose of this repository is to speed up deployment of my
 configuration on new computers. Thus, it is not a high priority to be
 understandable to anybody other than myself. However, I'm happy to help others
 when I can: feel free to ask me questions about my stuff and/or give me
 suggestions on how to improve my stuff!
-
-* About this repoitory
+* About this repository
   This repository is still under construction. This README is supposed to give a
   broad description of my configuration files. The [[file:dotfiles.org][dotfiles.org]] file contains
   organizational information of this repository.
-* Emacs.d
-  Emacs configuration with babel
-* config/terminator/config
-  Terminator terminal emulator thing
+* Scripts
+** deploy.sh
+   Install dotfiles as symlinks in $HOME
+** apt-install
+   Install default packages on an apt-based system
+* Dotfiles
+** Emacs.d
+   Emacs configuration [[file:.emacs.d/configuration.org][written in org-mode]], read by babel
+** git
+   Just git configuration
+** config/terminator/config
+   Terminator terminal emulator thing
+** .zshrc
+   zsh with oh-my-zsh
+** gitconfig
+   git configuration
