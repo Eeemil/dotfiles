@@ -26,8 +26,10 @@ for file in $files; do
     # May not be the case for e.g. ~/.config/terminator/config
     mkdir -p $(dirname $HOME/$file)
 
-    echo "Moving any existing dotfiles from $HOME/$file to $olddotfiles"
-    mv $HOME/$file $olddotfiles
+    if [ -f $HOME/$file ]; then
+	echo "Moving existing dotfile from $HOME/$file to $olddotfiles"
+	mv $HOME/$file $olddotfiles
+    fi
     echo "Creating symlink to $file in home directory."
     ln -s $dotfiles/$file $HOME/$file
 done
