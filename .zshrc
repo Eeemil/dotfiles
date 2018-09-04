@@ -114,7 +114,7 @@ export EDITOR="emacsclient25 -nw"
 export ALTERNATE_EDITOR=""
 
 alias emacs=emacs25
-alias e=emacsclient25
+alias e=emacsclient
 alias g=git
 export PATH="${HOME}/.local/bin:${PATH}"
 # Install Ruby Gems to ~/gems
