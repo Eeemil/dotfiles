@@ -109,7 +109,7 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export EDITOR="emacsclient25 -nw"
+export EDITOR="emacsclient"
 export ALTERNATE_EDITOR=""
 
 alias emacs=emacs25
@@ -119,3 +119,9 @@ export PATH="${HOME}/.local/bin:${PATH}"
 # Install Ruby Gems to ~/gems
 export GEM_HOME=$HOME/gems
 export PATH=$HOME/gems/bin:$PATH  
+
+export PATH=$PATH:/home/eeemil/.go/bin
+
+export GOPATH=/home/eeemil/go
+
+export PATH=$PATH:/home/eeemil/go/bin
