@@ -115,13 +115,27 @@ function beep {
 	# Has supplied arguments
 	msg="Message: $@"
     fi
-    if [ -x "$(command -v paplay)" ]; then
-	setsid paplay /usr/share/sounds/freedesktop/stereo/complete.oga 2>/dev/null
-	# Paplay and /usr/share/sounds/freedesktop/stereo/complete.oga should exist
-	# on most environments...
+    SESSION_TYPE="local"
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+	SESSION_TYPE="remote/ssh"
+	# many other tests omitted
+    else
+	case $(ps -o comm= -p $PPID) in
+	    sshd|*/sshd) SESSION_TYPE="remote/ssh";;
+	esac
     fi
-    if [ -x "$(command -v notify-send)" ]; then
-	notify-send "🐱🐱🐱BEEP🐱🐱🐱" "From: $PWD\r\n$msg"
+
+    if [ $SESSION_TYPE = "local" ]; then
+	# On local machine we can send out sounds
+	if [ -x "$(command -v paplay)" ]; then
+	    setsid paplay /usr/share/sounds/freedesktop/stereo/complete.oga 2>/dev/null
+	    # Paplay and /usr/share/sounds/freedesktop/stereo/complete.oga should exist
+	    # on most environments...
+	fi
+	# Make a desktop notification
+	if [ -x "$(command -v notify-send)" ]; then
+	    notify-send "🐱🐱🐱BEEP🐱🐱🐱" "From: $PWD\r\n$msg"
+	fi
     fi
     echo "🐱🐱🐱"
     echo "HHHHH   HHHHH  HHHHH  HHHH"
