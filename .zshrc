@@ -110,15 +110,20 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 function beep {
+    msg=""
+    if [ $# -gt 0 ]; then
+	# Has supplied arguments
+	msg="Message: $@"
+    fi
     if [ -x "$(command -v paplay)" ]; then
 	setsid paplay /usr/share/sounds/freedesktop/stereo/complete.oga 2>/dev/null
 	# Paplay and /usr/share/sounds/freedesktop/stereo/complete.oga should exist
 	# on most environments...
     fi
     if [ -x "$(command -v notify-send)" ]; then
-	notify-send "🐱🐱🐱BEEP🐱🐱🐱" "From: $PWD\r\nMessage: ${@:-<none>}"
+	notify-send "🐱🐱🐱BEEP🐱🐱🐱" "From: $PWD\r\n$msg"
     fi
-    echo ""
+    echo "🐱🐱🐱"
     echo "HHHHH   HHHHH  HHHHH  HHHH"
     echo "H    H  H      H      H   H"
     echo "H    H  H      H      H   H"
@@ -126,7 +131,7 @@ function beep {
     echo "H    H  H      H      H"
     echo "H    H  H      H      H"
     echo "HHHHH   HHHHH  HHHHH  H"
-    echo ""
+    echo "$msg"
 }
 
 export EDITOR="emacsclient"
