@@ -163,6 +163,7 @@ function set-ps1 {
 	    ;;
     esac
 }
+compdef '_values ps1-types normal kubernetes' set-ps1
 
 # kubectl switch ns easily
 alias kns='kubectl config set-context $(kubectl config current-context) --namespace '
