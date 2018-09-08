@@ -148,6 +148,9 @@ function beep {
     echo "$msg"
 }
 
+# kubectl switch ns easily
+alias kns='kubectl config set-context $(kubectl config current-context) --namespace '
+
 export EDITOR="emacsclient"
 export ALTERNATE_EDITOR=""
 
