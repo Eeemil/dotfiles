@@ -74,7 +74,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages kubectl minikube colorize)
+plugins=(git colored-man-pages kubectl minikube colorize kube-ps1)
 
 if [ -f $ZSH/oh-my-zsh.sh ]; then
     source $ZSH/oh-my-zsh.sh
@@ -148,8 +148,30 @@ function beep {
     echo "$msg"
 }
 
+function set-ps1 {
+    case "$1" in
+	normal)
+            PS1='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+            ;;
+	kubernetes)
+            PS1='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(kube_ps1) $(git_prompt_info)'
+            ;;
+	*)
+	    echo "Invalid argument, must be one of the following:"
+	    echo "- normal"
+	    echo "- kubernetes"
+	    ;;
+    esac
+}
+
 # kubectl switch ns easily
 alias kns='kubectl config set-context $(kubectl config current-context) --namespace '
+
+# enable kube-ps1
+alias ps1-kube=
+
+
+
 
 export EDITOR="emacsclient"
 export ALTERNATE_EDITOR=""
