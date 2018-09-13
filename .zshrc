@@ -201,6 +201,4 @@ export PATH=$HOME/gems/bin:$PATH
 
 export PATH=$PATH:/home/eeemil/.go/bin
 
-export GOPATH=/home/eeemil/go
-
-export PATH=$PATH:/home/eeemil/go/bin
+export GOPATH=/home/eeemil/.go
