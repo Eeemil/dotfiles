@@ -319,6 +319,11 @@ Use [[https://editorconfig.org/][editorconfig]]
 (setq-default fill-column 80)
 #+END_SRC
 
+Indent with spaces
+#+BEGIN_SRC emacs-lisp
+(setq-default indent-tabs-mode nil)
+#+END_SRC
+
 Show matching parenthesis when hovering over paren
 #+BEGIN_SRC emacs-lisp
 (show-paren-mode 1)
