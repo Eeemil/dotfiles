@@ -175,7 +175,17 @@ alias kns='kubectl config set-context $(kubectl config current-context) --namesp
 # enable kube-ps1
 alias ps1-kube=
 
-
+# Override default git command
+# Using "git pull" is not very good. Lets get rid of that habit
+function git {
+    if [[ $@ == "pull" ]]; then
+        echo "You should stop this habit. Read why here: https://adamcod.es/2014/12/10/git-pull-correct-workflow.html"
+        command git pull --rebase=preserve
+        echo "You should stop this habit. Read why here: https://adamcod.es/2014/12/10/git-pull-correct-workflow.html"
+    else
+        command git $@
+    fi
+}
 
 
 export EDITOR="emacsclient"
