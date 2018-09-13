@@ -686,7 +686,10 @@ Company-jedi as auto-completion framework
 #+BEGIN_SRC emacs-lisp
 (use-package go-mode)
 #+END_SRC
-
+** gitignore mode
+#+BEGIN_SRC emacs-lisp
+(use-package gitignore-mode)
+#+END_SRC
 ** MAY BE DELETED
 *** Bison mode: almost never used
 #+BEGIN_SRC emacs-lisp
