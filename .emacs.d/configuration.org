@@ -302,7 +302,10 @@ Much of the configuration is inspired by [[https://github.com/yusekiya/dotfiles/
   (lambda() ""))
   )
 #+END_SRC
-
+** Spellcheck
+#+BEGIN_SRC emacs-lisp
+(setq ispell-dictionary "en")
+#+END_SRC
 * Editor configuration
 Use [[https://editorconfig.org/][editorconfig]]
 #+BEGIN_SRC emacs-lisp
@@ -491,7 +494,7 @@ Readable latex.
 (require 'tex-site)
 (setq TeX-command-extra-options "-shell-escape") ;For compile with minted
 (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
-
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
 #+END_SRC
 
 ** W3: Web browsing in Emacs
@@ -575,7 +578,8 @@ buffer is not visiting a file."
 ** Matlab mode
 
 #+BEGIN_SRC emacs-lisp
-(use-package matlab-mode)
+;; Disabled: for some reason this wouldnt work with Emacs 25+
+;;(use-package matlab-mode)
 #+END_SRC
 
 ** C mode
@@ -678,6 +682,11 @@ Company-jedi as auto-completion framework
 #+BEGIN_SRC emacs-lisp
 (use-package yaml-mode)
 #+END_SRC
+** GO mode
+#+BEGIN_SRC emacs-lisp
+(use-package go-mode)
+#+END_SRC
+
 ** MAY BE DELETED
 *** Bison mode: almost never used
 #+BEGIN_SRC emacs-lisp
