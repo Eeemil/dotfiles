@@ -8,6 +8,7 @@
         user = Eeemil
 [core]
         editor = emacsclient
+	excludesfile = ~/.gitignore-global
 [clean]
         requireForce = true
 [alias]
