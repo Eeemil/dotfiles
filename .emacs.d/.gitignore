@@ -3,3 +3,14 @@ custom.el
 configuration.el
 srecode-map.el
 auto-save-list
+session*
+tramp
+
+bookmarks
+eshell
+ltxpng
+recentf
+request
+semanticdb
+
+.trello
