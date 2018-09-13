@@ -74,7 +74,11 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages kubectl minikube colorize kube-ps1)
+plugins=(git colored-man-pages colorize)
+
+if (( $+commands[kubectl] )); then
+    plugins+=(kubectl minikube kube-ps1)
+fi
 
 if [ -f $ZSH/oh-my-zsh.sh ]; then
     source $ZSH/oh-my-zsh.sh
