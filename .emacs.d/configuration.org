@@ -25,6 +25,7 @@
   (require 'cl)
   ;; Add repositories
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                           ("org" . "https://orgmode.org/elpa/")
                            ("melpa" . "http://melpa.milkbox.net/packages/")))
   ;; Stop adding package-initialize to .emacs...
   (setq package--init-file-ensured t)
@@ -461,7 +462,7 @@ Global keybindings
 Where are org files located?
 #+BEGIN_SRC emacs-lisp
 (setq org-agenda-files '("~/life"))
-(setq org-archive-location '("~/life/archive/"))
+(setq org-archive-location '"~/life/archive/%s::")
 #+END_SRC
 
 Capture templates
