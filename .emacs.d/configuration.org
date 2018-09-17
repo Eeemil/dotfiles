@@ -290,6 +290,10 @@ Much of the configuration is inspired by [[https://github.com/yusekiya/dotfiles/
 #+BEGIN_SRC emacs-lisp
 (setq ispell-dictionary "en")
 #+END_SRC
+** URLs
+#+BEGIN_SRC emacs-lisp
+(url-handler-mode 1)
+#+END_SRC
 * Editor configuration
 Use [[https://editorconfig.org/][editorconfig]]
 #+BEGIN_SRC emacs-lisp
