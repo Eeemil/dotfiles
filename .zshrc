@@ -76,9 +76,15 @@ DISABLE_AUTO_UPDATE="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git colored-man-pages colorize)
 
+# Add kubernetes plugins if kubernetes is installed...
 if (( $+commands[kubectl] )); then
     plugins+=(kubectl minikube kube-ps1 kops)
 fi
+if (( $+commands[aws] )); then
+    plugins+=(aws)
+fi
+
+
 
 if [ -f $ZSH/oh-my-zsh.sh ]; then
     source $ZSH/oh-my-zsh.sh
