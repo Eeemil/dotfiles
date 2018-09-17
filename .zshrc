@@ -77,7 +77,7 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(git colored-man-pages colorize)
 
 if (( $+commands[kubectl] )); then
-    plugins+=(kubectl minikube kube-ps1)
+    plugins+=(kubectl minikube kube-ps1 kops)
 fi
 
 if [ -f $ZSH/oh-my-zsh.sh ]; then
