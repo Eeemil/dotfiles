@@ -16,23 +16,6 @@
 * General settings
 ** Initialization process.
 
-#+BEGIN_SRC emacs-lisp
-  ;; Initialize installed packages
-  (add-to-list 'load-path "~/.emacs.d/elpa")
-  (add-to-list 'load-path "~/.emacs.d/myplugins/netlogo-mode")
-  
-  (require 'package)
-  (require 'cl)
-  ;; Add repositories
-  (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                           ("org" . "https://orgmode.org/elpa/")
-                           ("melpa" . "http://melpa.milkbox.net/packages/")))
-  ;; Stop adding package-initialize to .emacs...
-  (setq package--init-file-ensured t)
-  (package-initialize)
-  
-#+END_SRC
-
 Install use package
 #+BEGIN_SRC emacs-lisp
 (unless (package-installed-p 'use-package)
@@ -448,8 +431,10 @@ By default, give todo-items a closing timestamp.
 
 Pretty bullets
 #+BEGIN_SRC emacs-lisp
-(use-package org-bullets)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(use-package org-bullets
+  :ensure t
+  :commands (org-bullets-mode)
+  :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
 
 Global keybindings
