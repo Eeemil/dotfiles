@@ -161,17 +161,17 @@ function beep {
 # Display hostname in PS1 if over ssh
 function ps1-hostname {
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-        echo "%{$fg[blue]%}%{$bg[magenta]%}$(whoami)@$(hostname)%{$reset_color%}"        
+        echo " %{$fg[blue]%}%{$bg[magenta]%}$(whoami)@$(hostname)%{$reset_color%}"        
     fi
 }
 
 function set-ps1 {
     case "$1" in
 	normal)
-            PS1='${ret_status} $(ps1-hostname) %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+            PS1='${ret_status}$(ps1-hostname) %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
             ;;
 	kubernetes)
-            PS1='${ret_status} $(ps1-hostname) %{$fg[cyan]%}%c%{$reset_color%} $(kube_ps1) $(git_prompt_info)'
+            PS1='${ret_status}$(ps1-hostname) %{$fg[cyan]%}%c%{$reset_color%} $(kube_ps1) $(git_prompt_info)'
             ;;
 	*)
 	    echo "Invalid argument, must be one of the following:"
