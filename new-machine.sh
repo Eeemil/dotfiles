@@ -9,6 +9,7 @@ echo "Downloading dotfiles and ssh synckey"
 rsync -Lr --progress $syncpath $HOME/
 
 echo "Adding synckey to ssh-agent"
+cd $HOME
 mkdir .ssh
 chmod 700 .ssh
 ln -s $HOME/sync/.ssh/id_rsa_synckey .ssh/
