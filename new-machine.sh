@@ -3,6 +3,11 @@
 # new-machine.sh
 # Quick and dirty script to populate my stuff on a new Ubuntu/Debian machine
 ###################################
+## Install: curl
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/Eeemil/dotfiles/master/new-machine.sh)"
+## Install: wget
+# sh -c "$(wget https://raw.githubusercontent.com/Eeemil/dotfiles/master/new-machine.sh -O -)"
+
 syncpath=${1:-eeemil@eeemil.com:~/sync}
 
 echo "Downloading dotfiles and ssh synckey"

@@ -14,6 +14,14 @@ suggestions on how to improve my stuff!
 ** new-machine.sh
    To be used on a new machine when I want to setup "my stuff". Most common
    use-case: a new cloud machine running some slimmed ubuntu/debian image
+
+   To use:
+   #+BEGIN_SRC bash
+   #curl
+   sh -c "$(curl -fsSL https://raw.githubusercontent.com/Eeemil/dotfiles/master/new-machine.sh)"
+   #wget
+   sh -c "$(wget https://raw.githubusercontent.com/Eeemil/dotfiles/master/new-machine.sh -O -)"
+   #+END_SRC
 ** apt-install
    Install default packages on an apt-based system
 * Dotfiles
