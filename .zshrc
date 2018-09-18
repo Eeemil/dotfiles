@@ -206,7 +206,6 @@ function git {
 export EDITOR="emacsclient"
 export ALTERNATE_EDITOR=""
 
-alias emacs=emacs25
 alias e=emacsclient
 alias g=git
 export PATH="${HOME}/.local/bin:${PATH}"
