@@ -50,7 +50,6 @@ Install use package
  kept-new-versions 6
  kept-old-versions 2
  version-control t)
-
 #+END_SRC
 
 Define the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html#Specifying-File-Variables][local file variables]] that [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Safe-File-Variables.html][should be considered safe]].
@@ -63,6 +62,10 @@ Define the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifyin
   )))
 #+END_SRC
 
+VC should automagically follow symlinks.
+#+BEGIN_SRC emacs-lisp
+(setq vc-follow-symlinks t)
+#+END_SRC
 ** Emacs cosmetics
 
 Uniquifies/resolves buffer name collisions 
