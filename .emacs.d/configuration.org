@@ -509,7 +509,6 @@ Readable latex.
 ;(setq magit-last-seen-setup-instructions "1.4.0")
 #+END_SRC
 * Custom functions
-
 ** sudo-edit: Reopen file as root [C-x C-r]
 
 #+BEGIN_SRC emacs-lisp
@@ -563,14 +562,53 @@ buffer is not visiting a file."
 ** load-emacs: Reload configuration
 
 #+BEGIN_SRC emacs-lisp
-
 ;; Reloads .emacs
 (defun load-emacs ()
   (interactive)
   (load-file '"~/.emacs"))
-
 #+END_SRC
+** Shell send line/region
+Send line-or-region in shell-script-mode, as seen on [[https://stackoverflow.com/questions/6286579/emacs-shell-mode-how-to-send-region-to-shell][Stack Overflow]]
+#+BEGIN_SRC emacs-lisp
+(defun sh-send-line-or-region (&optional step)
+  (interactive ())
+  (let ((proc (get-process "ansi-term"))
+        pbuf min max command)
+    (unless proc
+      (let ((currbuff (current-buffer)))
+        (ansi-term "/usr/bin/zsh")
+        (switch-to-buffer currbuff)
+        (setq proc (get-process "*ansi-term*"))
+        ))
+    (setq pbuff (process-buffer proc))
+    (if (use-region-p)
+        (setq min (region-beginning)
+              max (region-end))
+      (setq min (point-at-bol)
+            max (point-at-eol)))
+    (setq command (concat (buffer-substring min max) "\n"))
+    (with-current-buffer pbuff
+      (goto-char (process-mark proc))
+      (insert command)
+      (move-marker (process-mark proc) (point))
+      ) ;;pop-to-buffer does not work with save-current-buffer -- bug?
+    (process-send-string  proc command)
+    (display-buffer (process-buffer proc) t)
+    (when step 
+      (goto-char max)
+      (next-line))
+    ))
 
+(defun sh-send-line-or-region-and-step ()
+  (interactive)
+  (sh-send-line-or-region t))
+(defun sh-switch-to-process-buffer ()
+  (interactive)
+  (pop-to-buffer (process-buffer (get-process "ansi-term")) t))
+
+(add-hook 'sh-mode-hook (lambda()
+			      (local-set-key (kbd "C-c C-c") 'sh-send-line-or-region)))
+#+END_SRC
 * Major mode configurations
 
 ** Matlab mode
