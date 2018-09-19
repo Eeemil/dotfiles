@@ -284,6 +284,30 @@ function beep {
     echo "$msg"
 }
 
+function .env {
+    if [ ! -f ".env" ]; then
+        echo "Error: no .env file found"
+        return -1
+    fi
+    echo "########## Loading .env..."
+    if [ ! -x "$(which pygmentize)" ]; then
+        cat .env
+    else
+        pygmentize -l bash .env
+    fi
+    source .env
+    echo "########## .env loaded"
+}
+
+_dotenv_exists() {
+    if [[ -f .env ]]; then
+        echo "Local .env file exists. Load it with command \".env\""
+    fi
+}
+autoload -U add-zsh-hook
+add-zsh-hook chpwd _dotenv_exists
+
+
 # kubectl switch ns easily
 alias kns='kubectl config set-context $(kubectl config current-context) --namespace '
 
