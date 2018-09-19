@@ -35,7 +35,7 @@ fi
 ZSH_THEME="robbyrussell"
 # Try to load powerlevel9k theme. If it isn't installed in
 # .oh-my-zsh/custom/themes, try to find it in dotfiles and symlink it
-if [ $DUMBTERM ]; then
+if [ "$DUMBTERM" = "true" ]; then
     ZSH_THEME="robbyrussell"
 elif [ -f "$ZSH/custom/themes/powerlevel9k/powerlevel9k.zsh-theme" ]; then
     ZSH_THEME="powerlevel9k/powerlevel9k"
