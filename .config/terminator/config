@@ -15,7 +15,7 @@
 [profiles]
   [[default]]
     background_darkness = 0.76
-    background_image = None
     background_type = transparent
-    font = ShureTechMono Nerd Font 13
+    cursor_color = "#aaaaaa"
+    font = ShureTechMono Nerd Font 10
     use_system_font = False
