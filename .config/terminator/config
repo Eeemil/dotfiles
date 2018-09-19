@@ -3,17 +3,19 @@
 [keybindings]
   next_tab = <Primary><Shift>f
   prev_tab = <Primary><Shift>b
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
 [profiles]
   [[default]]
     background_darkness = 0.76
     background_image = None
     background_type = transparent
-[layouts]
-  [[default]]
-    [[[child1]]]
-      type = Terminal
-      parent = window0
-    [[[window0]]]
-      type = Window
-      parent = ""
-[plugins]
+    font = ShureTechMono Nerd Font 13
+    use_system_font = False

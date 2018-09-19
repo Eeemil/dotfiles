@@ -44,3 +44,7 @@ echo "Changing shell to zsh"
 if [ $(which zsh) ]; then
     sudo usermod -s $(which zsh) $(whoami)
 fi
+
+echo "Installing font(s)"
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts && curl -fLo "Shure Tech Mono for Powerline Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/ShareTechMono/complete/Shure%20Tech%20Mono%20Nerd%20Font%20Complete.ttf
