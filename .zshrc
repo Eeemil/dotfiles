@@ -1,7 +1,14 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export TERM="xterm-256color"
+DUMBTERM=false
+case $TERM in
+    "dumb"|"eterm-color")
+        DUMBTERM=true;;
+    *)
+        export TERM="xterm-256color"
+esac
+
 
 # Path to my oh-my-zsh installation.
 #
@@ -28,7 +35,9 @@ fi
 ZSH_THEME="robbyrussell"
 # Try to load powerlevel9k theme. If it isn't installed in
 # .oh-my-zsh/custom/themes, try to find it in dotfiles and symlink it
-if [ -f "$ZSH/custom/themes/powerlevel9k/powerlevel9k.zsh-theme" ]; then
+if [ $DUMBTERM ]; then
+    ZSH_THEME="robbyrussell"
+elif [ -f "$ZSH/custom/themes/powerlevel9k/powerlevel9k.zsh-theme" ]; then
     ZSH_THEME="powerlevel9k/powerlevel9k"
 elif [ -f "$HOME/dotfiles/powerlevel9k/powerlevel9k.zsh-theme" ]; then
     ln -s "$HOME/dotfiles/powerlevel9k" "$ZSH/custom/themes/powerlevel9k"
@@ -334,6 +343,6 @@ export PATH="${HOME}/.local/bin:${PATH}"
 export GEM_HOME=$HOME/gems
 export PATH=$HOME/gems/bin:$PATH  
 
-export PATH=$PATH:/home/eeemil/.go/bin
+export GOPATH=$HOME/.go/workspace
+export PATH=$PATH:$GOPATH/bin
 
-export GOPATH=/home/eeemil/.go
