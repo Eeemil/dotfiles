@@ -589,15 +589,15 @@ Send line-or-region in shell-script-mode, as seen on [[https://stackoverflow.com
     (setq command (concat (buffer-substring min max) "\n"))
     (with-current-buffer pbuff
       (goto-char (process-mark proc))
-      (insert command)
       (move-marker (process-mark proc) (point))
       ) ;;pop-to-buffer does not work with save-current-buffer -- bug?
-    (process-send-string  proc command)
+    (comint-send-string  proc command)
     (display-buffer (process-buffer proc) t)
     (when step 
       (goto-char max)
       (next-line))
-    ))
+    )
+)
 
 (defun sh-send-line-or-region-and-step ()
   (interactive)
