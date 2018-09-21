@@ -213,7 +213,7 @@ plugins=(git colored-man-pages colorize)
 
 # Add kubernetes plugins if kubernetes is installed...
 if (( $+commands[kubectl] )); then
-    plugins+=(kubectl minikube kube-ps1 kops)
+    plugins+=(kubectl minikube kube-ps1 kops helm)
 fi
 if (( $+commands[aws] )); then
     plugins+=(aws)
