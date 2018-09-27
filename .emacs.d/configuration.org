@@ -186,7 +186,6 @@ Default editorlook
                 :background "#211E1E"))))
 #+END_SRC
 [[https://github.com/jonnay/org-beautify-theme][Beautify org-mode]] settings
-#+NAME: org-beautify
 #+BEGIN_SRC emacs-lisp
   ;Default settings makes BEGIN_SRC lines be highlighted, (and the code block not
   ;highlighted). I want the opposite...
@@ -609,6 +608,15 @@ Send line-or-region in shell-script-mode, as seen on [[https://stackoverflow.com
 (add-hook 'sh-mode-hook (lambda()
 			      (local-set-key (kbd "C-c C-c") 'sh-send-line-or-region)))
 #+END_SRC
+** display-ansi-colors (+ auto-mode for .log-files)
+#+BEGIN_SRC emacs-lisp
+(require 'ansi-color)
+(defun display-ansi-colors ()
+  (interactive)
+  (ansi-color-apply-on-region (point-min) (point-max)))
+
+(add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
+#+END_SRC
 * Major mode configurations
 
 ** Matlab mode
@@ -729,6 +737,7 @@ Company-jedi as auto-completion framework
 ** shell-script-mode
 #+BEGIN_SRC emacs-lisp
 (setq comint-scroll-to-bottom-on-output t)
+(add-to-list 'auto-mode-alist '("/tmp/zsh.*" . shell-script-mode))
 #+END_SRC
 ** MAY BE DELETED
 *** Bison mode: almost never used
