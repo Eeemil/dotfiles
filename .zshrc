@@ -311,6 +311,15 @@ function beep {
     echo "$msg"
 }
 
+function waitfor {
+    local ret
+    echo "Will run command '$@' until it returns 0"
+    until "$@" &>/dev/null; do
+        sleep 1
+    done
+    beep "Command finished: '$@'"
+}
+
 function .env {
     if [ ! -f ".env" ]; then
         echo "Error: no .env file found"
