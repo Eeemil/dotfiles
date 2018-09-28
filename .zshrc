@@ -205,12 +205,10 @@ COMPLETION_WAITING_DOTS="true"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
+# ┏━┓╻ ╻   ┏┳┓╻ ╻   ╺━┓┏━┓╻ ╻   ┏━┓╻  ╻ ╻┏━╸╻┏┓╻┏━┓
+# ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫   ┣━┛┃  ┃ ┃┃╺┓┃┃┗┫┗━┓
+# ┗━┛╹ ╹   ╹ ╹ ╹    ┗━╸┗━┛╹ ╹   ╹  ┗━╸┗━┛┗━┛╹╹ ╹┗━┛
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git colored-man-pages colorize)
 
 # Add kubernetes plugins if kubernetes is installed...
@@ -399,5 +397,5 @@ export GOPATH=$HOME/.go/workspace
 export PATH=$PATH:$GOPATH/bin
 
 if (( $+commands[pygmentize] )); then
-    export LESSOPEN='|pygmentize %s'
+    export LESSOPEN="| pygmentize %s 2>/dev/null"
 fi
