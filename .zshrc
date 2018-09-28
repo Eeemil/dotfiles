@@ -218,8 +218,12 @@ fi
 if (( $+commands[aws] )); then
     plugins+=(aws)
 fi
-
-
+if (( $+commands[docker-compose] )); then
+    plugins+=(docker-compose)
+fi
+if (( $+commands[docker] )); then
+    plugins+=(docker)
+fi
 
 if [ -f $ZSH/oh-my-zsh.sh ]; then
     source $ZSH/oh-my-zsh.sh
