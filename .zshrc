@@ -363,6 +363,9 @@ function git {
     fi
 }
 
+if (( $+commands[pygmentize] )); then
+    export LESSOPEN='|pygmentize %s'
+fi
 
 export EDITOR="emacsclient"
 export ALTERNATE_EDITOR=""
