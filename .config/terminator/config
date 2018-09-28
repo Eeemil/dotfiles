@@ -18,4 +18,5 @@
     background_type = transparent
     cursor_color = "#aaaaaa"
     font = ShureTechMono Nerd Font 10
+    scrollback_lines = 8192
     use_system_font = False
