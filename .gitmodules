@@ -4,3 +4,6 @@
 [submodule "powerlevel9k"]
 	path = oh-my-zsh-custom/themes/powerlevel9k
 	url = git@github.com:bhilburn/powerlevel9k.git
+[submodule "oh-my-zsh-custom/plugins/zsh-syntax-highlighting"]
+	path = oh-my-zsh-custom/plugins/zsh-syntax-highlighting
+	url = git@github.com:zsh-users/zsh-syntax-highlighting.git

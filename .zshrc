@@ -15,20 +15,16 @@ esac
 # ┗━┛╹ ╹   ╹ ╹ ╹    ┗━╸┗━┛╹ ╹   ┗━╸┗━┛┗━╸╹ ╹ ╹ ╹┗━┛╹ ╹
 # Path to my oh-my-zsh installation.
 #
-# Lets try to find it in "dotfiles", ".dotfiles" or default oh my zsh path
-
-DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
-if [ "$DOTFILES" = "$HOME" ]; then
-    if [ -d "$HOME/dotfiles" ]; then
-        DOTFILES="$HOME/dotfiles"
-        echo "Warning: $HOME/.zshrc should be a symlink to $DOTFILES/.zshrc"
-    elif [ -d "$HOME/.dotfiles" ]; then
-        DOTFILES="$HOME/.dotfiles"
-        echo "Warning: $HOME/.zshrc should be a symlink to $DOTFILES/.zshrc"
-    else
-        echo "Warning: dotfiles not installed, install it with 'git clone git@github.com:Eeemil/dotfiles.git ~/dotfiles'"
-    fi
+#Default fallback path
+DOTFILES=$HOME
+if [ -d "$HOME/dotfiles" ]; then
+    DOTFILES="$HOME/dotfiles"
+elif [ -d "$HOME/.dotfiles" ]; then
+    DOTFILES="$HOME/.dotfiles"
+else
+    echo "Warning: dotfiles not found, install it with 'git clone git@github.com:Eeemil/dotfiles.git ~/dotfiles'"
 fi
+
 if [ -f "$DOTFILES/.oh-my-zsh/oh-my-zsh.sh" ]; then
     export ZSH="$HOME/dotfiles/.oh-my-zsh"
 elif [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
@@ -225,6 +221,12 @@ if (( $+commands[docker] )); then
     plugins+=(docker)
 fi
 
+# BE AWARE: MUST BE LOADED LAST
+# BE AWARE: MUST BE LOADED LAST
+# BE AWARE: MUST BE LOADED LAST
+if [ -f "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh" ]; then
+    plugins+=(zsh-syntax-highlighting)
+fi
 # ╻  ┏━┓┏━┓╺┳┓   ┏━┓╻ ╻   ┏┳┓╻ ╻   ╺━┓┏━┓╻ ╻
 # ┃  ┃ ┃┣━┫ ┃┃   ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫
 # ┗━╸┗━┛╹ ╹╺┻┛   ┗━┛╹ ╹   ╹ ╹ ╹    ┗━╸┗━┛╹ ╹
