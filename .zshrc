@@ -367,6 +367,33 @@ if (( $+commands[pygmentize] )); then
     export LESSOPEN='|pygmentize %s'
 fi
 
+# send a HTTP 1.0 get request with nc
+# $1 = host
+# $2 = resource
+function nc_get {
+    local resource=${2:-"/"}
+    nc "$1" 80 <<EOF
+GET $resource HTTP/1.0
+Host: $1
+
+EOF
+}
+
+# wanip command: use fastest tool to get external IP as discussed in
+# https://unix.stackexchange.com/questions/22615/how-can-i-get-my-external-ip-address-in-a-shell-script
+if (( $+commands[dig] )); then
+    alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
+elif (( $+commands[GET] )); then
+    alias wanip='GET http://whatismyip.akamai.com'
+elif (( $+commands[curl] )); then
+    alias wanip='curl -s http://whatismyip.akamai.com/'
+elif (( $+commands[wget] )); then
+    alias wanip='wget http://whatismyip.akamai.com/ -q -O -'
+elif (( $+commands[wget] )); then
+    alias wanip='nc_get whatismyip.akamai.com / | tail -1'
+else
+    alias wanip='echo "Go to http://whatismyip.akamai.com and fetch your ip yourself (and/or install dig/dnsutils and)"'
+fi
 export EDITOR="emacsclient"
 export ALTERNATE_EDITOR=""
 
