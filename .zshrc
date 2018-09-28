@@ -392,7 +392,7 @@ elif (( $+commands[wget] )); then
 elif (( $+commands[wget] )); then
     alias wanip='nc_get whatismyip.akamai.com / | tail -1'
 else
-    alias wanip='echo "Go to http://whatismyip.akamai.com and fetch your ip yourself (and/or install dig/dnsutils and)"'
+    alias wanip='echo "Go to http://whatismyip.akamai.com and fetch your ip yourself (and/or install dig/dnsutils)"'
 fi
 export EDITOR="emacsclient"
 export ALTERNATE_EDITOR=""
