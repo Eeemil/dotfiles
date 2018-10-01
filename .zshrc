@@ -67,10 +67,15 @@ if [ "$ZSH_THEME"="powerlevel9k/powerlevel9k" ]; then
     POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
     POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND="red"
     POWERLEVEL9K_CONTEXT_REMOTE_BACKGROUND="blue3"
-
-    POWERLEVEL9K_DIR_PATH_HIGHLIGHT_FOREGROUND="yellow3"
-    POWERLEVEL9K_DIR_PATH_HIGHLIGHT_BOLD=true
-
+    autoload -Uz is-at-least
+    if is-at-least 5.2.0; then
+        # Older versions of ZSH goes fubar with these settings...
+        POWERLEVEL9K_DIR_PATH_HIGHLIGHT_FOREGROUND="yellow3"
+        POWERLEVEL9K_DIR_PATH_HIGHLIGHT_BOLD=true
+    else
+        POWERLEVEL9K_DIR_PATH_HIGHLIGHT_FOREGROUND="yellow"
+        POWERLEVEL9K_DIR_PATH_HIGHLIGHT_BOLD=false
+    fi
 
     POWERLEVEL9K_DATE_FORMAT="%D{%m-%d}"
 
