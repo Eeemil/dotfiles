@@ -299,7 +299,7 @@ function beep {
 }
 
 # re-run a command until it succeeds
-function waitfor {
+function waitforsuccess {
     local ret
     echo "Will run command '$@' until it returns 0"
     until "$@" &>/dev/null; do
