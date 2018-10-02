@@ -385,12 +385,17 @@ else
     alias wanip='echo "Go to http://whatismyip.akamai.com and fetch your ip yourself (and/or install dig/dnsutils)"'
 fi
 
-# ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓  ┏━╸┏┓╻╻ ╻╻┏━┓┏━┓┏┓╻┏┳┓┏━╸┏┓╻╺┳╸  ╻ ╻┏━┓┏━┓╻┏━┓┏┓ ╻  ┏━╸┏━┓
-# ┃  ┃ ┃┗━┓ ┃ ┃ ┃┃┃┃  ┣╸ ┃┗┫┃┏┛┃┣┳┛┃ ┃┃┗┫┃┃┃┣╸ ┃┗┫ ┃   ┃┏┛┣━┫┣┳┛┃┣━┫┣┻┓┃  ┣╸ ┗━┓
-# ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹  ┗━╸╹ ╹┗┛ ╹╹┗╸┗━┛╹ ╹╹ ╹┗━╸╹ ╹ ╹   ┗┛ ╹ ╹╹┗╸╹╹ ╹┗━┛┗━╸┗━╸┗━┛
+# use python3 if available
+if (( $+commands[pip3] )); then
+    alias pip=pip3
+fi
 
 alias e=emacsclient
 alias g=git
+
+# ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓  ┏━╸┏┓╻╻ ╻╻┏━┓┏━┓┏┓╻┏┳┓┏━╸┏┓╻╺┳╸  ╻ ╻┏━┓┏━┓╻┏━┓┏┓ ╻  ┏━╸┏━┓
+# ┃  ┃ ┃┗━┓ ┃ ┃ ┃┃┃┃  ┣╸ ┃┗┫┃┏┛┃┣┳┛┃ ┃┃┗┫┃┃┃┣╸ ┃┗┫ ┃   ┃┏┛┣━┫┣┳┛┃┣━┫┣┻┓┃  ┣╸ ┗━┓
+# ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹  ┗━╸╹ ╹┗┛ ╹╹┗╸┗━┛╹ ╹╹ ╹┗━╸╹ ╹ ╹   ┗┛ ╹ ╹╹┗╸╹╹ ╹┗━┛┗━╸┗━╸┗━┛
 
 export EDITOR="emacsclient"
 export ALTERNATE_EDITOR=""
@@ -398,10 +403,20 @@ export ALTERNATE_EDITOR=""
 export PATH="${HOME}/.local/bin:${PATH}"
 # Install Ruby Gems to ~/gems
 export GEM_HOME=$HOME/gems
-export PATH=$HOME/gems/bin:$PATH  
 
 export GOPATH=$HOME/.go/workspace
+
+# ┏━┓┏━┓╺┳╸╻ ╻
+# ┣━┛┣━┫ ┃ ┣━┫
+# ╹  ╹ ╹ ╹ ╹ ╹
+# Ruby gems
+export PATH=$HOME/gems/bin:$PATH
+# Anaconda: Python/ML stuff
+export PATH=$HOME/anaconda3/bin:$PATH
+# Go
 export PATH=$PATH:$GOPATH/bin
+
+
 
 if (( $+commands[pygmentize] )); then
     export LESSOPEN="| pygmentize %s 2>/dev/null"
