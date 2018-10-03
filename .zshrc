@@ -412,7 +412,17 @@ export GOPATH=$HOME/.go/workspace
 # Ruby gems
 export PATH=$HOME/gems/bin:$PATH
 # Anaconda: Python/ML stuff
-export PATH=$HOME/anaconda3/bin:$PATH
+# Contains A LOT of binaries conflicting with system binaries (such as python
+# and curl) so lets load it manually whenever I type "anaconda" in terminal
+function anaconda {
+    echo $PATH | grep "/anaconda3/bin" &>/dev/null
+    if [ $? -ne 0 ]; then
+        export PATH=$HOME/anaconda3/bin:$PATH
+    fi
+    unset -f anaconda
+    echo 'Anaconda binaries added to $PATH'
+}
+
 # Go
 export PATH=$PATH:$GOPATH/bin
 
