@@ -497,11 +497,7 @@ Readable latex.
      '(lambda (x)
     (stringp x)))
 #+END_SRC
-
-** W3: Web browsing in Emacs
-#+BEGIN_SRC emacs-lisp
-(use-package w3)
-#+END_SRC
+** 
 * Custom functions
 ** sudo-edit: Reopen file as root [C-x C-r]
 
