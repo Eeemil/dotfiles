@@ -24,12 +24,12 @@ cd $dotfiles
 for file in $files; do
     # Ensure that the directory for the configuration file exists...
     # May not be the case for e.g. ~/.config/terminator/config
-    mkdir -p $(dirname $HOME/$file)
+    mkdir -p "$(dirname $HOME/$file)"
 
     if [ -f $HOME/$file ]; then
 	echo "Moving existing dotfile from $HOME/$file to $olddotfiles"
-	mv $HOME/$file $olddotfiles
+	mv "$HOME/$file" "$olddotfiles"
     fi
     echo "Creating symlink to $file in home directory."
-    ln -s $dotfiles/$file $HOME/$file
+    ln -sfn "$dotfiles/$file" "$HOME/$file"
 done
