@@ -497,7 +497,20 @@ Readable latex.
      '(lambda (x)
     (stringp x)))
 #+END_SRC
-** 
+** Projectile: Project management
+#+BEGIN_SRC emacs-lisp
+(use-package projectile
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :config 
+  (projectile-mode +1)
+)
+(use-package helm-projectile
+  :config
+  (helm-projectile-on)
+)
+
+#+END_SRC
 * Custom functions
 ** sudo-edit: Reopen file as root [C-x C-r]
 
