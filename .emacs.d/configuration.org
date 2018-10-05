@@ -507,6 +507,24 @@ Readable latex.
 )
 
 #+END_SRC
+** Flycheck: syntax checking stuff
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+;; Add proselint checker for prose
+(flycheck-define-checker proselint
+  "A linter for prose."
+  :command ("proselint" source-inplace)
+  :error-patterns
+  ((warning line-start (file-name) ":" line ":" column ": "
+	    (id (one-or-more (not (any " "))))
+	    (message) line-end))
+  :modes (text-mode markdown-mode gfm-mode latex-mode))
+
+(add-to-list 'flycheck-checkers 'proselint)
+#+END_SRC
 * Custom functions
 ** sudo-edit: Reopen file as root [C-x C-r]
 
@@ -663,8 +681,6 @@ Electric pair mode automatically pairs ( parentheses ).
 ** Haskell mode
 
 #+BEGIN_SRC emacs-lisp
-(use-package flymake-haskell-multi)
-(use-package ac-haskell-process)
 (use-package haskell-mode)
 (use-package haskell-emacs)
 (use-package haskell-emacs-base)
