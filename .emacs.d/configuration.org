@@ -492,10 +492,6 @@ Readable latex.
 (setq TeX-command-extra-options "-shell-escape") ;For compile with minted
 (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
-; This allows me to put a custom LaTeX-command in file/dir-locals to force output name
-(put 'LaTeX-command 'safe-local-variable
-     '(lambda (x)
-    (stringp x)))
 #+END_SRC
 ** Projectile: Project management
 #+BEGIN_SRC emacs-lisp
