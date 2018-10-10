@@ -305,7 +305,10 @@ function beep {
 
 # re-run a command until it succeeds
 function waitforsuccess {
-    local ret
+    if [ $+commands[$1] -eq 0 ]; then
+        echo "Error: '$1' is not a command, will never return 0...."
+        return 1
+    fi
     echo "Will run command '$@' until it returns 0"
     until "$@" &>/dev/null; do
         sleep 1
