@@ -765,7 +765,6 @@ Company-jedi as auto-completion framework
 (use-package bison-mode)
 #+END_SRC
 * Various keybindings
-
 ** Useful when programming
 
 #+BEGIN_SRC emacs-lisp
@@ -783,7 +782,6 @@ Company-jedi as auto-completion framework
 ** Fixes for swedish/strange input devices etc
 
 #+BEGIN_SRC emacs-lisp
-
 ;; Get back some unusable keys for swedish keyboard
 (global-set-key (kbd "<S-dead-circumflex>") "^")
 (global-set-key (kbd "<S-dead-grave>") "`")
@@ -793,6 +791,9 @@ Company-jedi as auto-completion framework
 (define-key key-translation-map [dead-diaeresis] "\"")
 (define-key key-translation-map [dead-tilde] "~")
 (put 'downcase-region 'disabled nil)
+
+;; Original keybinding: M-$, however alt+shift+4=¤ on swedish keyboard
+(global-set-key (kbd "M-¤") 'ispell-word)
 #+END_SRC
 
 ** Other
