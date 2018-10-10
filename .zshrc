@@ -419,6 +419,7 @@ function anaconda {
     if [ $? -ne 0 ]; then
         export PATH=$HOME/anaconda3/bin:$PATH
     fi
+    #unload this function "anaconda" so that binary "anaconda" can be used
     unset -f anaconda
     echo 'Anaconda binaries added to $PATH'
 }
