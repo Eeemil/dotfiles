@@ -229,7 +229,10 @@ Terminal cosmetics
  ;Ansi-term blue color is hard to read some times
  '(term-color-blue ((t (:foreground "DodgerBlue3" :background "DodgerBlue3"))) t)
 #+END_SRC
-
+Ace-window character
+#+BEGIN_SRC emacs-lisp
+ '(aw-leading-char-face ((t (:foreground "red" :height 4.0))))
+#+END_SRC
 Closing parenthesis (For making it easier to add more customization in the
 future: just add another lisp block)
 
