@@ -1,6 +1,7 @@
 [global_config]
   enabled_plugins = ActivityWatch, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
 [keybindings]
+  layout_launcher = None
   next_tab = <Primary><Shift>f
   prev_tab = <Primary><Shift>b
 [layouts]
@@ -15,8 +16,8 @@
 [profiles]
   [[default]]
     background_darkness = 0.76
+    background_image = None
     background_type = transparent
-    cursor_color = "#aaaaaa"
     font = ShureTechMono Nerd Font 10
     scrollback_lines = 8192
     use_system_font = False
