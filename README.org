@@ -35,3 +35,5 @@ suggestions on how to improve my stuff!
    zsh with oh-my-zsh
 ** gitconfig
    git configuration
+** aspell
+   Personal Aspell dictionary
