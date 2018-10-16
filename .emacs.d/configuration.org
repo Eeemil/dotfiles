@@ -80,7 +80,9 @@ Uniquifies/resolves buffer name collisions
 
 I don't like the fringe thing...
 #+BEGIN_SRC emacs-lisp
-(fringe-mode 0)
+  (when (display-graphic-p)
+    (fringe-mode 0)
+    )
 #+END_SRC
 
 I don't need a tool bar...
@@ -122,10 +124,14 @@ Show column in mode line
 I like Nyan Cat more than a scroll bar.
 
 #+BEGIN_SRC emacs-lisp
-;; Exchange scroll bar for nyan mode.
-(use-package nyan-mode)
-(scroll-bar-mode 0)
-(nyan-mode 1)
+  ;; Exchange scroll bar for nyan mode.
+  (use-package nyan-mode
+    :config
+    (nyan-mode 1)
+  )
+  (when (display-graphic-p)
+    (scroll-bar-mode 0)
+    )
 #+END_SRC
 *** Customize configuration
 Setting custom-file to custom.el will make Custom system save variables to that
