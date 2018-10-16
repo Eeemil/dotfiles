@@ -8,7 +8,7 @@
 ## Install: wget
 # sh -c "$(wget https://raw.githubusercontent.com/Eeemil/dotfiles/master/new-machine.sh -O -)"
 
-syncpath=${1:-eeemil@eeemil.com:~/sync}
+syncpath=${1:-'eeemil@eeemil.com:~/sync'}
 
 echo "Downloading dotfiles and ssh synckey"
 rsync -Lr --progress $syncpath $HOME/
