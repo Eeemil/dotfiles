@@ -25,6 +25,10 @@ Install use package
 (require 'use-package)
 (setq use-package-always-ensure t)
 #+END_SRC
+Delight needs to be loaded early: it configures mode line names of other modes
+#+BEGIN_SRC emacs-lisp
+(use-package delight)
+#+END_SRC
 
 *** TODO Investigate
     I'm not quite sure what this is anymore, and why I cannot use-package it...
@@ -276,6 +280,7 @@ Much of the configuration is inspired by [[https://github.com/yusekiya/dotfiles/
      ("C-x b" . helm-mini)
      ("C-x C-f" . helm-find-files)
     )
+  :delight " ⛑"
   :config
     ;; start helm-mode
     (helm-mode 1)
@@ -312,6 +317,7 @@ Use [[https://editorconfig.org/][editorconfig]]
 #+BEGIN_SRC emacs-lisp
 (use-package editorconfig
   :ensure t
+  :delight " EC"
   :config
   (editorconfig-mode 1))
 #+END_SRC
@@ -366,6 +372,7 @@ Standard indent length: 4 spaces
     (company-scrollbar-fg ((t (:background "dark red"))))
     (company-tooltip ((t (:background "#000075" :foreground "dark goldenrod"))))
     (company-tooltip-selection ((t (:background "#000040"))))
+    :delight " c-any"
     )
 
   (use-package company-quickhelp
@@ -534,7 +541,9 @@ Readable latex.
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck
   :ensure t
-  :init (global-flycheck-mode))
+  :init (global-flycheck-mode)
+  :delight " FC"
+)
 
 ;; Add proselint checker for prose
 (flycheck-define-checker proselint
