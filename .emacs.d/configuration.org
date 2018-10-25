@@ -778,11 +778,7 @@ Company-jedi as auto-completion framework
 (setq comint-scroll-to-bottom-on-output t)
 (add-to-list 'auto-mode-alist '("/tmp/zsh.*" . shell-script-mode))
 #+END_SRC
-** MAY BE DELETED
-*** Bison mode: almost never used
-#+BEGIN_SRC emacs-lisp
-(use-package bison-mode)
-#+END_SRC
+
 * Various keybindings
 ** Useful when programming
 
