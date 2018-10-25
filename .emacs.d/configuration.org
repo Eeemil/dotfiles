@@ -520,7 +520,7 @@ Readable latex.
     :config 
     (projectile-mode +1)
     (setq projectile-mode-line-function
-          '(lambda () (format " Proj[%s]" (projectile-project-name)))
+          '(lambda () (format " P[%s]" (projectile-project-name)))
           )
     )
 
