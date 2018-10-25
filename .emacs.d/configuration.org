@@ -519,10 +519,11 @@ Readable latex.
     ("C-c p" . projectile-command-map)
     :config 
     (projectile-mode +1)
-    (setq projectile-mode-line
-          '(:eval (format " Proj[%s]" (projectile-project-name)))
+    (setq projectile-mode-line-function
+          '(lambda () (format " Proj[%s]" (projectile-project-name)))
           )
     )
+
   (use-package helm-projectile
     :config
     (helm-projectile-on)
