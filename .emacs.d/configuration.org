@@ -514,16 +514,19 @@ Readable latex.
 #+END_SRC
 ** Projectile: Project management
 #+BEGIN_SRC emacs-lisp
-(use-package projectile
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
-  :config 
-  (projectile-mode +1)
-)
-(use-package helm-projectile
-  :config
-  (helm-projectile-on)
-)
+  (use-package projectile
+    :bind-keymap
+    ("C-c p" . projectile-command-map)
+    :config 
+    (projectile-mode +1)
+    (setq projectile-mode-line
+          '(:eval (format " Proj[%s]" (projectile-project-name)))
+          )
+    )
+  (use-package helm-projectile
+    :config
+    (helm-projectile-on)
+    )
 
 #+END_SRC
 ** Flycheck: syntax checking stuff
