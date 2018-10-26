@@ -40,4 +40,23 @@ toggle-maximized=['<Super>1']
 toggle-fullscreen=['F11']
 EOF
 
+# ┏━╸╻  ┏━┓┏━╸╻┏     ┏━┓╻ ╻┏━┓╻ ╻   ╺┳┓┏━┓╺┳╸┏━╸ ╻ ┏━┓┏━╸┏━╸┏━┓┏┓╻╺┳┓┏━┓
+# ┃  ┃  ┃ ┃┃  ┣┻┓╹   ┗━┓┣━┫┃ ┃┃╻┃    ┃┃┣━┫ ┃ ┣╸ ╺╋╸┗━┓┣╸ ┃  ┃ ┃┃┗┫ ┃┃┗━┓
+# ┗━╸┗━╸┗━┛┗━╸╹ ╹╹   ┗━┛╹ ╹┗━┛┗┻┛   ╺┻┛╹ ╹ ╹ ┗━╸ ╹ ┗━┛┗━╸┗━╸┗━┛╹ ╹╺┻┛┗━┛
+dconf load /org/gnome/desktop/interface/ <<EOF
+[/]
+clock-show-date=true
+gtk-im-module='gtk-im-context-simple'
+clock-show-seconds=true
+EOF
+
+# ╻┏┓╻┏━┓╻ ╻╺┳╸    ┏━╸┏┳┓┏━┓┏━╸┏━┓   ╻┏ ┏━╸╻ ╻┏┓ ╻┏┓╻╺┳┓╻┏┓╻┏━╸┏━┓
+# ┃┃┗┫┣━┛┃ ┃ ┃ ╹   ┣╸ ┃┃┃┣━┫┃  ┗━┓   ┣┻┓┣╸ ┗┳┛┣┻┓┃┃┗┫ ┃┃┃┃┗┫┃╺┓┗━┓
+# ╹╹ ╹╹  ┗━┛ ╹ ╹   ┗━╸╹ ╹╹ ╹┗━╸┗━┛   ╹ ╹┗━╸ ╹ ┗━┛╹╹ ╹╺┻┛╹╹ ╹┗━┛┗━┛
+dconf load /org/gnome/desktop/interface/ <<EOF
+[/]
+gtk-im-module='gtk-im-context-simple'
+gtk-key-theme='Emacs'
+EOF
+
 echo "Gnome settings loaded"
