@@ -137,6 +137,11 @@ I like Nyan Cat more than a scroll bar.
     (scroll-bar-mode 0)
     )
 #+END_SRC
+Delight: reconfigure how major/minor modes are displayed in mode-line
+#+BEGIN_SRC emacs-lisp
+(require 'delight)
+(delight 'shell-script-mode "Sh" :major)
+#+END_SRC
 *** Customize configuration
 Setting custom-file to custom.el will make Custom system save variables to that
 file instead of clobbering my .emacs
