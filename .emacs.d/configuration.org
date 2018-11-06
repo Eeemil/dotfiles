@@ -43,8 +43,8 @@ Delight needs to be loaded early: it configures mode line names of other modes
 
 ** File settings
 
+Backups should be saved in "~/.emacs.backup/"
 #+BEGIN_SRC emacs-lisp
-
 ;; Keep file backups in ~/.emacs.backup
 (setq
  backup-by-copying t      ; don't clobber symlinks
@@ -54,6 +54,15 @@ Delight needs to be loaded early: it configures mode line names of other modes
  kept-new-versions 6
  kept-old-versions 2
  version-control t)
+#+END_SRC
+teststr
+
+Auto-save files in "~/.emacs.autosave/"
+#+BEGIN_SRC emacs-lisp
+(unless (file-exists-p "~/.emacs.autosave/")
+  (make-directory "~/.emacs.autosave/"))
+(setq auto-save-file-name-transforms
+  `((".*" "~/.emacs.autosave/" t)))
 #+END_SRC
 
 Define the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html#Specifying-File-Variables][local file variables]] that [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Safe-File-Variables.html][should be considered safe]].
