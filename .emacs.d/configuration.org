@@ -483,16 +483,17 @@ Global keybindings
 
 Where are org files located?
 #+BEGIN_SRC emacs-lisp
-(setq org-agenda-files '("~/life"))
-(setq org-archive-location '"~/life/archive/%s::")
+(setq org-agenda-files (list "~/org/"
+                             "~/org/work"))
+(setq org-archive-location '"~/org/archive/%s::")
 #+END_SRC
 
 Capture templates
 #+BEGIN_SRC emacs-lisp
 (setq org-capture-templates
-  '(("t" "Todo" entry (file+headline "~/life/tasks.org" "Tasks")
+  '(("t" "Todo" entry (file+headline "~/org/tasks.org" "Tasks")
     "* TODO %?\n  %i\n (Task filed from %a)")
-  ("j" "Journal" entry (file+datetree "~/life/notes.org")
+  ("j" "Journal" entry (file+datetree "~/org/notes.org")
     "* %?\nEntered on %U\n  %i\n  %a")))
 #+END_SRC
 
