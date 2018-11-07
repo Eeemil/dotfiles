@@ -17,6 +17,7 @@ esac
 # ┏━┓╻ ╻   ┏┳┓╻ ╻   ╺━┓┏━┓╻ ╻   ╻  ┏━┓┏━╸┏━┓╺┳╸╻┏━┓┏┓╻
 # ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫   ┃  ┃ ┃┃  ┣━┫ ┃ ┃┃ ┃┃┗┫
 # ┗━┛╹ ╹   ╹ ╹ ╹    ┗━╸┗━┛╹ ╹   ┗━╸┗━┛┗━╸╹ ╹ ╹ ╹┗━┛╹ ╹
+# oh-my-zsh location
 # Path to my oh-my-zsh installation.
 #
 #Default fallback path
@@ -45,6 +46,7 @@ fi
 # ┏━┓╻ ╻   ┏┳┓╻ ╻   ╺━┓┏━┓╻ ╻   ╺┳╸╻ ╻┏━╸┏┳┓┏━╸
 # ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫    ┃ ┣━┫┣╸ ┃┃┃┣╸ 
 # ┗━┛╹ ╹   ╹ ╹ ╹    ┗━╸┗━┛╹ ╹    ╹ ╹ ╹┗━╸╹ ╹┗━╸
+# oh-my-zsh theme
 # Set name of the theme to load --- if set to "random", it will load a random
 # theme each time oh-my-zsh is loaded, in which case, to know which specific one
 # was loaded, run: echo $RANDOM_THEME See
@@ -180,6 +182,7 @@ fi
 # ┏━┓╻ ╻   ┏┳┓╻ ╻   ╺━┓┏━┓╻ ╻   ┏━┓┏━╸╺┳╸╺┳╸╻┏┓╻┏━╸┏━┓
 # ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫   ┗━┓┣╸  ┃  ┃ ┃┃┗┫┃╺┓┗━┓
 # ┗━┛╹ ╹   ╹ ╹ ╹    ┗━╸┗━┛╹ ╹   ┗━┛┗━╸ ╹  ╹ ╹╹ ╹┗━┛┗━┛
+# oh-my-zsh settings
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -213,6 +216,7 @@ COMPLETION_WAITING_DOTS="true"
 # ┏━┓╻ ╻   ┏┳┓╻ ╻   ╺━┓┏━┓╻ ╻   ┏━┓╻  ╻ ╻┏━╸╻┏┓╻┏━┓
 # ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫   ┣━┛┃  ┃ ┃┃╺┓┃┃┗┫┗━┓
 # ┗━┛╹ ╹   ╹ ╹ ╹    ┗━╸┗━┛╹ ╹   ╹  ┗━╸┗━┛┗━┛╹╹ ╹┗━┛
+# oh-my-zsh plugins
 
 plugins=(git colored-man-pages colorize)
 
@@ -239,6 +243,7 @@ fi
 # ╻  ┏━┓┏━┓╺┳┓   ┏━┓╻ ╻   ┏┳┓╻ ╻   ╺━┓┏━┓╻ ╻
 # ┃  ┃ ┃┣━┫ ┃┃   ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫
 # ┗━╸┗━┛╹ ╹╺┻┛   ┗━┛╹ ╹   ╹ ╹ ╹    ┗━╸┗━┛╹ ╹
+# load oh-my-zsh
 
 if [ -f $ZSH/oh-my-zsh.sh ]; then
     source $ZSH/oh-my-zsh.sh
@@ -247,6 +252,7 @@ fi
 # ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓   ┏━╸╻ ╻┏┓╻┏━╸╺┳╸╻┏━┓┏┓╻┏━┓
 # ┃  ┃ ┃┗━┓ ┃ ┃ ┃┃┃┃   ┣╸ ┃ ┃┃┗┫┃   ┃ ┃┃ ┃┃┗┫┗━┓
 # ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹   ╹  ┗━┛╹ ╹┗━╸ ╹ ╹┗━┛╹ ╹┗━┛
+# custom functions
 
 # Emacs logic for C-x C-f:ing CWD-aware within ansi-term
 precmd() {
@@ -387,9 +393,48 @@ Host: $1
 EOF
 }
 
+# recursively load all keys from ~/.ssh or $1
+function ssh-agent-load-all-keys {
+    local keypath=${1:-"$HOME/.ssh/"}
+    if [ $+commands[ssh-agent] -eq 0 ]; then
+        echo "Error: ssh-agent not installed"
+        return 1
+    fi
+    if [ $+commands[ssh-add] -eq 0 ]; then
+        echo "Error: ssh-add not installed"
+        return 1
+    fi
+
+    keys=($(grep -Rlw "$keypath" -e "BEGIN.*PRIVATE KEY"))
+    if [ -z $keys ]; then
+        echo "No keys found..."
+        return 0
+    fi
+    if [ ! -z "${SSH_AGENT_PID}" ]; then
+        echo "Warning: SSH-AGENT already running with pid ${SSH_AGENT_PID}"
+        echo 'Kill it with: eval "$(ssh-agent -k)"'
+    else
+        eval "$(ssh-agent -s)"
+    fi
+    for key in ${keys}; do
+        echo "Running ssh-add ${key}"
+        ssh-add "${key}"
+    done
+    nkeys=$(ssh-add -l | wc -l)
+    if [ $nkeys -ge 6 ]; then
+        echo "Warning, $nkeys loaded. Some SSHDs has a limit of trying 5 keys"
+        echo "before rejecting a login. This means that the 6:th (and further)"
+        echo "key wont be tried."
+        echo "To mitigate this, delete some of the following keys:"
+        ssh-add -l
+        echo "Use ssh-add -d path-to-key"
+    fi
+}
+
 # ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓   ┏━┓╻  ╻┏━┓┏━┓┏━╸┏━┓
 # ┃  ┃ ┃┗━┓ ┃ ┃ ┃┃┃┃   ┣━┫┃  ┃┣━┫┗━┓┣╸ ┗━┓
 # ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹   ╹ ╹┗━╸╹╹ ╹┗━┛┗━╸┗━┛
+# custom aliases
 
 # kubectl switch ns easily
 alias kns='kubectl config set-context $(kubectl config current-context) --namespace '
@@ -421,6 +466,7 @@ alias g=git
 # ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓  ┏━╸┏┓╻╻ ╻╻┏━┓┏━┓┏┓╻┏┳┓┏━╸┏┓╻╺┳╸  ╻ ╻┏━┓┏━┓╻┏━┓┏┓ ╻  ┏━╸┏━┓
 # ┃  ┃ ┃┗━┓ ┃ ┃ ┃┃┃┃  ┣╸ ┃┗┫┃┏┛┃┣┳┛┃ ┃┃┗┫┃┃┃┣╸ ┃┗┫ ┃   ┃┏┛┣━┫┣┳┛┃┣━┫┣┻┓┃  ┣╸ ┗━┓
 # ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹  ┗━╸╹ ╹┗┛ ╹╹┗╸┗━┛╹ ╹╹ ╹┗━╸╹ ╹ ╹   ┗┛ ╹ ╹╹┗╸╹╹ ╹┗━┛┗━╸┗━╸┗━┛
+# custom environment variables
 
 export EDITOR="emacsclient"
 export ALTERNATE_EDITOR=""
@@ -434,6 +480,8 @@ export GOPATH=$HOME/.go/workspace
 # ┏━┓┏━┓╺┳╸╻ ╻
 # ┣━┛┣━┫ ┃ ┣━┫
 # ╹  ╹ ╹ ╹ ╹ ╹
+# path
+
 # Ruby gems
 export PATH=$HOME/gems/bin:$PATH
 # Anaconda: Python/ML stuff
@@ -451,8 +499,6 @@ function anaconda {
 
 # Go
 export PATH=$PATH:$GOPATH/bin
-
-
 
 if (( $+commands[pygmentize] )); then
     export LESSOPEN="| pygmentize %s 2>/dev/null"
