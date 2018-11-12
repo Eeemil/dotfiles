@@ -326,6 +326,11 @@ Much of the configuration is inspired by [[https://github.com/yusekiya/dotfiles/
 #+BEGIN_SRC emacs-lisp
 (url-handler-mode 1)
 #+END_SRC
+** Remote editing (Tramp)
+Set TERM variable so that terminals can handle tramp sessions
+#+BEGIN_SRC emacs-lisp
+(setq tramp-terminal-type "tramp")
+#+END_SRC
 * Editor configuration
 Use [[https://editorconfig.org/][editorconfig]]
 #+BEGIN_SRC emacs-lisp
