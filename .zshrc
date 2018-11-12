@@ -10,9 +10,28 @@ DUMBTERM=false
 case $TERM in
     "dumb"|"eterm-color")
         DUMBTERM=true;;
+    "tramp")
+          unsetopt zle
+          unsetopt prompt_cr
+          unsetopt prompt_subst
+          if whence -w precmd >/dev/null; then
+              unfunction precmd
+          fi
+          if whence -w preexec >/dev/null; then
+              unfunction preexec
+          fi
+          PS1='$ '
+          return
+    ;;
     *)
         export TERM="xterm-256color"
 esac
+
+if [ "${INSIDE_EMACS/*tramp*/tramp}" == "tramp" ] ; then
+    PS1="[\u@\h \w]$ "
+    
+    return
+fi
 
 # ┏━┓╻ ╻   ┏┳┓╻ ╻   ╺━┓┏━┓╻ ╻   ╻  ┏━┓┏━╸┏━┓╺┳╸╻┏━┓┏┓╻
 # ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫   ┃  ┃ ┃┃  ┣━┫ ┃ ┃┃ ┃┃┗┫
