@@ -27,12 +27,6 @@ case $TERM in
         export TERM="xterm-256color"
 esac
 
-if [ "${INSIDE_EMACS/*tramp*/tramp}" == "tramp" ] ; then
-    PS1="[\u@\h \w]$ "
-    
-    return
-fi
-
 # ┏━┓╻ ╻   ┏┳┓╻ ╻   ╺━┓┏━┓╻ ╻   ╻  ┏━┓┏━╸┏━┓╺┳╸╻┏━┓┏┓╻
 # ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫   ┃  ┃ ┃┃  ┣━┫ ┃ ┃┃ ┃┃┗┫
 # ┗━┛╹ ╹   ╹ ╹ ╹    ┗━╸┗━┛╹ ╹   ┗━╸┗━┛┗━╸╹ ╹ ╹ ╹┗━┛╹ ╹
