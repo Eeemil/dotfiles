@@ -423,7 +423,7 @@ function ssh-agent-load-all-keys {
         echo "No keys found..."
         return 0
     fi
-    if [ ! -z "${SSH_AGENT_PID}" ]; then
+    if [ ! -z "${SSH_AGENT_PID}" ] || [ ! -z "${SSH_AUTH_SOCK}" ]; then
         echo "Warning: SSH-AGENT already running with pid ${SSH_AGENT_PID}"
         echo 'Kill it with: eval "$(ssh-agent -k)"'
     else
