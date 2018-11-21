@@ -809,6 +809,7 @@ Company-jedi as auto-completion framework
 ** shell-script-mode
 #+BEGIN_SRC emacs-lisp
 (setq comint-scroll-to-bottom-on-output t)
+;; Editing command line in zsh creates a tmp file which should be opened in shell-script-mode
 (add-to-list 'auto-mode-alist '("/tmp/zsh.*" . shell-script-mode))
 #+END_SRC
 
