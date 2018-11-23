@@ -726,8 +726,9 @@ Electric pair mode automatically pairs ( parentheses ).
 			      (local-set-key (kbd "C-c C-l") 'octave-send-line)
 			      )
 	  )
-(setq inferior-octave-prompt ">> ")
-
+;; *.m-files automatically aopen in octave-mode
+(setq auto-mode-alist
+      (cons '("\\.m$" . octave-mode) auto-mode-alist))
 #+END_SRC
 
 ** Haskell mode
