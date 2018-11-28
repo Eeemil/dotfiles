@@ -20,6 +20,10 @@ mkdir -p $olddotfiles
 # change to the dotfiles directory
 cd $dotfiles
 
+# Install any submodule
+git submodule init
+git submodule update
+
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in $files; do
     # Ensure that the directory for the configuration file exists...
