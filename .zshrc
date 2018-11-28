@@ -518,6 +518,17 @@ if (( $+commands[pygmentize] )); then
     export LESSOPEN="| pygmentize %s 2>/dev/null"
 fi
 
+# ╺━┓┏━┓╻ ╻   ┏┓ ┏━╸╻ ╻┏━┓╻ ╻╻┏━┓╻ ╻┏━┓
+# ┏━┛┗━┓┣━┫   ┣┻┓┣╸ ┣━┫┣━┫┃┏┛┃┃ ┃┃ ┃┣┳┛
+# ┗━╸┗━┛╹ ╹   ┗━┛┗━╸╹ ╹╹ ╹┗┛ ╹┗━┛┗━┛╹┗╸
+# zsh behavior / zsh behaviour
+
+# Fuzzy completion
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:|?=** m:{a-z\-}={A-Z\_}'
+
 # ┏━┓┏━╸┏━┓   ╻ ╻┏━┓┏━┓╺┳╸   ┏━╸┏━┓┏┓╻┏━╸╻┏━╸
 # ┣━┛┣╸ ┣┳┛╺━╸┣━┫┃ ┃┗━┓ ┃    ┃  ┃ ┃┃┗┫┣╸ ┃┃╺┓
 # ╹  ┗━╸╹┗╸   ╹ ╹┗━┛┗━┛ ╹    ┗━╸┗━┛╹ ╹╹  ╹┗━┛
