@@ -346,10 +346,10 @@ function .env {
         return -1
     fi
     echo "########## Loading .env..."
-    if [ ! -x "$(which pygmentize)" ]; then
-        cat .env
-    else
+    if (( $+commands[pygmentize] )); then
         pygmentize -l bash .env
+    else
+        cat .env
     fi
     source .env
     echo "########## .env loaded"
@@ -513,6 +513,18 @@ function anaconda {
 # Go
 export PATH=$PATH:$GOPATH/bin
 
+# Less with syntax highlighting if pygmentize is available
 if (( $+commands[pygmentize] )); then
     export LESSOPEN="| pygmentize %s 2>/dev/null"
+fi
+
+# ┏━┓┏━╸┏━┓   ╻ ╻┏━┓┏━┓╺┳╸   ┏━╸┏━┓┏┓╻┏━╸╻┏━╸
+# ┣━┛┣╸ ┣┳┛╺━╸┣━┫┃ ┃┗━┓ ┃    ┃  ┃ ┃┃┗┫┣╸ ┃┃╺┓
+# ╹  ┗━╸╹┗╸   ╹ ╹┗━┛┗━┛ ╹    ┗━╸┗━┛╹ ╹╹  ╹┗━┛
+# per-host config
+
+# At university?
+if [ $(hostname -d) = "cs.umu.se" ]; then
+    # ctrl+d = leave shell
+    unsetopt ignoreeof
 fi
