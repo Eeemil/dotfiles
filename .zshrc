@@ -535,7 +535,7 @@ zstyle ':completion:*' matcher-list '' \
 # per-host config
 
 # At university?
-if [ $(hostname -d) = "cs.umu.se" ]; then
+if [ "$(hostname -d)" = "cs.umu.se" ]; then
     # ctrl+d = leave shell
     unsetopt ignoreeof
 fi
