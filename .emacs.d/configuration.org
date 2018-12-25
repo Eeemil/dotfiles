@@ -294,7 +294,7 @@ Much of the configuration is inspired by [[https://github.com/yusekiya/dotfiles/
      ("C-x b" . helm-mini)
      ("C-x C-f" . helm-find-files)
     )
-  :delight " ⛑"
+  :delight " He"
   :config
     ;; start helm-mode
     (helm-mode 1)
