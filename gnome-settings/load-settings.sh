@@ -26,9 +26,9 @@ fi
 # ╹ ╹┗━╸╺┻┛╹╹ ╹   ╹ ╹┗━╸ ╹ ┗━┛
 dconf load /org/gnome/settings-daemon/plugins/media-keys/ <<EOF
 [/]
-previous='<Primary><Alt>b'
-next='<Primary><Alt>f'
-play='<Primary><Alt>p'
+previous='<Shift><Super>b'
+next='<Shift><Super>f'
+play='<Shift><Super>p'
 EOF
 
 # ╺┳╸┏━┓┏━╸┏━╸╻  ┏━╸   ╻ ╻╻┏┓╻╺┳┓┏━┓╻ ╻   ┏┳┓┏━┓╻ ╻╻┏┳┓┏━┓╺┳╸╻┏━┓┏┓╻
