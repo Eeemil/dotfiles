@@ -815,20 +815,6 @@ Company-jedi as auto-completion framework
 #+END_SRC
 
 * Various keybindings
-** Useful when programming
-
-#+BEGIN_SRC emacs-lisp
-
-; Read man files
-(global-set-key (kbd "C-h m") 'man)
-; Compiling is nice
-(global-set-key (kbd "C-M-x") 'compile)
-; Jumps to tag when TAGS file exists
-(global-set-key (kbd "M-.") 'find-tag)
-(global-set-key (kbd "M-,") '(lambda () (interactive) (find-tag nil t)))
-
-#+END_SRC
-
 ** Fixes for swedish/strange input devices etc
 
 #+BEGIN_SRC emacs-lisp
