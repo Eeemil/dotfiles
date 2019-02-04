@@ -11,10 +11,11 @@
 syncpath=${1:-'eeemil@eeemil.com:~/sync'}
 
 echo "Downloading dotfiles and ssh synckey"
+sudo apt install rsync
 rsync -Lr --progress $syncpath $HOME/
 
 echo "Adding synckey to ssh-agent"
-cd $HOME
+pushd $HOME
 mkdir .ssh
 chmod 700 .ssh
 ln -s $HOME/sync/.ssh/id_rsa_synckey .ssh/
@@ -34,8 +35,10 @@ echo "Installing git and zsh"
 sudo apt update
 sudo apt install -y git zsh
 # Install emacs without graphical support
-echo "Installing emacs without graphical support"
-sudo apt install -y emacs2.-nox
+if hash emacs 2>/dev/null; then
+    echo "Installing emacs without graphical support"
+    sudo apt install -y emacs2.-nox
+fi
 
 echo "Upgrading packages"
 sudo apt upgrade -y
@@ -47,4 +50,14 @@ fi
 
 echo "Installing font(s)"
 mkdir -p ~/.local/share/fonts
-cd ~/.local/share/fonts && curl -fLo "Shure Tech Mono for Powerline Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/ShareTechMono/complete/Shure%20Tech%20Mono%20Nerd%20Font%20Complete.ttf
+sudo apt install curl
+
+popd
+pushd ~/.local/share/fonts
+curl -fLo "Shure Tech Mono for Powerline Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/ShareTechMono/complete/Shure%20Tech%20Mono%20Nerd%20Font%20Complete.ttf
+popd
+
+pushd gnome-settings
+echo "Configuring gnome"
+./load-settings.sh 
+popd
