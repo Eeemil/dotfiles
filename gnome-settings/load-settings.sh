@@ -34,6 +34,13 @@ EOF
 # ╺┳╸┏━┓┏━╸┏━╸╻  ┏━╸   ╻ ╻╻┏┓╻╺┳┓┏━┓╻ ╻   ┏┳┓┏━┓╻ ╻╻┏┳┓┏━┓╺┳╸╻┏━┓┏┓╻
 #  ┃ ┃ ┃┃╺┓┃╺┓┃  ┣╸    ┃╻┃┃┃┗┫ ┃┃┃ ┃┃╻┃   ┃┃┃┣━┫┏╋┛┃┃┃┃┣━┫ ┃ ┃┃ ┃┃┗┫
 #  ╹ ┗━┛┗━┛┗━┛┗━╸┗━╸   ┗┻┛╹╹ ╹╺┻┛┗━┛┗┻┛   ╹ ╹╹ ╹╹ ╹╹╹ ╹╹ ╹ ╹ ╹┗━┛╹ ╹
+
+# <Super>1 needs to be re-set in order to force override default behavior of <Super>1
+dconf load /org/gnome/desktop/wm/keybindings/ <<EOF
+[/]
+toggle-maximized=['']
+EOF
+
 dconf load /org/gnome/desktop/wm/keybindings/ <<EOF
 [/]
 toggle-maximized=['<Super>1']
