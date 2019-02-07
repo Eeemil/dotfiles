@@ -484,6 +484,7 @@ alias g=git
 export EDITOR="emacsclient"
 export ALTERNATE_EDITOR=""
 
+export PATH="${HOME}/bin:${PATH}"
 export PATH="${HOME}/.local/bin:${PATH}"
 # Install Ruby Gems to ~/gems
 export GEM_HOME=$HOME/gems
