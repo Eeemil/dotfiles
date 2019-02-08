@@ -82,7 +82,6 @@ VC should automagically follow symlinks.
 (setq vc-follow-symlinks t)
 #+END_SRC
 ** Emacs cosmetics
-
 Uniquifies/resolves buffer name collisions 
 
 #+BEGIN_SRC emacs-lisp
@@ -150,6 +149,26 @@ Delight: reconfigure how major/minor modes are displayed in mode-line
 #+BEGIN_SRC emacs-lisp
 (require 'delight)
 (delight 'shell-script-mode "Sh" :major)
+#+END_SRC
+*** Frame title
+More information in frame title
+#+BEGIN_SRC emacs-lisp
+(setq frame-title-format 
+              '(:eval
+                (format "[%s] %s@%s: %s %s"
+                        major-mode
+                        (or (file-remote-p default-directory 'user)
+                            user-real-login-name)
+                        (or (file-remote-p default-directory 'host)
+                            system-name)
+                        (buffer-name)
+                        (cond
+                         (buffer-file-truename
+                          (concat "(" buffer-file-truename ")"))
+                         (dired-directory
+                          (concat "{" dired-directory "}"))
+                         (t
+                          "[no file]")))))
 #+END_SRC
 *** Customize configuration
 Setting custom-file to custom.el will make Custom system save variables to that
@@ -264,6 +283,7 @@ future: just add another lisp block)
 )
 #+END_SRC
 
+** 
 ** Calendar settings
 #+BEGIN_SRC emacs-lisp
 ;; Week begin on Monday
