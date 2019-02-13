@@ -476,6 +476,9 @@ fi
 alias e=emacsclient
 alias g=git
 
+# yaml parsing for humanz
+alias yml='pygmentize -l yaml' 
+alias ymll='pygmentize -l yaml | less' 
 # ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓  ┏━╸┏┓╻╻ ╻╻┏━┓┏━┓┏┓╻┏┳┓┏━╸┏┓╻╺┳╸  ╻ ╻┏━┓┏━┓╻┏━┓┏┓ ╻  ┏━╸┏━┓
 # ┃  ┃ ┃┗━┓ ┃ ┃ ┃┃┃┃  ┣╸ ┃┗┫┃┏┛┃┣┳┛┃ ┃┃┗┫┃┃┃┣╸ ┃┗┫ ┃   ┃┏┛┣━┫┣┳┛┃┣━┫┣┻┓┃  ┣╸ ┗━┓
 # ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹  ┗━╸╹ ╹┗┛ ╹╹┗╸┗━┛╹ ╹╹ ╹┗━╸╹ ╹ ╹   ┗┛ ╹ ╹╹┗╸╹╹ ╹┗━┛┗━╸┗━╸┗━┛
@@ -484,18 +487,20 @@ alias g=git
 export EDITOR="emacsclient"
 export ALTERNATE_EDITOR=""
 
-export PATH="${HOME}/bin:${PATH}"
-export PATH="${HOME}/.local/bin:${PATH}"
-# Install Ruby Gems to ~/gems
-export GEM_HOME=$HOME/gems
-
 export GOPATH=$HOME/.go/workspace
+export GEM_HOME=$HOME/gems
+# Node version manager
+export NVM_DIR="$HOME/.nvm"
 
 # ┏━┓┏━┓╺┳╸╻ ╻
 # ┣━┛┣━┫ ┃ ┣━┫
 # ╹  ╹ ╹ ╹ ╹ ╹
 # path
 
+export PATH="${HOME}/.yarn/bin/:${PATH}"
+export PATH="${HOME}/bin:${PATH}"
+export PATH="${HOME}/.local/bin:${PATH}"
+# Install Ruby Gems to ~/gems
 # Ruby gems
 export PATH=$HOME/gems/bin:$PATH
 # Anaconda: Python/ML stuff
@@ -510,6 +515,9 @@ function anaconda {
     unset -f anaconda
     echo 'Anaconda binaries added to $PATH'
 }
+
+# The next line updates PATH for the Google Cloud SDK (gcloud).
+if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"; fi
 
 # Go
 export PATH=$PATH:$GOPATH/bin
@@ -541,8 +549,14 @@ if [ "$(hostname -d)" = "cs.umu.se" ]; then
     unsetopt ignoreeof
 fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HOME/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/eeemil/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+# ┏━┓╺┳╸╻ ╻┏━╸┏━┓   ┏━┓╺┳╸╻ ╻┏━╸┏━╸
+# ┃ ┃ ┃ ┣━┫┣╸ ┣┳┛   ┗━┓ ┃ ┃ ┃┣╸ ┣╸ 
+# ┗━┛ ╹ ╹ ╹┗━╸╹┗╸   ┗━┛ ╹ ┗━┛╹  ╹  
+# other stuff
 
 # The next line enables shell command completion for gcloud.
-if [ -f '$HOME/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"; fi
+
+# NVM
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
