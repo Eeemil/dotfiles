@@ -106,41 +106,10 @@ It's time to get rid of the menu bar
 #+BEGIN_SRC emacs-lisp
 (menu-bar-mode 0)
 #+END_SRC
-*** Mode line
 
-I want a pretty mode line!
-[[./images/powerline.png]]
-#+BEGIN_SRC emacs-lisp
-(use-package smart-mode-line)
-(use-package smart-mode-line-powerline-theme)
-(setq sml/theme 'powerline)
-(use-package powerline)
-(powerline-default-theme)
-#+END_SRC
-
-A clock in the mode line would be nice...
-#+BEGIN_SRC emacs-lisp
-(setq display-time-24hr-format t)
-;TODO someday I might want to use this mail functionality...
-(setq display-time-mail-string "")
-; I dont want system load average next to time
-(setq display-time-default-load-average nil)
-(display-time-mode)
-#+END_SRC
-
-Show column in mode line
-#+BEGIN_SRC emacs-lisp
-(setq column-number-mode t) ; Default to showing line and column
-#+END_SRC
-
-I like Nyan Cat more than a scroll bar.
+I don't like the scroll bar
 
 #+BEGIN_SRC emacs-lisp
-  ;; Exchange scroll bar for nyan mode.
-  (use-package nyan-mode
-    :config
-    (nyan-mode 1)
-  )
   (when (display-graphic-p)
     (scroll-bar-mode 0)
     )
@@ -197,13 +166,8 @@ Color theme: wheatgrass, some kind of dark theme.
  '(custom-enabled-themes (quote (wheatgrass)))
 #+END_SRC
 
-Use smart-mode-line with powerline theme
-
 #+BEGIN_SRC emacs-lisp
- '(custom-safe-themes (quote ("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
  '(powerline-default-separator (quote contour))
- '(powerline-display-hud nil)
- '(sml/theme (quote powerline))
 #+END_SRC
 Closing parenthesis (For making it easier to add more customization in the
 future: just add another lisp block)
@@ -252,18 +216,11 @@ Mode line customization
 #+BEGIN_SRC emacs-lisp
  ;Mode line in a red (active) and blue (inactive) theme, with gold/grey fonts
  '(mode-line ((t (:background "#150015" :foreground "#800000" :box (:line-width -1 :color "#100010")))))
- '(powerline-active1 ((t :background "#990000" :inherit sml/global)))
- '(powerline-active2 ((t :background "#600000" :inherit sml/global :foreground "gold")))
+ '(powerline-active1 ((t :background "#990000" :foreground "#500000" )))
+ '(powerline-active2 ((t :background "#600000" :foreground "#300000")))
  '(mode-line-inactive ((t (:background "#150015" :foreground "#404080" :box (:line-width -1 :color "#100010") :slant italic))))
- '(powerline-inactive1 ((t :background "#000025" :inherit mode-line-inactive)))
- '(powerline-inactive2 ((t :background "#050545" :inherit mode-line-inactive)))
- ;File name indicator has mode-line background (but can't inherit it for some reason)
- '(sml/filename ((t :inherit mode-line :foreground "gold" :background "#150015")))
- '(sml/global ((t (:foreground "GoldenRod2" :inverse-video nil))))
- '(sml/line-number ((t :foreground "White" :inherit sml/global :weight bold :background "black")))
-
- ; The time thing sets a stupid background sometimes
- '(sml/time ((t :inherit sml/global)))
+ '(powerline-inactive1 ((t :background "#000025" :foreground "#4040AA")))
+ '(powerline-inactive2 ((t :background "#050545" :foreground "#303080")))
 #+END_SRC
 
 Terminal cosmetics
@@ -276,6 +233,8 @@ Ace-window character
 #+BEGIN_SRC emacs-lisp
  '(aw-leading-char-face ((t (:foreground "red" :height 4.0))))
 #+END_SRC
+
+** Custom-set... end
 Closing parenthesis (For making it easier to add more customization in the
 future: just add another lisp block)
 
@@ -283,7 +242,70 @@ future: just add another lisp block)
 )
 #+END_SRC
 
-** 
+** mode line configuration
+#+BEGIN_SRC emacs-lisp
+  (use-package spaceline)
+  (spaceline-emacs-theme)
+  (spaceline-helm-mode)
+  (use-package anzu
+  :config
+  (setq anzu-cons-mode-line-p nil)
+  )
+#+END_SRC
+Mode line config
+#+BEGIN_SRC emacs-lisp
+  (spaceline-define-segment spaceline-time
+    "Displays time"
+    (format-time-string "%T")
+    )
+
+  (defface spaceline-buffer-name
+    '((t :foreground "gold3"
+         :background "black"
+         :weight bold
+         ))
+    "Face for buffer names."
+    :group 'spaceline )
+
+  (spaceline-compile
+   ; left side
+   '(((line-column buffer-modified buffer-size remote-host
+             )
+      :fallback ":)"
+      :face highlight-face
+      :priority 100
+      )
+     (anzu :priority 95)
+     auto-compile
+     ((buffer-id)
+      :priority 99
+      :face 'spaceline-buffer-name)
+     (major-mode :priority 79)
+     (process :when active)
+     ((flycheck-error flycheck-warning flycheck-info)
+      :when active
+      :priority 89)
+     (minor-modes :when active
+                  :priority 9)
+     (mu4e-alert-segment :when active)
+     (erc-track :when active)
+     (version-control :when active
+                      :priority 78)
+     (org-pomodoro :when active)
+     (org-clock :when active)
+     nyan-cat)
+   ; right side
+   '(which-function
+     (python-pyvenv :fallback python-pyenv)
+     (purpose :priority 94)
+     (battery :when active)
+     (selection-info :priority 95)
+     input-method
+     ((buffer-encoding-abbrev
+      :priority 96)
+     (hud :priority 95)))
+   )
+#+END_SRC
 ** Calendar settings
 #+BEGIN_SRC emacs-lisp
 ;; Week begin on Monday
