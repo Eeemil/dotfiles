@@ -233,6 +233,11 @@ Ace-window character
 #+BEGIN_SRC emacs-lisp
  '(aw-leading-char-face ((t (:foreground "red" :height 4.0))))
 #+END_SRC
+Tide
+#+BEGIN_SRC emacs-lisp
+ '(tide-hl-identifier-face ((t (:inherit highlight :background "#004000"))))
+#+END_SRC
+
 
 ** Custom-set... end
 Closing parenthesis (For making it easier to add more customization in the
