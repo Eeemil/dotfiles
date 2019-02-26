@@ -36,12 +36,7 @@ Delight needs to be loaded early: it configures mode line names of other modes
 ;iso-transl: Brings back dead keys to swedish keyboard layout (ex. tilde)
 (require 'iso-transl) 
 #+END_SRC
-I use swedish keyboardz, give me Å Ä Ö or give me death
-#+BEGIN_SRC emacs-lisp
-(setq keyboard-coding-system 'utf-8-unix)
-#+END_SRC
-
-    A string manipulation library that a lot of other packages depend on
+A string manipulation library that a lot of other packages depend on
 #+BEGIN_SRC emacs-lisp
   (use-package s)
 #+END_SRC
@@ -169,6 +164,10 @@ Color theme: wheatgrass, some kind of dark theme.
 
 #+BEGIN_SRC emacs-lisp
  '(custom-enabled-themes (quote (wheatgrass)))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+ '(keyboard-coding-system (quote utf-8-unix))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -656,7 +655,16 @@ buffer is not visiting a file."
 (global-set-key (kbd "C-x C-r") 'sudo-edit)
 
 #+END_SRC
+** fix-swedish-keys
 
+#+BEGIN_SRC emacs-lisp
+(defun fix-swedish-keys ()
+  (interactive)
+  (set-keyboard-coding-system 'utf-8-unix)
+)
+#+END_SRC
+
+#+END_SRC
 ** indent-region
 
 #+BEGIN_SRC emacs-lisp
