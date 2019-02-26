@@ -35,9 +35,14 @@ Delight needs to be loaded early: it configures mode line names of other modes
 #+BEGIN_SRC emacs-lisp
 ;iso-transl: Brings back dead keys to swedish keyboard layout (ex. tilde)
 (require 'iso-transl) 
+#+END_SRC
+I use swedish keyboardz, give me Å Ä Ö or give me death
+#+BEGIN_SRC emacs-lisp
+(setq keyboard-coding-system 'utf-8-unix)
+#+END_SRC
 
-  ; This is some string manipulation library that a lot of other packages depend
-  ; on...
+    A string manipulation library that a lot of other packages depend on
+#+BEGIN_SRC emacs-lisp
   (use-package s)
 #+END_SRC
 
