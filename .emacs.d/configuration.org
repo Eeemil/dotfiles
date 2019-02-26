@@ -412,6 +412,11 @@ Standard indent length: 4 spaces
 (setq-default c-basic-offset 4) ; Standard indent: 4 spaces
 #+END_SRC
 
+Delete selection: almost never expects anything else than what is provided by delete-selection-mode.
+#+BEGIN_SRC emacs-lisp
+(delete-selection-mode 1)
+#+END_SRC
+
 ** Auto completion
 *** DONE I may want to change auto complete system...
     CLOSED: [2018-08-13 mån 21:07]
