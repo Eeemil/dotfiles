@@ -40,6 +40,11 @@ A string manipulation library that a lot of other packages depend on
 #+BEGIN_SRC emacs-lisp
   (use-package s)
 #+END_SRC
+** Global editor configuration
+Electric pair mode automatically pairs ( parentheses ).
+#+BEGIN_SRC emacs-lisp
+(electric-pair-mode 1)
+#+END_SRC
 
 ** File settings
 
@@ -535,7 +540,6 @@ By default, give todo-items a closing timestamp.
 (setq org-log-done 'time)
 #+END_SRC
 
-
 Pretty bullets
 #+BEGIN_SRC emacs-lisp
 (use-package org-bullets
@@ -572,6 +576,17 @@ Readable latex.
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
 #+END_SRC
 
+Org TODO keywords faces:
+#+BEGIN_SRC emacs-lisp
+  (setq org-todo-keyword-faces
+        '(("TODO" . "red")
+          ("STARTED" . "yellow")
+          ("WAIT" . "orange")
+          ("WAITING" . "orange")
+          ("CANCELED" . (:foreground "blue" :weight bold))
+          ("DONE" . "green")
+          ))
+#+END_SRC
 ** Erc: Emacs IRC Client
 
 #+BEGIN_SRC emacs-lisp
@@ -776,11 +791,6 @@ Show line & column number
 (add-hook 'c-mode-hook 'column-number-mode) ;; Shows column.
 (add-hook 'c-mode-hook 'linum-mode) ;; Shows line-numbering
 #+END_SRC
-Electric pair mode automatically pairs ( parentheses ).
-#+BEGIN_SRC emacs-lisp
-(add-hook 'c-mode-hook 'electric-pair-mode)
-#+END_SRC
-
 ** Octave mode
 
 #+BEGIN_SRC emacs-lisp
