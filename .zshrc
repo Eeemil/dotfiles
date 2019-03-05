@@ -252,6 +252,11 @@ fi
 # BE AWARE: MUST BE LOADED LAST
 if [ -f "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh" ]; then
     plugins+=(zsh-syntax-highlighting)
+    # Due to the following issue:
+    # https://github.com/zsh-users/zsh-syntax-highlighting/issues/295
+    # Syntax highlighting is really slow when pasting long text. This speeds it
+    # up to just a slight delay
+    zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 fi
 # ╻  ┏━┓┏━┓╺┳┓   ┏━┓╻ ╻   ┏┳┓╻ ╻   ╺━┓┏━┓╻ ╻
 # ┃  ┃ ┃┣━┫ ┃┃   ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫
