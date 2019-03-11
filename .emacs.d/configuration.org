@@ -941,6 +941,10 @@ Company-jedi as auto-completion framework
 
 #+END_SRC
 
+** Rebinding of "impossible" en_us keys on sv_se keyboards
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-ö") 'indent-region)
+#+END_SRC
 * Notes
 
 ** Make Emacs mirror ansi-term mirror
