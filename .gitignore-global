@@ -5,3 +5,5 @@
 /.emacs.desktop
 /.emacs.desktop.lock
 *.elc
+# I can manage my own projectile files
+.projectile
