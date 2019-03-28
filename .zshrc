@@ -246,7 +246,9 @@ fi
 if (( $+commands[docker] )); then
     plugins+=(docker)
 fi
-
+if (( $+commands[yarn] )); then
+    plugins+=(yarn)
+fi
 # BE AWARE: MUST BE LOADED LAST
 # BE AWARE: MUST BE LOADED LAST
 # BE AWARE: MUST BE LOADED LAST
@@ -483,7 +485,11 @@ alias g=git
 
 # yaml parsing for humanz
 alias yml='pygmentize -l yaml' 
-alias ymll='pygmentize -l yaml | less' 
+alias ymll='pygmentize -l yaml | less'
+
+# Jag är less på less med oläsbara färger (note: this is a swedish pun)
+alias less="TERM=xterm less"
+
 # ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓  ┏━╸┏┓╻╻ ╻╻┏━┓┏━┓┏┓╻┏┳┓┏━╸┏┓╻╺┳╸  ╻ ╻┏━┓┏━┓╻┏━┓┏┓ ╻  ┏━╸┏━┓
 # ┃  ┃ ┃┗━┓ ┃ ┃ ┃┃┃┃  ┣╸ ┃┗┫┃┏┛┃┣┳┛┃ ┃┃┗┫┃┃┃┣╸ ┃┗┫ ┃   ┃┏┛┣━┫┣┳┛┃┣━┫┣┻┓┃  ┣╸ ┗━┓
 # ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹  ┗━╸╹ ╹┗┛ ╹╹┗╸┗━┛╹ ╹╹ ╹┗━╸╹ ╹ ╹   ┗┛ ╹ ╹╹┗╸╹╹ ╹┗━┛┗━╸┗━╸┗━┛
@@ -508,6 +514,9 @@ export PATH="${HOME}/.local/bin:${PATH}"
 # Install Ruby Gems to ~/gems
 # Ruby gems
 export PATH=$HOME/gems/bin:$PATH
+# Yarn: js package manager
+export PATH="$PATH:$(yarn global bin)"
+
 # Anaconda: Python/ML stuff
 # Contains A LOT of binaries conflicting with system binaries (such as python
 # and curl) so lets load it manually whenever I type "anaconda" in terminal
