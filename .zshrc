@@ -352,14 +352,21 @@ function .env {
         echo "Error: no .env file found"
         return -1
     fi
-    echo "########## Loading .env..."
+    local envfile=${1:-".env"}
+    echo "########## Loading ${envfile}..."
     if (( $+commands[pygmentize] )); then
-        pygmentize -l bash .env
+        pygmentize -l bash ${envfile}
     else
-        cat .env
+        cat ${envfile}
     fi
-    source .env
-    echo "########## .env loaded"
+    if [[ -o a ]]; then
+      source ${envfile}
+    else
+      set -a
+      source ${envfile}
+      set +a
+    fi
+    echo "########## ${envfile} loaded"
 }
 
 # helper function that prints info to terminal if CD:ing into a dir with a .env
