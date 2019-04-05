@@ -465,7 +465,7 @@ function ssh-agent-load-all-keys {
 
 # kubectl switch ns easily
 alias kns='kubectl config set-context $(kubectl config current-context) --namespace '
-
+alias xclip='xclip -selection c'
 # wanip command: use fastest tool to get external IP as discussed in
 # https://unix.stackexchange.com/questions/22615/how-can-i-get-my-external-ip-address-in-a-shell-script
 if (( $+commands[dig] )); then
