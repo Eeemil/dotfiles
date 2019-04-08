@@ -496,7 +496,10 @@ I might want to expand on ace-functionalities...
 (global-set-key (kbd "<f11>") 'switch-full-screen)
 #+END_SRC
 
-
+** TAGS: Use GNU Global (gtags)
+#+BEGIN_SRC emacs-lisp
+ (use-package ggtags)
+#+END_SRC 
 ** TODO YASnippet: I should learn it
 #+BEGIN_SRC emacs-lisp
  (use-package yasnippet)
@@ -910,6 +913,7 @@ Company-jedi as auto-completion framework
 ;;(add-hook 'before-save-hook 'tide-format-before-save)
 (setq tide-format-options '(:indentSize 2 :tabSize 2))
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
+(add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
 #+END_SRC
 * Various keybindings
 ** Fixes for swedish/strange input devices etc
