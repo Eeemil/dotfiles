@@ -486,6 +486,9 @@ fi
 if (( $+commands[pip3] )); then
     alias pip=pip3
 fi
+if (( $+commands[python3] )); then
+    alias python=python3
+fi
 
 alias e=emacsclient
 alias g=git
