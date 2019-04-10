@@ -249,6 +249,9 @@ fi
 if (( $+commands[yarn] )); then
     plugins+=(yarn)
 fi
+if (( $+commands[aws] )); then
+    plugins+=(aws)
+fi
 # BE AWARE: MUST BE LOADED LAST
 # BE AWARE: MUST BE LOADED LAST
 # BE AWARE: MUST BE LOADED LAST
