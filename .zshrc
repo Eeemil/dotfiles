@@ -524,9 +524,13 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="${HOME}/.yarn/bin/:${PATH}"
 export PATH="${HOME}/bin:${PATH}"
 export PATH="${HOME}/.local/bin:${PATH}"
-# Install Ruby Gems to ~/gems
-# Ruby gems
-export PATH=$HOME/gems/bin:$PATH
+# Ruby might be fun
+export PATH="${HOME}/.rbenv/bin:${PATH}"
+if (( $+commands[rbenv] )); then
+    eval "$(rbenv init -)"
+    export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+fi
+
 # Yarn: js package manager
 export PATH="$PATH:$(yarn global bin)"
 
