@@ -496,6 +496,8 @@ fi
 alias e=emacsclient
 alias g=git
 
+alias datee="date '+%Y-%m-%d_%H:%M'"
+
 # yaml parsing for humanz
 alias yml='pygmentize -l yaml' 
 alias ymll='pygmentize -l yaml | less'
