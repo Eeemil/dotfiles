@@ -590,6 +590,16 @@ Org TODO keywords faces:
           ("DONE" . "green")
           ))
 #+END_SRC
+
+Org-babel languages
+#+BEGIN_SRC emacs-lisp :results silent
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (shell . t)
+   (python . t)
+   ))
+#+END_SRC
 ** Erc: Emacs IRC Client
 
 #+BEGIN_SRC emacs-lisp
