@@ -517,6 +517,11 @@ Prettify org, [[org-beautify][see customization]]
       (use-package org-beautify-theme)))
 #+END_SRC
 
+Various org extras
+#+begin_src emacs-lisp :results silent
+(use-package org-contrib-plus)
+#+end_src
+
 Force syntax highlighting within #+BEGIN_SRC blocks
 #+BEGIN_SRC emacs-lisp
 ; Syntax higlighting for code within org mode
