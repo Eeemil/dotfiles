@@ -519,7 +519,8 @@ Prettify org, [[org-beautify][see customization]]
 
 Various org extras
 #+begin_src emacs-lisp :results silent
-(use-package org-contrib-plus)
+(use-package org
+    :ensure org-plus-contrib)
 #+end_src
 
 Force syntax highlighting within #+BEGIN_SRC blocks
