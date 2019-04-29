@@ -922,8 +922,9 @@ Company-jedi as auto-completion framework
 (add-to-list 'auto-mode-alist '("/tmp/zsh.*" . shell-script-mode))
 #+END_SRC
 
-** typescript-mode/tide
-#+BEGIN_SRC emacs-lisp
+** web development (js jsx)
+Tide: Typescript magic
+#+BEGIN_SRC emacs-lisp :results silent
 (use-package typescript-mode)
 (use-package tide)
 (defun setup-tide-mode ()
@@ -946,6 +947,17 @@ Company-jedi as auto-completion framework
 (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
 #+END_SRC
 
+Web-mode
+#+begin_src emacs-lisp :results silent
+(use-package web-mode)
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "tsx" (file-name-extension buffer-file-name))
+              (setup-tide-mode))))
+;; enable typescript-tslint checker
+(flycheck-add-mode 'typescript-tslint 'web-mode)
+#+end_src
 * Various keybindings
 ** Fixes for swedish/strange input devices etc
 
