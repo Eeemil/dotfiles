@@ -1,9 +1,14 @@
 #+TITLE: Eeemil's Emacs Configuration
 * Emacs Configuration
   By Emil Marklund, Initialized oct 2013.
-  Converted into org-file may 2017
+  Converted into org-file May 2017
 
-  Remember: writing "<s" followed by <TAB> is [[http://orgmode.org/manual/Easy-Templates.html][using Org-mode easy template!]]
+  Remember: +writing "<s" followed by <TAB> is [[http://orgmode.org/manual/Easy-Templates.html][using Org-mode easy template!]]+
+  =C-x C-,= is using =org-insert-structure-template= [[https://orgmode.org/Changes.html#org1b5e967][which was introduced in Org
+  9.2]] as a new template expansion mechanism meant to provide the same
+  functionality as easy templates. (Easy templates can still be used if
+  org-tempo is loaded)
+  
 
 ** Work needed
 
@@ -81,6 +86,13 @@ Define the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifyin
     (flycheck-gcc-language-standard . gnu99)
   )))
 #+END_SRC
+
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Interlocking.html][Lock files]] are great and I want to use them when remote editing, but sadly they
+are a pain to use with certain build tools generating a new build on every new
+file created.
+#+begin_src emacs-lisp :results silent
+(setq create-lockfiles nil)
+#+end_src
 
 VC should automagically follow symlinks.
 #+BEGIN_SRC emacs-lisp
