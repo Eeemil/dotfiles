@@ -956,7 +956,6 @@ Tide: Typescript magic
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
 (flycheck-add-next-checker 'typescript-tide '(t . typescript-tslint) 'append)
-(add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
 #+END_SRC
 
 Web-mode
