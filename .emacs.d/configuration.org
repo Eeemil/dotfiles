@@ -934,7 +934,7 @@ Company-jedi as auto-completion framework
 (add-to-list 'auto-mode-alist '("/tmp/zsh.*" . shell-script-mode))
 #+END_SRC
 
-** web development (js jsx)
+** web development (js|jsx|ts)
 Tide: Typescript magic
 #+BEGIN_SRC emacs-lisp :results silent
 (use-package typescript-mode)
@@ -962,7 +962,7 @@ Tide: Typescript magic
 Web-mode
 #+begin_src emacs-lisp :results silent
 (use-package web-mode)
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[jt]sx\\'" . web-mode))
 (add-hook 'web-mode-hook
           (lambda ()
             (when (string-equal "tsx" (file-name-extension buffer-file-name))
