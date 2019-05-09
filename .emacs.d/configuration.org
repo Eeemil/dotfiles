@@ -946,9 +946,7 @@ Tide: Typescript magic
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
-  (flycheck-add-next-checker 'typescript-tide '(t . typescript-tslint) 'append)
   (company-mode +1))
-
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
 (setq flycheck-typescript-tslint-executable "~/.yarn/bin/tslint")
@@ -956,6 +954,8 @@ Tide: Typescript magic
 ;;(add-hook 'before-save-hook 'tide-format-before-save)
 (setq tide-format-options '(:indentSize 2 :tabSize 2))
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+(flycheck-add-next-checker 'typescript-tide '(t . typescript-tslint) 'append)
 (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
 #+END_SRC
 
@@ -969,6 +969,20 @@ Web-mode
               (setup-tide-mode))))
 ;; enable typescript-tslint checker
 (flycheck-add-mode 'typescript-tslint 'web-mode)
+#+end_src
+
+Javascript
+#+begin_src emacs-lisp :results silent
+(use-package js2-mode
+  :ensure t
+  :mode "\\.js\\'"
+  :delight " JS2"
+  :hook (js2-mode . #'setup-tide-mode)
+)
+;; JS
+(flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
+;; JSX
+(flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
 #+end_src
 * Various keybindings
 ** Fixes for swedish/strange input devices etc
