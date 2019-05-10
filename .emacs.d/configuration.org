@@ -975,7 +975,7 @@ Javascript
   :ensure t
   :mode "\\.js\\'"
   :delight " JS2"
-  :hook (js2-mode . #'setup-tide-mode)
+  :hook ('js2-mode . #'setup-tide-mode)
 )
 ;; JS
 (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
