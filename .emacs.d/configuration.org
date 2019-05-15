@@ -791,6 +791,7 @@ Send line-or-region in shell-script-mode, as seen on [[https://stackoverflow.com
 			      (local-set-key (kbd "C-c C-c") 'sh-send-line-or-region)))
 #+END_SRC
 ** display-ansi-colors (+ auto-mode for .log-files)
+[[https://stackoverflow.com/questions/23378271/how-do-i-display-ansi-color-codes-in-emacs-for-any-mode][Source]]
 #+BEGIN_SRC emacs-lisp
 (require 'ansi-color)
 (defun display-ansi-colors ()
