@@ -537,8 +537,10 @@ if (( $+commands[rbenv] )); then
     export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 fi
 
-# Yarn: js package manager
-export PATH="$PATH:$(yarn global bin)"
+# Yarn: js/ts package manager
+if (( $+commands[yarn] )); then
+    export PATH="$PATH:$(yarn global bin)"
+fi
 
 # Anaconda: Python/ML stuff
 # Contains A LOT of binaries conflicting with system binaries (such as python
