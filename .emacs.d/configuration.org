@@ -438,6 +438,17 @@ Delete selection: almost never expects anything else than what is provided by de
 (delete-selection-mode 1)
 #+END_SRC
 
+#+begin_src emacs-lisp :results silent
+(use-package highlight-indent-guides
+  :diminish
+  :hook ((prog-mode . highlight-indent-guides-mode)
+         ;; WORKAROUND: Fix the issue of not displaying plots
+         (ein:notebook-multilang-mode . (lambda () (highlight-indent-guides-mode -1))))
+  :config
+  (setq highlight-indent-guides-method 'character)
+  (setq highlight-indent-guides-responsive 'top)
+)
+#+end_src
 ** Auto completion
 *** DONE I may want to change auto complete system...
     CLOSED: [2018-08-13 mån 21:07]
