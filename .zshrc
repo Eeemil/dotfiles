@@ -506,6 +506,11 @@ alias datee="date '+%Y-%m-%d_%H:%M'"
 alias yml='pygmentize -l yaml' 
 alias ymll='pygmentize -l yaml | less'
 
+# json parsing for humanz
+alias json='python -m json.tool'
+alias jsonn='python -m json.tool | pygmentize -l json'
+alias jsonl='python -m json.tool | pygmentize -l json | less'
+
 # Jag är less på less med oläsbara färger (note: this is a swedish pun)
 alias less="TERM=xterm less"
 
