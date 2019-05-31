@@ -252,6 +252,10 @@ fi
 if (( $+commands[aws] )); then
     plugins+=(aws)
 fi
+if [ -d "$ZSH_CUSTOM/plugins/fzf" ]; then
+    export FZF_BASE="$ZSH_CUSTOM/plugins/fzf"
+    plugins+=(fzf)
+fi
 # BE AWARE: MUST BE LOADED LAST
 # BE AWARE: MUST BE LOADED LAST
 # BE AWARE: MUST BE LOADED LAST
