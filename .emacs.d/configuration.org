@@ -1025,8 +1025,9 @@ Javascript
 #+END_SRC
 
 ** Rebinding of "impossible" en_us keys on sv_se keyboards
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results silent
 (global-set-key (kbd "C-ö") 'indent-region)
+(global-set-key (kbd "C-å") 'comment-or-uncomment-region)
 #+END_SRC
 * Notes
 
