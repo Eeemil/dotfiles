@@ -947,6 +947,11 @@ Company-jedi as auto-completion framework
 #+END_SRC
 
 ** web development (js|jsx|ts)
+Prettier: makes thins prettier.
+#+begin_src emacs-lisp :results silent
+(use-package prettier-js)
+#+end_src
+
 Tide: Typescript magic
 #+BEGIN_SRC emacs-lisp :results silent
 (use-package typescript-mode)
@@ -958,6 +963,7 @@ Tide: Typescript magic
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
+  (prettier-js-mode +1)
   (company-mode +1))
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
