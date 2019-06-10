@@ -254,7 +254,11 @@ if (( $+commands[aws] )); then
 fi
 if [ -d "$ZSH_CUSTOM/plugins/fzf" ]; then
     export FZF_BASE="$ZSH_CUSTOM/plugins/fzf"
-    plugins+=(fzf)
+    if (( $+commands[aws] )); then
+        plugins+=(fzf)
+    else
+        echo "Please install zfz for prettier command history with .$ZSH_CUSTOM/install"
+    fi
 fi
 # BE AWARE: MUST BE LOADED LAST
 # BE AWARE: MUST BE LOADED LAST
@@ -620,3 +624,5 @@ if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/D
 
 fpath=("${DOTFILES}/zsh/completions" "${DOTFILES}/zsh/functions" $fpath)
 autoload -U compinit && compinit
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
