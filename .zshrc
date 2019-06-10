@@ -492,16 +492,20 @@ function gen-random-string {
 # Repeat a task
 function repeating-task {
     function usage {
-        echo "$0 FREQUENCY COMMAND COMMAND_ARGS"
+        echo "$0 [--async] FREQUENCY COMMAND COMMAND_ARGS"
         echo "  FREQUENCY should be on the format \"1h 3m 1s"
     }
     FREQUENCY=${1:-"5m"}
-    CMD=${1:-"notify-send"}
-    ARGS=${2:-"Drink coffee!"}
-    F_HOURS=$(sed -E 's/(.*)([0-9]+)([Hh].*)/\2/') <<< "$FREQUENCY"
-    F_MINUTES=$(sed -E 's/(.*)([0-9]+)([Mm].*)/\2/') <<< "$FREQUENCY"
-    F_SECONDS=$(sed -E 's/(.*)([0-9]+)([Ss].*)/\2/') <<< "$FREQUENCY"
-    F_SECONDS=$(($F_SECONDS + 60*$F_MINUTES + 60*60*$F_HOURS))
+    CMD=${2:-"notify-send"}
+    ARGS=${3}
+    S_HOURS=$(sed -E 's/(.*)([0-9]+)([Hh].*)/\2/') <<< "$FREQUENCY"
+    S_MINUTES=$(sed -E 's/(.*)([0-9]+)([Mm].*)/\2/') <<< "$FREQUENCY"
+    S_SECONDS=$(sed -E 's/(.*)[!0-9]?([0-9]+)([Ss].*)/\2/') <<< "$FREQUENCY"
+    [[ ! $S_HOURS =~ '^[0-9]+$' ]] && S_HOURS=0
+    [[ ! $S_MINUTES =~ '^[0-9]+$' ]] && S_MINUTES=0
+    [[ ! $S_SECONDS =~ '^[0-9]+$' ]] && S_SECONDS=0
+    TOTAL_SECONDS=$(( S_SECONDS + 60*S_MINUTES + 60*60*S_HOURS ))
+    echo "warning: this script does not work properly"
     echo "REP_TASK[$COMMAND]" >! /proc/$$/comm
     echo "Repeating task every $F_SECONDS seconds"
     while 1
@@ -509,6 +513,9 @@ function repeating-task {
         $CMD $ARGS
         sleep $F_SECONDS
     done
+}
+
+function string-to-s {
 }
 
 # ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓   ┏━┓╻  ╻┏━┓┏━┓┏━╸┏━┓
