@@ -507,32 +507,13 @@ function repeating-cmd {
     [[ ! $S_MINUTES =~ '^[0-9]+$' ]] && S_MINUTES=0
     [[ ! $S_SECONDS =~ '^[0-9]+$' ]] && S_SECONDS=0
     TOTAL_SECONDS=$(( S_SECONDS + 60*S_MINUTES + 60*60*S_HOURS ))
-    echo "warning: this script does not work properly"
     printf "repeating-${CMD}" >! /proc/$$/comm
-    echo "Repeating task every $TOTAL_SECONDS seconds"
-    echo -e "S_SECONDS $S_SECONDS\nS_MINUTES = $S_MINUTES\nS_HOURS = $S_HOURS"
+    echo "Repeating (every $TOTAL_SECONDS seconds) command $CMD $ARGS"
     while :
     do
         $CMD $ARGS
         sleep $TOTAL_SECONDS
     done
-}
-
-function string-to-s {
-    FREQUENCY=${1:-"5m"}
-    CMD=${2:-"notify-send"}
-    ARGS=${3}
-    S_HOURS=$(sed -E 's/(.* |$)([0-9]+)([Hh].*)/\2/') <<< "$FREQUENCY"
-    S_MINUTES=$(sed -E 's/(.* |$)([0-9]+)([Mm].*)/\2/') <<< "$FREQUENCY"
-    S_SECONDS=$(sed -E 's/(.* |$)[!0-9]?([0-9]+)([Ss].*)/\2/') <<< "$FREQUENCY"
-    [[ ! $S_HOURS =~ '^[0-9]+$' ]] && S_HOURS=0
-    [[ ! $S_MINUTES =~ '^[0-9]+$' ]] && S_MINUTES=0
-    [[ ! $S_SECONDS =~ '^[0-9]+$' ]] && S_SECONDS=0
-    TOTAL_SECONDS=$(( S_SECONDS + 60*S_MINUTES + 60*60*S_HOURS ))
-    echo "warning: this script does not work properly"
-    echo "repeating-${COMMAND}" >! /proc/$$/comm
-    echo "Repeating task every $TOTAL_SECONDS seconds"
-    echo -e "S_SECONDS $S_SECONDS\nS_MINUTES = $S_MINUTES\nS_HOURS = $S_HOURS"
 }
 
 # ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓   ┏━┓╻  ╻┏━┓┏━┓┏━╸┏━┓
