@@ -489,33 +489,50 @@ function gen-random-string {
     </dev/urandom tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' | head -c ${LENGTH} | xargs -0 echo
 }
 
-# Repeat a task
-function repeating-task {
+# Repeat a command
+function repeating-cmd {
     function usage {
-        echo "$0 [--async] FREQUENCY COMMAND COMMAND_ARGS"
+        echo "$0 FREQUENCY COMMAND COMMAND_ARGS"
         echo "  FREQUENCY should be on the format \"1h 3m 1s"
     }
     FREQUENCY=${1:-"5m"}
     CMD=${2:-"notify-send"}
-    ARGS=${3}
-    S_HOURS=$(sed -E 's/(.*)([0-9]+)([Hh].*)/\2/') <<< "$FREQUENCY"
-    S_MINUTES=$(sed -E 's/(.*)([0-9]+)([Mm].*)/\2/') <<< "$FREQUENCY"
-    S_SECONDS=$(sed -E 's/(.*)[!0-9]?([0-9]+)([Ss].*)/\2/') <<< "$FREQUENCY"
+    shift 2
+    ARGS=$@
+    S_HOURS=$(sed -E 's/([^Hh]+[^0-9]|^[^0-9]*)([0-9]+)([Hh].*$)/\2/') <<< "$FREQUENCY"
+    S_MINUTES=$(sed -E 's/([^Mm]+[^0-9]|^[^0-9]*)([0-9]+)([Mm].*$)/\2/') <<< "$FREQUENCY"
+    S_SECONDS=$(sed -E 's/([^Ss]+[^0-9]|^[^0-9]*)([0-9]+)([Ss].*$)/\2/') <<< "$FREQUENCY"
+    echo -e "S_SECONDS $S_SECONDS\nS_MINUTES = $S_MINUTES\nS_HOURS = $S_HOURS"
     [[ ! $S_HOURS =~ '^[0-9]+$' ]] && S_HOURS=0
     [[ ! $S_MINUTES =~ '^[0-9]+$' ]] && S_MINUTES=0
     [[ ! $S_SECONDS =~ '^[0-9]+$' ]] && S_SECONDS=0
     TOTAL_SECONDS=$(( S_SECONDS + 60*S_MINUTES + 60*60*S_HOURS ))
     echo "warning: this script does not work properly"
-    echo "REP_TASK[$COMMAND]" >! /proc/$$/comm
-    echo "Repeating task every $F_SECONDS seconds"
-    while 1
+    printf "repeating-${CMD}" >! /proc/$$/comm
+    echo "Repeating task every $TOTAL_SECONDS seconds"
+    echo -e "S_SECONDS $S_SECONDS\nS_MINUTES = $S_MINUTES\nS_HOURS = $S_HOURS"
+    while :
     do
         $CMD $ARGS
-        sleep $F_SECONDS
+        sleep $TOTAL_SECONDS
     done
 }
 
 function string-to-s {
+    FREQUENCY=${1:-"5m"}
+    CMD=${2:-"notify-send"}
+    ARGS=${3}
+    S_HOURS=$(sed -E 's/(.* |$)([0-9]+)([Hh].*)/\2/') <<< "$FREQUENCY"
+    S_MINUTES=$(sed -E 's/(.* |$)([0-9]+)([Mm].*)/\2/') <<< "$FREQUENCY"
+    S_SECONDS=$(sed -E 's/(.* |$)[!0-9]?([0-9]+)([Ss].*)/\2/') <<< "$FREQUENCY"
+    [[ ! $S_HOURS =~ '^[0-9]+$' ]] && S_HOURS=0
+    [[ ! $S_MINUTES =~ '^[0-9]+$' ]] && S_MINUTES=0
+    [[ ! $S_SECONDS =~ '^[0-9]+$' ]] && S_SECONDS=0
+    TOTAL_SECONDS=$(( S_SECONDS + 60*S_MINUTES + 60*60*S_HOURS ))
+    echo "warning: this script does not work properly"
+    echo "repeating-${COMMAND}" >! /proc/$$/comm
+    echo "Repeating task every $TOTAL_SECONDS seconds"
+    echo -e "S_SECONDS $S_SECONDS\nS_MINUTES = $S_MINUTES\nS_HOURS = $S_HOURS"
 }
 
 # ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓   ┏━┓╻  ╻┏━┓┏━┓┏━╸┏━┓
