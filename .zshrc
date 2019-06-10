@@ -254,7 +254,7 @@ if (( $+commands[aws] )); then
 fi
 if [ -d "$ZSH_CUSTOM/plugins/fzf" ]; then
     export FZF_BASE="$ZSH_CUSTOM/plugins/fzf"
-    if (( $+commands[aws] )); then
+    if (( $+commands[fzf] )); then
         plugins+=(fzf)
     else
         echo "Please install zfz for prettier command history with .$ZSH_CUSTOM/install"
@@ -480,6 +480,28 @@ function gen-random-string {
         echo -e "Error: first argument not a number\nUsage: gen-random-string LENGTH" >&2; return 1
     fi
     </dev/urandom tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' | head -c ${LENGTH} | xargs -0 echo
+}
+
+# Repeat a task
+function repeating-task {
+    function usage {
+        echo "$0 FREQUENCY COMMAND COMMAND_ARGS"
+        echo "  FREQUENCY should be on the format \"1h 3m 1s"
+    }
+    FREQUENCY=${1:-"5m"}
+    CMD=${1:-"notify-send"}
+    ARGS=${2:-"Drink coffee!"}
+    F_HOURS=$(sed -E 's/(.*)([0-9]+)([Hh].*)/\2/') <<< "$FREQUENCY"
+    F_MINUTES=$(sed -E 's/(.*)([0-9]+)([Mm].*)/\2/') <<< "$FREQUENCY"
+    F_SECONDS=$(sed -E 's/(.*)([0-9]+)([Ss].*)/\2/') <<< "$FREQUENCY"
+    F_SECONDS=$(($F_SECONDS + 60*$F_MINUTES + 60*60*$F_HOURS))
+    echo "REP_TASK[$COMMAND]" >! /proc/$$/comm
+    echo "Repeating task every $F_SECONDS seconds"
+    while 1
+    do
+        $CMD $ARGS
+        sleep $F_SECONDS
+    done
 }
 
 # ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓   ┏━┓╻  ╻┏━┓┏━┓┏━╸┏━┓
