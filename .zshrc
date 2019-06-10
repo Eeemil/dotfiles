@@ -469,6 +469,15 @@ function load-secrets {
     source ~/secret-functions.sh
 }
 
+# See https://unix.stackexchange.com/questions/230673/how-to-generate-a-random-string
+function gen-random-string {
+    LENGTH="${1:-16}"
+    if [[ ! $LENGTH =~ "^[0-9]+$" ]]; then
+        echo -e "Error: first argument not a number\nUsage: gen-random-string LENGTH" >&2; return 1
+    fi
+    </dev/urandom tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' | head -c ${LENGTH} | xargs -0 echo
+}
+
 # ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓   ┏━┓╻  ╻┏━┓┏━┓┏━╸┏━┓
 # ┃  ┃ ┃┗━┓ ┃ ┃ ┃┃┃┃   ┣━┫┃  ┃┣━┫┗━┓┣╸ ┗━┓
 # ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹   ╹ ╹┗━╸╹╹ ╹┗━┛┗━╸┗━┛
