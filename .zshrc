@@ -27,6 +27,13 @@ case $TERM in
         export TERM="xterm-256color"
 esac
 
+# ┏━┓┏━┓┏━╸╻  ┏━┓┏━┓╺┳┓╻┏┓╻┏━╸
+# ┣━┛┣┳┛┣╸ ┃  ┃ ┃┣━┫ ┃┃┃┃┗┫┃╺┓
+# ╹  ╹┗╸┗━╸┗━╸┗━┛╹ ╹╺┻┛╹╹ ╹┗━┛
+# preloading
+# Stuff needed to be loaded before anything else
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # ┏━┓╻ ╻   ┏┳┓╻ ╻   ╺━┓┏━┓╻ ╻   ╻  ┏━┓┏━╸┏━┓╺┳╸╻┏━┓┏┓╻
 # ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫   ┃  ┃ ┃┃  ┣━┫ ┃ ┃┃ ┃┃┗┫
 # ┗━┛╹ ╹   ╹ ╹ ╹    ┗━╸┗━┛╹ ╹   ┗━╸┗━┛┗━╸╹ ╹ ╹ ╹┗━┛╹ ╹
@@ -646,5 +653,3 @@ if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/D
 
 fpath=("${DOTFILES}/zsh/completions" "${DOTFILES}/zsh/functions" $fpath)
 autoload -U compinit && compinit
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
