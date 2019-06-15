@@ -26,7 +26,3 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -f "$HOME/dotfiles/gnome-settings/load-settings.sh" ]; then
-    "$HOME/dotfiles/gnome-settings/load-settings.sh"
-fi
-
