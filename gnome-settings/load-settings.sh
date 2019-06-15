@@ -20,7 +20,8 @@
 
 command -v dconf &> /dev/null
 if [ "$?" -ne 0 ]; then
-    >&2 echo "dconf not installed, cannot load settings..." 
+    >&2 echo "$0: dconf not installed, cannot load settings..."
+    exit 1
 fi
 
 # ┏┳┓┏━╸╺┳┓╻┏━┓   ╻┏ ┏━╸╻ ╻┏━┓
