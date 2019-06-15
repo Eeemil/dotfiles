@@ -264,7 +264,7 @@ if [ -d "$ZSH_CUSTOM/plugins/fzf" ]; then
     if (( $+commands[fzf] )); then
         plugins+=(fzf)
     else
-        echo "Please install zfz for prettier command history with .$ZSH_CUSTOM/install"
+        echo "Please install fzf for prettier command history with .$ZSH_CUSTOM/plugins/fzf/install"
     fi
 fi
 # BE AWARE: MUST BE LOADED LAST
