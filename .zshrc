@@ -644,6 +644,11 @@ if [ "$(hostname -d)" = "cs.umu.se" ]; then
     unsetopt ignoreeof
 fi
 
+# Local configuration?
+if [ -f "${HOME}/.locals.zsh" ]; then
+    source ${HOME}/.locals.zsh
+fi
+
 # ┏━┓╺┳╸╻ ╻┏━╸┏━┓   ┏━┓╺┳╸╻ ╻┏━╸┏━╸
 # ┃ ┃ ┃ ┣━┫┣╸ ┣┳┛   ┗━┓ ┃ ┃ ┃┣╸ ┣╸ 
 # ┗━┛ ╹ ╹ ╹┗━╸╹┗╸   ┗━┛ ╹ ┗━┛╹  ╹  
