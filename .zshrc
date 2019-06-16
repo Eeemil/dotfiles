@@ -663,3 +663,6 @@ if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/D
 
 fpath=("${DOTFILES}/zsh/completions" "${DOTFILES}/zsh/functions" $fpath)
 autoload -U compinit && compinit
+
+# Cleanup duplicates from PATH
+typeset -aU path
