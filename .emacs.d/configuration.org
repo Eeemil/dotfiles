@@ -408,6 +408,11 @@ Use [[https://editorconfig.org/][editorconfig]]
   :config
   (editorconfig-mode 1))
 #+END_SRC
+
+#+begin_src emacs-lisp :results silent
+(set-language-environment "UTF-8")
+#+end_src
+
 80 char width
 #+BEGIN_SRC emacs-lisp
 (setq-default fill-column 80)
