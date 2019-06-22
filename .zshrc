@@ -78,11 +78,11 @@ ZSH_THEME="robbyrussell"
 # .oh-my-zsh/custom/themes, try to find it in dotfiles and symlink it
 if [ "$DUMBTERM" = "true" ]; then
     ZSH_THEME="robbyrussell"
-elif [ -f "$ZSH_CUSTOM/themes/powerlevel9k/powerlevel9k.zsh-theme" ]; then
-    ZSH_THEME="powerlevel9k/powerlevel9k"
+elif [ -f "$ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" ]; then
+    ZSH_THEME="powerlevel10k/powerlevel10k"
 fi
 
-if [ "$ZSH_THEME"="powerlevel9k/powerlevel9k" ]; then
+if [ "$ZSH_THEME"="powerlevel10k/powerlevel10k" ]; then
     POWERLEVEL9K_MODE='nerdfont-complete'
     POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
     POWERLEVEL9K_DIR_OMIT_FIRST_CHARACTER=false
@@ -238,7 +238,7 @@ COMPLETION_WAITING_DOTS="true"
 # ┗━┛╹ ╹   ╹ ╹ ╹    ┗━╸┗━┛╹ ╹   ╹  ┗━╸┗━┛┗━┛╹╹ ╹┗━┛
 # oh-my-zsh plugins
 
-plugins=(git colored-man-pages colorize)
+plugins=(colored-man-pages colorize)
 
 # Add kubernetes plugins if kubernetes is installed...
 if (( $+commands[kubectl] )); then
