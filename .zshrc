@@ -78,8 +78,8 @@ ZSH_THEME="robbyrussell"
 # .oh-my-zsh/custom/themes, try to find it in dotfiles and symlink it
 if [ "$DUMBTERM" = "true" ]; then
     ZSH_THEME="robbyrussell"
-elif [ -f "$ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" ]; then
-    ZSH_THEME="powerlevel10k/powerlevel10k"
+elif [ -f "$ZSH_CUSTOM/themes/powerlevel9k/powerlevel9k.zsh-theme" ]; then
+    ZSH_THEME="powerlevel9k/powerlevel9k"
 fi
 
 if [ "$ZSH_THEME"="powerlevel10k/powerlevel10k" ]; then
