@@ -540,6 +540,10 @@ else
     alias wanip='echo "Go to http://whatismyip.akamai.com and fetch your ip yourself (and/or install dig/dnsutils)"'
 fi
 
+if (( $+commands[rg] )); then
+    alias rgd='rg --glob=!dist/'
+fi
+
 # use python3 if available
 if (( $+commands[pip3] )); then
     alias pip=pip3
@@ -577,6 +581,12 @@ export GOPATH=$HOME/.go/workspace
 export GEM_HOME=$HOME/gems
 # Node version manager
 export NVM_DIR="$HOME/.nvm"
+
+if (( $+commands[rg] )); then
+    # Ripgrep configuration file
+    # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+    export RIPGREP_CONFIG_PATH=$DOTFILES/.ripgreprc
+fi
 
 # ┏━┓┏━┓╺┳╸╻ ╻
 # ┣━┛┣━┫ ┃ ┣━┫

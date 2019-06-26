@@ -1,0 +1,6 @@
+# Ripgrep configuration
+# https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+
+# Minified code is 1 loooooong line, totally unreadable
+--max-columns=2048
+--max-columns-preview
