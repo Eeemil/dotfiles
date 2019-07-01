@@ -560,6 +560,8 @@ alias datee="date '+%Y-%m-%d_%H:%M'"
 # yaml parsing for humanz
 alias yml='pygmentize -l yaml' 
 alias ymll='pygmentize -l yaml | less'
+alias -g oyml=' -o yaml | yml'
+alias -g oymll=' -o yaml | ymll'
 
 # json parsing for humanz
 alias json='python -m json.tool'
