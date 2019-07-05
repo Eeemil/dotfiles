@@ -413,7 +413,6 @@ zle -N _magic-alt-l
 
 bindkey '\el' _magic-alt-l
 
-
 # Override default git command
 # Using "git pull" is not very good. Lets get rid of that habit
 function git {
@@ -678,3 +677,6 @@ autoload -U compinit && compinit
 
 # Cleanup duplicates from PATH
 typeset -aU path
+
+# C-w = kill-region (copy marked region)
+bindkey "\C-w" kill-region
