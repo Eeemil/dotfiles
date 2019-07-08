@@ -475,9 +475,14 @@ function ssh-agent-load-all-keys {
     fi
 }
 
-function load-secrets {
-    source ~/secret-functions.sh
-}
+_SECRET_FUNCTIONS="${HOME}/secret-functions.sh"
+if [ -f "${_SECRET_FUNCTIONS}" ]; then
+    function load-secrets {
+        source "$_SECRET_FUNCTIONS"
+    }
+    zle -N load-secrets
+    bindkey "\ev" load-secrets
+fi
 
 # See https://unix.stackexchange.com/questions/230673/how-to-generate-a-random-string
 function gen-random-string {
