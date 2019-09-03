@@ -310,7 +310,7 @@ precmd() {
 }
 
 # simple notification
-# Example use: wheen running a long-running command, just type "beep<enter>" and
+# Example use: when running a long-running command, just type "beep<enter>" and
 # you will be notified when the command is done.
 function beep {
     msg=""
@@ -329,7 +329,7 @@ function beep {
     fi
 
     if [ $SESSION_TYPE = "local" ]; then
-	# On local machine we can send out sounds
+	# On local machine we can send sounds
 	if [ -x "$(command -v paplay)" ]; then
 	    setsid paplay /usr/share/sounds/freedesktop/stereo/complete.oga 2>/dev/null
 	    # Paplay and /usr/share/sounds/freedesktop/stereo/complete.oga should exist
