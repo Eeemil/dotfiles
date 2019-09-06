@@ -520,6 +520,18 @@ function repeating-cmd {
     done
 }
 
+function ocr-screenshot {
+    img=$(mktemp --suffix=".png")
+    txt=$(mktemp)
+    gnome-screenshot -a -f ${img}
+
+    mogrify -modulate 100,0 -resize 400% ${img}
+    #should increase detection rate
+
+    tesseract ${img} ${txt} --psm 10
+    cat ${txt}.txt | xclip -selection clipboard
+}
+
 # ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓   ┏━┓╻  ╻┏━┓┏━┓┏━╸┏━┓
 # ┃  ┃ ┃┗━┓ ┃ ┃ ┃┃┃┃   ┣━┫┃  ┃┣━┫┗━┓┣╸ ┗━┓
 # ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹   ╹ ╹┗━╸╹╹ ╹┗━┛┗━╸┗━┛
