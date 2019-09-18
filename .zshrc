@@ -542,7 +542,7 @@ function toggle-window-decorations {
     local active_window=""
     if [ "$1" = "-i" ]; then
         echo "Select window with mouse"
-        xwininfo | grep "Window id: " |grep -oP "0x[1-9a-f]*"
+        xwininfo | grep "Window id: " | grep -oP "0x[0-9a-f]*"
         shift 1
     else
         active_window=$(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)
