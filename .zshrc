@@ -539,16 +539,17 @@ function ocr-screenshot {
 #   -i: interactive (prompt for window)
 # More: https://askubuntu.com/questions/906424/remove-decoration-of-single-window-in-gnome-3
 function toggle-window-decorations {
-    local active_window=""
+    local window=""
     if [ "$1" = "-i" ]; then
         echo "Select window with mouse"
-        xwininfo | grep "Window id: " | grep -oP "0x[0-9a-f]*"
+        window=$(xwininfo | grep "Window id: " | grep -oP "0x[0-9a-f]*")
         shift 1
     else
-        active_window=$(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)
+        # Use active window
+        window=$(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)
     fi
     local desired_state="${1:-toggle}"
-    local current_state=$(xprop -id $active_window -f _MOTIF_WM_HINTS 32c | grep MOTIF)
+    local current_state=$(xprop -id $window -f _MOTIF_WM_HINTS 32c | grep MOTIF)
     if [ "$current_state" = "_MOTIF_WM_HINTS(CARDINAL) = 2, 0, 0, 0, 0" ]; then
         current_state="off"
     elif [ "$current_state" = "MOTIF_WM_HINTS(CARDINAL) = 2, 0, 1, 0, 0" ]; then
@@ -565,11 +566,11 @@ function toggle-window-decorations {
         fi
     fi
     if [ "$desired_state" = "on" ]; then
-        xprop -id "$active_window" -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x1, 0x0, 0x0"
+        xprop -id "$window" -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x1, 0x0, 0x0"
     elif [ "$desired_state" = "off" ]; then
-        xprop -id "$active_window" -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x0, 0x0, 0x0"
+        xprop -id "$window" -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x0, 0x0, 0x0"
     else
-        echo "Unknown desired state ¯\_(ツ)_/¯"
+        echo "Unknown desired state \"$desired_state\" ¯\_(ツ)_/¯"
     fi
 }
 
