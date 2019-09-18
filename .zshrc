@@ -532,6 +532,47 @@ function ocr-screenshot {
     cat ${txt}.txt | xclip -selection clipboard
 }
 
+# Usage:
+# toggle-window-decorations [-i] [on|off|toggle]
+# Hides/shows window decorations of current window
+# Flags:
+#   -i: interactive (prompt for window)
+# More: https://askubuntu.com/questions/906424/remove-decoration-of-single-window-in-gnome-3
+function toggle-window-decorations {
+    local active_window=""
+    if [ "$1" = "-i" ]; then
+        echo "Select window with mouse"
+        xwininfo | grep "Window id: " |grep -oP "0x[1-9a-f]*"
+        shift 1
+    else
+        active_window=$(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)
+    fi
+    local desired_state="${1:-toggle}"
+    local current_state=$(xprop -id $active_window -f _MOTIF_WM_HINTS 32c | grep MOTIF)
+    if [ "$current_state" = "_MOTIF_WM_HINTS(CARDINAL) = 2, 0, 0, 0, 0" ]; then
+        current_state="off"
+    elif [ "$current_state" = "MOTIF_WM_HINTS(CARDINAL) = 2, 0, 1, 0, 0" ]; then
+        current_state="off"
+    else
+        # Default, assume on
+        current_state="on"
+    fi
+    if [ "$desired_state" = "toggle" ]; then
+        if [ "$current_state" = "off" ]; then
+            desired_state="on"
+        else
+            desired_state="off"
+        fi
+    fi
+    if [ "$desired_state" = "on" ]; then
+        xprop -id "$active_window" -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x1, 0x0, 0x0"
+    elif [ "$desired_state" = "off" ]; then
+        xprop -id "$active_window" -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x0, 0x0, 0x0"
+    else
+        echo "Unknown desired state ¯\_(ツ)_/¯"
+    fi
+}
+
 # ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓   ┏━┓╻  ╻┏━┓┏━┓┏━╸┏━┓
 # ┃  ┃ ┃┗━┓ ┃ ┃ ┃┃┃┃   ┣━┫┃  ┃┣━┫┗━┓┣╸ ┗━┓
 # ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹   ╹ ╹┗━╸╹╹ ╹┗━┛┗━╸┗━┛
@@ -539,7 +580,7 @@ function ocr-screenshot {
 
 # kubectl switch ns easily
 alias kns='kubectl config set-context $(kubectl config current-context) --namespace '
-alias xclip='xclip -selection c'
+alias xclip='xclip -r -selection c'
 # wanip command: use fastest tool to get external IP as discussed in
 # https://unix.stackexchange.com/questions/22615/how-can-i-get-my-external-ip-address-in-a-shell-script
 if (( $+commands[dig] )); then
