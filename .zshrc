@@ -549,11 +549,11 @@ function toggle-window-decorations {
         window=$(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)
     fi
     local desired_state="${1:-toggle}"
-    local current_state=$(xprop -id $window -f _MOTIF_WM_HINTS 32c | grep MOTIF)
+    local current_state=$(xprop -id $window -f _MOTIF_WM_HINTS 32c | grep "_MOTIF_WM_HINTS(CARDINAL)")
     if [ "$current_state" = "_MOTIF_WM_HINTS(CARDINAL) = 2, 0, 0, 0, 0" ]; then
         current_state="off"
-    elif [ "$current_state" = "MOTIF_WM_HINTS(CARDINAL) = 2, 0, 1, 0, 0" ]; then
-        current_state="off"
+    elif [ "$current_state" = "_MOTIF_WM_HINTS(CARDINAL) = 2, 0, 1, 0, 0" ]; then
+        current_state="on"
     else
         # Default, assume on
         current_state="on"
@@ -565,6 +565,7 @@ function toggle-window-decorations {
             desired_state="off"
         fi
     fi
+    echo "$current_state" "$desired_state"
     if [ "$desired_state" = "on" ]; then
         xprop -id "$window" -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x1, 0x0, 0x0"
     elif [ "$desired_state" = "off" ]; then
