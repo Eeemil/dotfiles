@@ -353,11 +353,16 @@ function beep {
 
 # re-run a command until it succeeds
 function waitforsuccess {
-    echo "Will run command '$@' until it returns 0"
+    local silent=false
+    if [ "$1" = "--silent" ]; then
+        silent=true;
+        shift 1
+    fi
+    [ "$silent" = "false" ] && echo "Will run command '$@' until it returns 0"
     until eval "$@" &>/dev/null; do
         sleep 1
     done
-    beep "Command finished: '$@'"
+    [ "$silent" = "false" ] && beep "Command finished: '$@'"
 }
 
 # read environment file and print its output
