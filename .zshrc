@@ -276,6 +276,69 @@ precmd() {
                                                          # cause problems on some OSes.
 }
 
+_command_time_preexec() {
+    timer=${timer:-$SECONDS}
+    date_start=$(date '+%Y-%m-%d')
+    time_start=$(date '+%H:%M:%S')
+    ZSH_COMMAND_TIME_MSG=${ZSH_COMMAND_TIME_MSG-"Time: %s"}
+    ZSH_COMMAND_TIME_COLOR=${ZSH_COMMAND_TIME_COLOR-"white"}
+    export ZSH_COMMAND_TIME=""
+}
+
+_command_time_precmd() {
+    if [ $timer ]; then
+        timer_show=$(($SECONDS - $timer))
+        date_end=$(date '+%Y-%m-%d')
+        time_end=$(date '+%H:%M:%S')
+        if [ -n "$TTY" ] && [ $timer_show -ge ${ZSH_COMMAND_TIME_MIN_SECONDS:-3} ]; then
+            export ZSH_COMMAND_TIME="$timer_show"
+            export ZSH_COMMAND_DATE_START="$date_start"
+            export ZSH_COMMAND_TIME_START="$time_start"
+            export ZSH_COMMAND_DATE_END="$date_end"
+            export ZSH_COMMAND_TIME_END="$time_end"
+            if [ ! -z ${ZSH_COMMAND_TIME_MSG} ]; then
+                zsh_command_time
+            fi
+        fi
+        unset timer
+    fi
+}
+
+zsh_command_time() {
+    if [ -n "$ZSH_COMMAND_TIME" ]; then
+        hours=$(($ZSH_COMMAND_TIME/3600))
+        min=$(($ZSH_COMMAND_TIME/60))
+        sec=$(($ZSH_COMMAND_TIME))
+        date_start="$ZSH_COMMAND_DATE_START"
+        time_start="$ZSH_COMMAND_TIME_START"
+        date_end="$ZSH_COMMAND_DATE_END"
+        time_end="$ZSH_COMMAND_TIME_END"
+        if [ "$sec" -le 60 ]; then
+            timer_show="$fg[green]$ZSH_COMMAND_TIME s."
+        elif [ "$min" -le 5 ]; then
+            timer_show="$fg[green]$min min. $sec s."
+        elif [ "$min" -le 30 ]; then
+            timer_show="$fg[yellow]$min min. $sec s."
+        else
+            if [ "$hours" -gt 0 ]; then
+                min_show=$(($min%60))
+                timer_show="$fg[red]$hours h. $min_show min. $sec s."
+            else
+                timer_show="$fg[red]$min min. $sec s."
+            fi
+        fi
+        if [ ${date_start} != ${date_end} ]; then
+            timer_show="${timer_show}$fg[default] (start: $fg[red]${date_start}$fg[default] ${time_start}, end: $fg[red]${date_end}$fg[default] ${time_end}$fg[default])"
+        else
+            timer_show="${timer_show}$fg[default] (start: ${time_start}, end: ${time_end})"
+        fi
+        printf "${ZSH_COMMAND_TIME_MSG}\n" "$timer_show"
+    fi
+}
+
+precmd_functions+=(_command_time_precmd)
+preexec_functions+=(_command_time_preexec)
+
 # simple notification
 # Example use: when running a long-running command, just type "beep<enter>" and
 # you will be notified when the command is done.
