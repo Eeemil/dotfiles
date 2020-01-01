@@ -8,6 +8,7 @@
   [[default]]
     [[[child1]]]
       parent = window0
+      profile = default
       type = Terminal
     [[[window0]]]
       parent = ""
@@ -21,3 +22,5 @@
     font = ShureTechMono Nerd Font 10
     scrollback_lines = 8192
     use_system_font = False
+    term = xterm-256color
+    colorterm = truecolor
