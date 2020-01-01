@@ -309,22 +309,25 @@ zsh_command_time() {
         hours=$(($ZSH_COMMAND_TIME/3600))
         min=$(($ZSH_COMMAND_TIME/60))
         sec=$(($ZSH_COMMAND_TIME))
+        sec_show=$(($ZSH_COMMAND_TIME%60))
         date_start="$ZSH_COMMAND_DATE_START"
         time_start="$ZSH_COMMAND_TIME_START"
         date_end="$ZSH_COMMAND_DATE_END"
         time_end="$ZSH_COMMAND_TIME_END"
-        if [ "$sec" -le 60 ]; then
-            timer_show="$fg[green]$ZSH_COMMAND_TIME s."
+        if [ "$sec" -le 30 ]; then
+            return
+        elif [ "$sec" -le 60 ]; then
+            timer_show="$fg[green]$sec_show s."
         elif [ "$min" -le 5 ]; then
-            timer_show="$fg[green]$min min. $sec s."
+            timer_show="$fg[green]$min min. $sec_show s."
         elif [ "$min" -le 30 ]; then
-            timer_show="$fg[yellow]$min min. $sec s."
+            timer_show="$fg[yellow]$min min. $sec_show s."
         else
             if [ "$hours" -gt 0 ]; then
                 min_show=$(($min%60))
-                timer_show="$fg[red]$hours h. $min_show min. $sec s."
+                timer_show="$fg[red]$hours h. $min_show min. $sec_show s."
             else
-                timer_show="$fg[red]$min min. $sec s."
+                timer_show="$fg[red]$min min. $sec_show s."
             fi
         fi
         if [ ${date_start} != ${date_end} ]; then
