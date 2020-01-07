@@ -1,26 +1,34 @@
 [global_config]
-  enabled_plugins = ActivityWatch, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  enabled_plugins = ActivityWatch, InactivityWatch, LaunchpadBugURLHandler, LaunchpadCodeURLHandler, APTURLHandler
+  suppress_multiple_term_dialog = True
 [keybindings]
-  layout_launcher = None
   next_tab = <Primary><Shift>f
   prev_tab = <Primary><Shift>b
+  hide_window = None
+  new_window = None
+  new_terminator = None
+  edit_window_title = <Primary><Alt>w
+  edit_tab_title = <Primary><Alt>e
+  edit_terminal_title = <Primary><Alt>x
+  layout_launcher = None
+[profiles]
+  [[default]]
+    background_darkness = 0.76
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = ShureTechMono Nerd Font 10
+    scrollback_lines = 32768
+    use_system_font = False
+    term = xterm-256color
+    colorterm = truecolor
 [layouts]
   [[default]]
     [[[child1]]]
       parent = window0
       profile = default
       type = Terminal
+      profile = default
     [[[window0]]]
       parent = ""
       type = Window
 [plugins]
-[profiles]
-  [[default]]
-    background_darkness = 0.76
-    background_image = None
-    background_type = transparent
-    font = ShureTechMono Nerd Font 10
-    scrollback_lines = 8192
-    use_system_font = False
-    term = xterm-256color
-    colorterm = truecolor
