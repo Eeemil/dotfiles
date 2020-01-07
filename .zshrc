@@ -682,6 +682,12 @@ if (( $+commands[rg] )); then
     export RIPGREP_CONFIG_PATH=$DOTFILES/.ripgreprc
 fi
 
+# Force non-deprecated python in gcloud et. al.
+if (( $+commands[gcloud] )); then
+    export CLOUDSDK_PYTHON=python3
+    export CLOUDSDK_GSUTIL_PYTHON=python3
+    export CLOUDSDK_BQ_PYTHON=python3
+fi
 # ┏━┓┏━┓╺┳╸╻ ╻
 # ┣━┛┣━┫ ┃ ┣━┫
 # ╹  ╹ ╹ ╹ ╹ ╹
