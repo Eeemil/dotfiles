@@ -27,7 +27,6 @@
       parent = window0
       profile = default
       type = Terminal
-      profile = default
     [[[window0]]]
       parent = ""
       type = Window
