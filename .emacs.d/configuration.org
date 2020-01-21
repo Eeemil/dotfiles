@@ -373,6 +373,9 @@ Much of the configuration is inspired by [[https://github.com/yusekiya/dotfiles/
      helm-M-x-fuzzy-match t
      helm-mode-fuzzy-match t
     )
+    ;; Disable find-file to try open whatever I'm pointing at
+    ;; (it's not what I want to do in 99 of 100 times)
+    (setq helm-find-files-ignore-thing-at-point t)
 
 )
 (use-package helm-swoop
