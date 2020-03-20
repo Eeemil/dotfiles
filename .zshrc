@@ -661,7 +661,8 @@ alias jsonn='python -m json.tool | pygmentize -l json'
 alias jsonl='python -m json.tool | pygmentize -l json | less'
 
 # Jag är less på less med oläsbara färger (note: this is a swedish pun)
-alias less="TERM=xterm less"
+# -b = buffer bytes in kibibytes (1024KiB*128=128MiB=131072)
+alias less="TERM=xterm less -b 131072"
 
 # ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓  ┏━╸┏┓╻╻ ╻╻┏━┓┏━┓┏┓╻┏┳┓┏━╸┏┓╻╺┳╸  ╻ ╻┏━┓┏━┓╻┏━┓┏┓ ╻  ┏━╸┏━┓
 # ┃  ┃ ┃┗━┓ ┃ ┃ ┃┃┃┃  ┣╸ ┃┗┫┃┏┛┃┣┳┛┃ ┃┃┗┫┃┃┃┣╸ ┃┗┫ ┃   ┃┏┛┣━┫┣┳┛┃┣━┫┣┻┓┃  ┣╸ ┗━┓
