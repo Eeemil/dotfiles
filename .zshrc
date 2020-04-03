@@ -780,3 +780,8 @@ typeset -aU path
 
 # C-w = kill-region (copy marked region)
 bindkey "\C-w" kill-region
+
+# Velero completion
+if (( $+commands[velero] )); then
+    source <(velero completion zsh)
+fi
