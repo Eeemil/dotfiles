@@ -37,3 +37,7 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -sfn "$dotfiles/$file" "$HOME/$file"
 done
+
+# Install custom binaries
+mkdir -p ~/bin
+ln -s ../gnome-settings/load-settings.sh ~/bin/load-gnome-settings
