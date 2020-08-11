@@ -991,7 +991,6 @@ Tide: Typescript magic
   (company-mode +1))
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
-(setq flycheck-typescript-tslint-executable "~/.yarn/bin/tslint")
 ;; formats the buffer before saving
 ;;(add-hook 'before-save-hook 'tide-format-before-save)
 (setq tide-format-options '(:indentSize 2 :tabSize 2))
