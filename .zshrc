@@ -259,6 +259,10 @@ fi
 # ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹   ╹  ┗━┛╹ ╹┗━╸ ╹ ╹┗━┛╹ ╹┗━┛
 # custom functions
 
+cache_path() {
+    printenv | grep -E '^PATH' > ~/tmp/zsh-path.zsh
+}
+
 # Emacs logic for C-x C-f:ing CWD-aware within ansi-term
 precmd() {
     if [ -z "$EMACS" ]; then
