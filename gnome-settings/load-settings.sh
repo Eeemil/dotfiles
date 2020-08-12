@@ -29,9 +29,9 @@ fi
 # ╹ ╹┗━╸╺┻┛╹╹ ╹   ╹ ╹┗━╸ ╹ ┗━┛
 dconf load /org/gnome/settings-daemon/plugins/media-keys/ <<EOF
 [/]
-previous='<Shift><Super>b'
-next='<Shift><Super>f'
-play='<Shift><Super>p'
+previous=['<Shift><Super>b']
+next=['<Shift><Super>f']
+play=['<Shift><Super>p']
 EOF
 
 # ╺┳╸┏━┓┏━╸┏━╸╻  ┏━╸   ╻ ╻╻┏┓╻╺┳┓┏━┓╻ ╻   ┏┳┓┏━┓╻ ╻╻┏┳┓┏━┓╺┳╸╻┏━┓┏┓╻
