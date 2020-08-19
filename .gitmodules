@@ -13,3 +13,6 @@
 [submodule "oh-my-zsh-custom/themes/powerlevel10k"]
 	path = oh-my-zsh-custom/themes/powerlevel10k
 	url = git@github.com:romkatv/powerlevel10k.git
+[submodule "oh-my-zsh-custom/plugins/zsh-completions"]
+	path = oh-my-zsh-custom/plugins/zsh-completions
+	url = git@github.com:zsh-users/zsh-completions.git

@@ -234,6 +234,10 @@ if [ -d "$ZSH_CUSTOM/plugins/fzf" ]; then
         echo "Please install fzf for prettier command history with .$ZSH_CUSTOM/plugins/fzf/install"
     fi
 fi
+if [ -f "$ZSH_CUSTOM/plugins/zsh-completions/zsh-completions.plugin.zsh" ]; then
+    plugins+=(zsh-completions)
+fi
+
 # BE AWARE: MUST BE LOADED LAST
 # BE AWARE: MUST BE LOADED LAST
 # BE AWARE: MUST BE LOADED LAST
