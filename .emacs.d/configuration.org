@@ -974,6 +974,7 @@ Company-jedi as auto-completion framework
 Prettier: makes thins prettier.
 #+begin_src emacs-lisp :results silent
 (use-package prettier-js)
+(setq prettier-js-args (list "--arrow-parens" "avoid"))
 #+end_src
 
 Tide: Typescript magic
