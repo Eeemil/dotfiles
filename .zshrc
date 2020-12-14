@@ -730,9 +730,6 @@ function anaconda {
     echo 'Anaconda binaries added to $PATH'
 }
 
-# The next line updates PATH for the Google Cloud SDK (gcloud).
-if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"; fi
-
 # Go
 export PATH=$PATH:$GOPATH/bin
 
@@ -773,9 +770,6 @@ fi
 # ┗━┛ ╹ ╹ ╹┗━╸╹┗╸   ┗━┛ ╹ ┗━┛╹  ╹  
 # other stuff
 
-# The next line enables shell command completion for gcloud.
-if [ -f "/usr/share/google-cloud-sdk/completion.zsh.inc" ]; then . "/usr/share/google-cloud-sdk/completion.zsh.inc"; fi
-
 # NVM
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -793,3 +787,9 @@ bindkey "\C-w" kill-region
 if (( $+commands[velero] )); then
     source <(velero completion zsh)
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/eeemil/src/google-cloud-sdk/path.zsh.inc' ]; then . '/home/eeemil/src/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/eeemil/src/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/eeemil/src/google-cloud-sdk/completion.zsh.inc'; fi
