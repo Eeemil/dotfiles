@@ -678,6 +678,10 @@ alias jsonl='python -m json.tool | pygmentize -l json | less'
 # -b = buffer bytes in kibibytes (1024KiB*128=128MiB=131072)
 alias less="TERM=xterm less -b 131072"
 
+# zfs may list LOADS of docker layer images as datasets on the form
+# "/var/lib/[IMAGEID]", hide them plz
+alias -g znodocker='| grep -vE "/var/lib/[a-z0-9]{64}"'
+
 # ┏━╸╻ ╻┏━┓╺┳╸┏━┓┏┳┓  ┏━╸┏┓╻╻ ╻╻┏━┓┏━┓┏┓╻┏┳┓┏━╸┏┓╻╺┳╸  ╻ ╻┏━┓┏━┓╻┏━┓┏┓ ╻  ┏━╸┏━┓
 # ┃  ┃ ┃┗━┓ ┃ ┃ ┃┃┃┃  ┣╸ ┃┗┫┃┏┛┃┣┳┛┃ ┃┃┗┫┃┃┃┣╸ ┃┗┫ ┃   ┃┏┛┣━┫┣┳┛┃┣━┫┣┻┓┃  ┣╸ ┗━┓
 # ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹  ┗━╸╹ ╹┗┛ ╹╹┗╸┗━┛╹ ╹╹ ╹┗━╸╹ ╹ ╹   ┗┛ ╹ ╹╹┗╸╹╹ ╹┗━┛┗━╸┗━╸┗━┛
