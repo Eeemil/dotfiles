@@ -849,6 +849,15 @@
        )
    #+end_src
 * Major mode configurations
+** Term mode
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'term-mode-hook (lambda ()
+                                 ;; Use nerdfonts
+                                 (setq buffer-face-mode-face '(:family "ShureTechMono Nerd Font"))
+                                 (buffer-face-mode)
+                                 )
+               )
+   #+END_SRC
 ** Matlab mode
 
    #+BEGIN_SRC emacs-lisp
