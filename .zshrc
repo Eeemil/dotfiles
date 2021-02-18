@@ -540,6 +540,15 @@ function gen-random-string {
     </dev/urandom tr -dc 'A-Za-z0-9!#$%&\''()*+,-./:;<=>?@[\]^_`{|}~' | head -c ${LENGTH} | xargs -0 echo
 }
 
+function gen-random-string-alphanumeric {
+    LENGTH="${1:-16}"
+    if [[ ! $LENGTH =~ "^[0-9]+$" ]]; then
+        echo -e "Error: first argument not a number\nUsage: gen-random-string LENGTH" >&2; return 1
+    fi
+    </dev/urandom tr -dc 'A-Za-z0-9' | head -c ${LENGTH} | xargs -0 echo
+}
+
+
 # Repeat a command
 function repeating-cmd {
     function usage {
