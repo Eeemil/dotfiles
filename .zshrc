@@ -243,6 +243,9 @@ fi
 if [ -f "$ZSH_CUSTOM/plugins/zsh-completions/zsh-completions.plugin.zsh" ]; then
     plugins+=(zsh-completions)
 fi
+if [ -f "$ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh" ]; then
+    plugins+=(zsh-autosuggestions)
+fi
 
 # BE AWARE: MUST BE LOADED LAST
 # BE AWARE: MUST BE LOADED LAST

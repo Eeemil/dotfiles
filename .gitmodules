@@ -16,3 +16,6 @@
 [submodule "oh-my-zsh-custom/plugins/zsh-completions"]
 	path = oh-my-zsh-custom/plugins/zsh-completions
 	url = git@github.com:zsh-users/zsh-completions.git
+[submodule "oh-my-zsh-custom/plugins/zsh-autosuggestions"]
+	path = oh-my-zsh-custom/plugins/zsh-autosuggestions
+	url = git@github.com:zsh-users/zsh-autosuggestions.git
