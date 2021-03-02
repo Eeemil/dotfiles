@@ -700,7 +700,12 @@
    #+END_SRC
 
 * Custom functions
-
+** base64-encode-no-line-breaks
+   #+BEGIN_SRC emacs-lisp
+     (defun base64-encode-region-no-break ()
+       (interactive)
+       (base64-encode-region (mark) (point) t))
+   #+END_SRC
 ** Toggle transparent emacs
    #+BEGIN_SRC emacs-lisp
      (defun toggle-transparency ()
