@@ -1026,7 +1026,7 @@
      (setq tide-format-options '(:indentSize 2 :tabSize 2))
      (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
-     (flycheck-add-next-checker 'typescript-tide '(t . typescript-tslint) 'append)
+     (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
    #+END_SRC
 
    Web-mode
@@ -1036,8 +1036,8 @@
      (add-hook 'web-mode-hook
                (lambda ()
                  (setup-tide-mode)))
-     ;; enable typescript-tslint checker
-     (flycheck-add-mode 'typescript-tslint 'web-mode)
+     ;; enable typescript-eslint checker
+     (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
    #+end_src
 
    Javascript
