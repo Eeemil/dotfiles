@@ -1004,6 +1004,7 @@
    Prettier: makes thins prettier.
    #+begin_src emacs-lisp :results silent
      (use-package prettier)
+     (setenv "NODE_PATH" (concat  (expand-file-name default-directory) ".config/yarn/global/node_modules"))
    #+end_src
 
    Tide: Typescript magic
