@@ -917,16 +917,6 @@
            (cons '("\\.m$" . octave-mode) auto-mode-alist))
    #+END_SRC
 
-** Haskell mode
-
-   #+BEGIN_SRC emacs-lisp
-     (use-package haskell-mode)
-     (use-package haskell-emacs)
-     (use-package haskell-emacs-base)
-
-     (setq haskell-program-name "ghci \"+.\"")
-   #+END_SRC
-
 ** Java mode
 
    #+BEGIN_SRC emacs-lisp
