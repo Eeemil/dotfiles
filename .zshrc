@@ -70,7 +70,7 @@ if [ -d "$DOTFILES/oh-my-zsh-custom" ]; then
 fi
 
 # ┏━┓╻ ╻   ┏┳┓╻ ╻   ╺━┓┏━┓╻ ╻   ╺┳╸╻ ╻┏━╸┏┳┓┏━╸
-# ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫    ┃ ┣━┫┣╸ ┃┃┃┣╸ 
+# ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫    ┃ ┣━┫┣╸ ┃┃┃┣╸
 # ┗━┛╹ ╹   ╹ ╹ ╹    ┗━╸┗━┛╹ ╹    ╹ ╹ ╹┗━╸╹ ╹┗━╸
 # oh-my-zsh theme
 # Set name of the theme to load --- if set to "random", it will load a random
@@ -676,8 +676,8 @@ alias g=git
 alias datee="date '+%Y-%m-%d_%H:%M'"
 
 # yaml parsing for humanz
-alias yml='pygmentize -l yaml' 
-alias ymll='pygmentize -l yaml | less'
+alias yml='pygmentize -P style=monokai -l yaml'
+alias ymll='pygmentize -P style=monokai -l yaml | less'
 alias -g oyml=' -o yaml | yml'
 alias -g oymll=' -o yaml | ymll'
 
@@ -788,8 +788,8 @@ if [ -f "${HOME}/.locals.zsh" ]; then
 fi
 
 # ┏━┓╺┳╸╻ ╻┏━╸┏━┓   ┏━┓╺┳╸╻ ╻┏━╸┏━╸
-# ┃ ┃ ┃ ┣━┫┣╸ ┣┳┛   ┗━┓ ┃ ┃ ┃┣╸ ┣╸ 
-# ┗━┛ ╹ ╹ ╹┗━╸╹┗╸   ┗━┛ ╹ ┗━┛╹  ╹  
+# ┃ ┃ ┃ ┣━┫┣╸ ┣┳┛   ┗━┓ ┃ ┃ ┃┣╸ ┣╸
+# ┗━┛ ╹ ╹ ╹┗━╸╹┗╸   ┗━┛ ╹ ┗━┛╹  ╹
 # other stuff
 
 # NVM
