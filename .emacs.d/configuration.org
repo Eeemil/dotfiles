@@ -79,7 +79,7 @@
 
    #+BEGIN_SRC emacs-lisp
      (setq safe-local-variable-values
-           (quote (
+           (quote ((eval add-hook 'before-save-hook 'org-table-recalculate-buffer-tables)
                    (company-bibtex-bibliography . "base.bib")
                    (company-bibtex-bibliography . "main.bib")
                    ;;Flycheck should not complain about gnu99
