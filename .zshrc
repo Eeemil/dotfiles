@@ -670,7 +670,7 @@ if (( $+commands[python3] )); then
     alias python=python3
 fi
 
-alias e=emacsclient
+alias e='emacsclient -t'
 alias g=git
 
 alias datee="date '+%Y-%m-%d_%H:%M'"
@@ -699,7 +699,7 @@ alias -g znodocker='| grep -vE "/var/lib/[a-z0-9]{64}"'
 # ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹  ┗━╸╹ ╹┗┛ ╹╹┗╸┗━┛╹ ╹╹ ╹┗━╸╹ ╹ ╹   ┗┛ ╹ ╹╹┗╸╹╹ ╹┗━┛┗━╸┗━╸┗━┛
 # custom environment variables
 
-export EDITOR="emacsclient"
+export EDITOR="emacsclient -t"
 export ALTERNATE_EDITOR=""
 
 export GOPATH=$HOME/.go/workspace
