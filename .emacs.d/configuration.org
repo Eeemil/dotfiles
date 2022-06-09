@@ -107,11 +107,9 @@
      (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
    #+END_SRC
 
-   I don't like the fringe thing...
+   Left fringe for marking errors etc
    #+BEGIN_SRC emacs-lisp
-     (when (display-graphic-p)
-       (fringe-mode 0)
-       )
+     (fringe-mode '(8 . 0))
    #+END_SRC
 
    I don't need a tool bar...
@@ -127,9 +125,7 @@
    I don't like the scroll bar
 
    #+BEGIN_SRC emacs-lisp
-     (when (display-graphic-p)
-       (scroll-bar-mode 0)
-       )
+     (scroll-bar-mode 0)
    #+END_SRC
    Delight: reconfigure how major/minor modes are displayed in mode-line
    #+BEGIN_SRC emacs-lisp
@@ -541,12 +537,6 @@
    Should perhaps exist in its own file. :)
 
    Prettify org, [[org-beautify][see customization]]
-   #+BEGIN_SRC emacs-lisp
-     (if (display-graphic-p)
-         (progn
-           ;; if graphic X session or similar is run (beautify does not work otherwise)
-           (use-package org-beautify-theme)))
-   #+END_SRC
 
    Various org extras
    #+begin_src emacs-lisp :results silent
