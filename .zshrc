@@ -468,8 +468,8 @@ bindkey '\el' _magic-alt-l
 # Using "git pull" is not very good. Lets get rid of that habit
 function git {
     if [[ $@ == "pull" ]]; then
-        command git pull --rebase=preserve
-        echo "ran git pull --rebase=preserve. (https://adamcod.es/2014/12/10/git-pull-correct-workflow.html)"
+        command git pull --rebase=merges
+        echo "ran git pull --rebase=merges. (https://adamcod.es/2014/12/10/git-pull-correct-workflow.html)"
     else
         command git $@
     fi
