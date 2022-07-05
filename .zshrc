@@ -245,6 +245,7 @@ if [ -f "$ZSH_CUSTOM/plugins/zsh-completions/zsh-completions.plugin.zsh" ]; then
 fi
 if [ -f "$ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh" ]; then
     plugins+=(zsh-autosuggestions)
+    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#1e90ff"
 fi
 
 # BE AWARE: MUST BE LOADED LAST

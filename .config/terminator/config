@@ -19,8 +19,6 @@
     font = ShureTechMono Nerd Font 10
     scrollback_lines = 32768
     use_system_font = False
-    term = xterm-256color
-    colorterm = truecolor
 [layouts]
   [[default]]
     [[[child1]]]
