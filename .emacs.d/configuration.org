@@ -447,7 +447,9 @@
       :diminish
       :hook ((prog-mode . highlight-indent-guides-mode)
              ;; WORKAROUND: Fix the issue of not displaying plots
-             (ein:notebook-multilang-mode . (lambda () (highlight-indent-guides-mode -1))))
+             (ein:notebook-multilang-mode . (lambda () (highlight-indent-guides-mode -1)))
+             (yaml-mode . highlight-indent-guides-mode)
+             )
       :config
       (setq highlight-indent-guides-method 'character)
       (setq highlight-indent-guides-responsive 'top)
@@ -540,8 +542,7 @@
 
    Various org extras
    #+begin_src emacs-lisp :results silent
-     (use-package org
-       :ensure org-plus-contrib)
+     (use-package org)
    #+end_src
 
    Force syntax highlighting within #+BEGIN_SRC blocks
@@ -644,7 +645,6 @@
      (use-package auctex
        :defer t
        :ensure t)
-     (use-package auctex-latexmk)
      (require 'tex-site)
      (setq TeX-command-extra-options "-shell-escape") ;For compile with minted
      (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
@@ -923,7 +923,6 @@
 
    #+BEGIN_SRC emacs-lisp
      (use-package markdown-mode)
-     (use-package markdown-mode+)
      (add-hook 'markdown-mode-hook (lambda()
                                      (set-fill-column 80)
                                      (auto-fill-mode)
@@ -968,10 +967,6 @@
 ** GO mode
    #+BEGIN_SRC emacs-lisp
      (use-package go-mode)
-   #+END_SRC
-** gitignore mode
-   #+BEGIN_SRC emacs-lisp
-     (use-package gitignore-mode)
    #+END_SRC
 ** shell-script-mode
    #+BEGIN_SRC emacs-lisp
