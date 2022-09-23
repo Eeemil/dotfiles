@@ -8,18 +8,16 @@
 
 ;; Initialize installed packages
 (add-to-list 'load-path "~/.emacs.d/elpa")
-(add-to-list 'load-path "~/.emacs.d/myplugins/netlogo-mode")
-  
+
 (require 'package)
-(require 'cl)
+(require 'cl-lib)
 ;; Add repositories
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("org" . "https://orgmode.org/elpa/")
                          ("melpa" . "https://melpa.org/packages/")))
 ;; Stop adding package-initialize to .emacs...
 (setq package--init-file-ensured t)
 (package-initialize)
-  
+
 ;; Load the rest of the configuration via org-mode
 (require 'org)
 
