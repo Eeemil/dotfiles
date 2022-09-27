@@ -1,3 +1,4 @@
+#compdef az
 # from https://raw.githubusercontent.com/Azure/azure-cli/dev/az.completion
 
 _python_argcomplete() {
