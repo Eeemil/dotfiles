@@ -273,6 +273,17 @@ fi
 # ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹   ╹  ┗━┛╹ ╹┗━╸ ╹ ╹┗━┛╹ ╹┗━┛
 # custom functions
 
+# cd to git root
+cdgr() {
+    local git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+    if [[ -n "${git_root}" ]]; then
+        cd "${git_root}"
+    else
+        echo "Could not cd to git root" >&2
+        return 1
+    fi
+}
+
 cache_path() {
     printenv | grep -E '^PATH' > ~/tmp/zsh-path.zsh
 }
@@ -798,6 +809,9 @@ fi
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 fpath=("${DOTFILES}/zsh/completions" "${DOTFILES}/zsh/functions" $fpath)
+for completion_file in $(ls "${DOTFILES}/zsh/completions"); do
+    source "${DOTFILES}/zsh/completions/${completion_file}"
+done
 autoload -U compinit && compinit
 
 # Cleanup duplicates from PATH
@@ -810,3 +824,6 @@ bindkey "\C-w" kill-region
 if (( $+commands[velero] )); then
     source <(velero completion zsh)
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
