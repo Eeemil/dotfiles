@@ -10,7 +10,7 @@
 (add-to-list 'load-path "~/.emacs.d/elpa")
 
 (require 'package)
-(require 'cl-lib)
+
 ;; Add repositories
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
