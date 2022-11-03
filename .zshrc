@@ -719,6 +719,9 @@ export GEM_HOME=$HOME/gems
 # Node version manager
 export NVM_DIR="$HOME/.nvm"
 
+# user docker buildkit please
+export DOCKER_BUILDKIT=1
+
 if (( $+commands[rg] )); then
     # Ripgrep configuration file
     # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
