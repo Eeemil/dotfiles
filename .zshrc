@@ -764,6 +764,13 @@ function anaconda {
     echo 'Anaconda binaries added to $PATH'
 }
 
+# pyenv
+if [[ -d "$HOME/.pyenv" ]]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+fi
+
 # Go
 export PATH=$PATH:$GOPATH/bin
 
