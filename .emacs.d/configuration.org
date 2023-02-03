@@ -1004,14 +1004,40 @@
 
      (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
    #+END_SRC
-
-   Web-mode
-   #+begin_src emacs-lisp :results silent
+   Deno stuff, won't work with tide though.
+   #+BEGIN_SRC emacs-lisp :results silent
+     (defun setup-lsp-ts ()
+       (interactive)
+       (lsp)
+       (flycheck-mode +1)
+       (setq flycheck-check-syntax-automatically '(save mode-enabled))
+       (eldoc-mode +1)
+       (prettier-mode +1)
+       (company-mode +1))
+   #+END_SRC
+     Web-mode
+   #+BEGIN_SRC emacs-lisp :results silent
+     (defvar use-tide-over-lsp t "Load tide mode instead of lsp-mode when loading .ts")
+     (defun global-use-ts-tide ()
+       (interactive)
+       (setq use-tide-over-lsp t)
+       )
+     (defun global-use-ts-lsp ()
+       (interactive)
+       (setq use-tide-over-lsp nil)
+       )
+     (defun setup-typescript-mode ()
+       (interactive)
+       (if use-tide-over-lsp
+           (setup-lsp-ts)
+         (setup-lsp-ts))
+       )
      (use-package web-mode)
-     (add-to-list 'auto-mode-alist '("\\.[jt]sx\\'" . web-mode))
+     (add-to-list 'auto-mode-alist '("\\.[jt]sx?\\'" . web-mode))
      (add-hook 'web-mode-hook
                (lambda ()
-                 (setup-tide-mode)))
+                 (setup-typescript-mode)
+                 ))
      ;; enable typescript-eslint checker
      (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
    #+end_src
