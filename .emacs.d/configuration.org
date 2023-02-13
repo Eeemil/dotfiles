@@ -877,6 +877,21 @@
          )
        )
    #+end_src
+** Eldoc - documentation 
+   #+BEGIN_SRC emacs-lisp
+     (use-package eldoc-box
+     :ensure t
+     :config
+     (message "hello from eldoc")
+     (set-face-attribute 'eldoc-box-border nil :background "saddle brown")
+     (set-face-attribute 'eldoc-box-boxy nil :background "#3b2d27")
+     (set-variable 'eldoc-box-clear-with-C-g t)
+     
+)
+   #+END_SRC
+     (message "hello from eldoc")
+     (set-face-attribute '(eldoc-box-border ((t (:background "saddle brown")))))
+
 * Major mode configurations
 ** Term mode
    #+BEGIN_SRC emacs-lisp
@@ -1033,20 +1048,57 @@
    #+END_SRC
      Web-mode
    #+BEGIN_SRC emacs-lisp :results silent
-     (defvar use-tide-over-lsp t "Load tide mode instead of lsp-mode when loading .ts")
+     (use-package eglot)
+     (defvar ts-use-tide t "Load tide-mode when loading .ts")
+     (defvar ts-use-lsp nil "Load lsp-mode when loading .ts")
+     (defvar ts-use-deno-lsp nil "Load lsp-mode with deno when loading .ts")
+     (defvar ts-use-eglot nil "Load eglot when loading .ts")
+     (add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))
+
+     (defclass eglot-deno (eglot-lsp-server) ()
+       :documentation "A custom class for deno lsp.")
+
+     (cl-defmethod eglot-initialization-options ((server eglot-deno))
+       "Passes through required deno initialization options"
+       (list :enable t
+             :lint t))
      (defun global-use-ts-tide ()
        (interactive)
-       (setq use-tide-over-lsp t)
+       (setq ts-use-tide t)
+       (setq ts-use-lsp nil)
+       (setq ts-use-deno-lsp nil)
+       (setq ts-use-eglot nil)
        )
      (defun global-use-ts-lsp ()
        (interactive)
-       (setq use-tide-over-lsp nil)
+       (setq ts-use-tide nil)
+       (setq ts-use-lsp t)
+       (setq ts-use-eglot nil)
+       (setq lsp-disabled-clients '())
        )
+     (defun global-use-deno-lsp ()
+       (interactive)
+       (setq ts-use-tide nil)
+       (setq ts-use-lsp t)
+       (setq ts-use-eglot nil)
+       (setq lsp-disabled-clients '(ts-ls))
+       )
+     (defun global-use-eglot-lsp ()
+       (interactive)
+       (setq ts-use-tide nil)
+       (setq ts-use-lsp nil)
+       (setq ts-use-deno-lsp nil)
+       (setq ts-use-eglot t)
+       )  
      (defun setup-typescript-mode ()
        (interactive)
-       (if use-tide-over-lsp
-         (setup-tide-mode)
-         (setup-lsp-ts))
+       (if ts-use-tide
+           (setup-tide-mode)
+         (if ts-use-eglot
+             (eglot-ensure)
+           (setup-lsp-ts)
+           )
+         )
        )
      (use-package web-mode)
      (add-to-list 'auto-mode-alist '("\\.[jt]sx\\'" . web-mode))
