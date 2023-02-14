@@ -567,6 +567,17 @@
      (setq org-src-fontify-natively t)
    #+END_SRC
 
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'org-latex-packages-alist '("" "minted"))
+     (setq org-latex-listings 'minted) 
+     (setq org-latex-pdf-process
+           '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+             "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+             "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+     (setq org-src-fontify-natively t)
+   #+END_SRC
+
    Down arrow for indicating collapsed blocks instead of "..."
    #+BEGIN_SRC emacs-lisp
      (setq org-ellipsis "⤵")
@@ -1023,6 +1034,7 @@
        (flycheck-mode +1)
        (setq flycheck-check-syntax-automatically '(save mode-enabled))
        (eldoc-mode +1)
+       (eldoc-box-hover-mode +1)
        (tide-hl-identifier-mode +1)
        (prettier-mode +1)
        (company-mode +1))
@@ -1043,6 +1055,7 @@
        (flycheck-mode +1)
        (setq flycheck-check-syntax-automatically '(save mode-enabled))
        (eldoc-mode +1)
+       (eldoc-box-hover-mode +1)
        (prettier-mode +1)
        (company-mode +1))
    #+END_SRC
