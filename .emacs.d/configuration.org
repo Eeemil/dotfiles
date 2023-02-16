@@ -890,15 +890,14 @@
    #+end_src
 ** Eldoc - documentation 
    #+BEGIN_SRC emacs-lisp
-     (use-package eldoc-box
-     :ensure t
-     :config
-     (message "hello from eldoc")
-     (set-face-attribute 'eldoc-box-border nil :background "saddle brown")
-     (set-face-attribute 'eldoc-box-boxy nil :background "#3b2d27")
-     (set-variable 'eldoc-box-clear-with-C-g t)
-     
-)
+          (use-package eldoc-box
+          :ensure t
+          :config
+          (set-face-attribute 'eldoc-box-border nil :background "saddle brown")
+          (set-face-attribute 'eldoc-box-boxy nil :background "#3b2d27")
+          (set-variable 'eldoc-box-clear-with-C-g t)
+          (setq x-gtk-resize-child-frames 'resize-mode)
+     )
    #+END_SRC
      (message "hello from eldoc")
      (set-face-attribute '(eldoc-box-border ((t (:background "saddle brown")))))
