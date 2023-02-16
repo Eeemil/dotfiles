@@ -898,8 +898,6 @@
           (setq x-gtk-resize-child-frames 'resize-mode)
      )
    #+END_SRC
-     (message "hello from eldoc")
-     (set-face-attribute '(eldoc-box-border ((t (:background "saddle brown")))))
 
 * Major mode configurations
 ** Term mode
