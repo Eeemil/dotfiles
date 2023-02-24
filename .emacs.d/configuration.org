@@ -499,7 +499,10 @@
         (company-tooltip-selection ((t (:background "#000040"))))
         :delight " c-any"
         )
-
+      (use-package company-box
+          :ensure t
+          :hook (company-mode . company-box-mode)
+          )
       (use-package company-quickhelp
         :config
         (company-quickhelp-mode)
@@ -907,6 +910,10 @@
   (use-package lsp-mode
        :ensure t
   )
+  (use-package lsp-ui
+       :ensure t
+  )
+
 #+END_SRC
 ** Term mode
    #+BEGIN_SRC emacs-lisp
