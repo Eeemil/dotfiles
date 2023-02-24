@@ -901,6 +901,13 @@
    #+END_SRC
 
 * Major mode configurations
+** lsp-mode
+#+BEGIN_SRC emacs-lisp
+  (setq lsp-keymap-prefix "C-M-l")
+  (use-package lsp-mode
+       :ensure t
+  )
+#+END_SRC
 ** Term mode
    #+BEGIN_SRC emacs-lisp
      (add-hook 'term-mode-hook (lambda ()
