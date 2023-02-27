@@ -1,0 +1,280 @@
+#compdef _zsysctl zsysctl
+
+
+function _zsysctl {
+  local -a commands
+
+  _arguments -C \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]' \
+    "1: :->cmnds" \
+    "*::arg:->args"
+
+  case $state in
+  cmnds)
+    commands=(
+      "completion:Generates completion scripts (will attempt to automatically detect shell)"
+      "help:Help about any command"
+      "list:List all the machines and basic information."
+      "machine:Machine management"
+      "save:Saves the current state of the machine. By default it saves only the user state. state_id is generated if not provided."
+      "service:Service management"
+      "show:Shows the status of the machine."
+      "state:Machine state management"
+      "version:Returns version of client and server"
+    )
+    _describe "command" commands
+    ;;
+  esac
+
+  case "$words[1]" in
+  completion)
+    _zsysctl_completion
+    ;;
+  help)
+    _zsysctl_help
+    ;;
+  list)
+    _zsysctl_list
+    ;;
+  machine)
+    _zsysctl_machine
+    ;;
+  save)
+    _zsysctl_save
+    ;;
+  service)
+    _zsysctl_service
+    ;;
+  show)
+    _zsysctl_show
+    ;;
+  state)
+    _zsysctl_state
+    ;;
+  version)
+    _zsysctl_version
+    ;;
+  esac
+}
+
+function _zsysctl_completion {
+  _arguments \
+    '(-h --help)'{-h,--help}'[help for completion]' \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]' \
+    '1: :("bash" "zsh" "powershell")'
+}
+
+function _zsysctl_help {
+  _arguments \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+function _zsysctl_list {
+  _arguments \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+
+function _zsysctl_machine {
+  local -a commands
+
+  _arguments -C \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]' \
+    "1: :->cmnds" \
+    "*::arg:->args"
+
+  case $state in
+  cmnds)
+    commands=(
+      "list:List all the machines and basic information."
+      "show:Shows the status of the machine."
+    )
+    _describe "command" commands
+    ;;
+  esac
+
+  case "$words[1]" in
+  list)
+    _zsysctl_machine_list
+    ;;
+  show)
+    _zsysctl_machine_show
+    ;;
+  esac
+}
+
+function _zsysctl_machine_list {
+  _arguments \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+function _zsysctl_machine_show {
+  _arguments \
+    '--full[Give more detail informations on each machine.]' \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+function _zsysctl_save {
+  _arguments \
+    '--auto[Signal this is an automated request triggered by script]' \
+    '--no-update-bootmenu[Do not update bootmenu on system state save]' \
+    '(-s --system)'{-s,--system}'[Save complete system state (users and system)]' \
+    '(-u --user)'{-u,--user}'[Save the state for a given user or current user if empty]:' \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+
+function _zsysctl_service {
+  local -a commands
+
+  _arguments -C \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]' \
+    "1: :->cmnds" \
+    "*::arg:->args"
+
+  case $state in
+  cmnds)
+    commands=(
+      "dump:Dumps the current state of zsys."
+      "gc:Run daemon state saves garbage collection."
+      "loglevel:Sets the logging level of the daemon."
+      "refresh:Refreshes machines states."
+      "reload:Reloads daemon configuration."
+      "status:Shows the status of the daemon."
+      "stop:Stops zsys daemon."
+      "trace:Start profiling until you exit this command yourself or when duration is done. Default is CPU profiling with a 30s timeout."
+    )
+    _describe "command" commands
+    ;;
+  esac
+
+  case "$words[1]" in
+  dump)
+    _zsysctl_service_dump
+    ;;
+  gc)
+    _zsysctl_service_gc
+    ;;
+  loglevel)
+    _zsysctl_service_loglevel
+    ;;
+  refresh)
+    _zsysctl_service_refresh
+    ;;
+  reload)
+    _zsysctl_service_reload
+    ;;
+  status)
+    _zsysctl_service_status
+    ;;
+  stop)
+    _zsysctl_service_stop
+    ;;
+  trace)
+    _zsysctl_service_trace
+    ;;
+  esac
+}
+
+function _zsysctl_service_dump {
+  _arguments \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+function _zsysctl_service_gc {
+  _arguments \
+    '(-a --all)'{-a,--all}'[Collects all the datasets including manual snapshots and clones.]' \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+function _zsysctl_service_loglevel {
+  _arguments \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+function _zsysctl_service_refresh {
+  _arguments \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+function _zsysctl_service_reload {
+  _arguments \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+function _zsysctl_service_status {
+  _arguments \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+function _zsysctl_service_stop {
+  _arguments \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+function _zsysctl_service_trace {
+  _arguments \
+    '--duration[Duration of the capture. Default is 30 seconds.]:' \
+    '(-o --output)'{-o,--output}'[Dump the trace to a file. Default is ./zsys.<trace-type>.pprof]:' \
+    '(-t --type)'{-t,--type}'[Type of profiling cpu or mem. Default is cpu.]:' \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+function _zsysctl_show {
+  _arguments \
+    '--full[Give more detail informations on each machine.]' \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+
+function _zsysctl_state {
+  local -a commands
+
+  _arguments -C \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]' \
+    "1: :->cmnds" \
+    "*::arg:->args"
+
+  case $state in
+  cmnds)
+    commands=(
+      "remove:Remove the current state of the machine. By default it removes only the user state if not linked to any system state."
+      "save:Saves the current state of the machine. By default it saves only the user state. state_id is generated if not provided."
+    )
+    _describe "command" commands
+    ;;
+  esac
+
+  case "$words[1]" in
+  remove)
+    _zsysctl_state_remove
+    ;;
+  save)
+    _zsysctl_state_save
+    ;;
+  esac
+}
+
+function _zsysctl_state_remove {
+  _arguments \
+    '--dry-run[Dry run, will not remove anything]' \
+    '(-f --force)'{-f,--force}'[Force removing, even if dependencies are found]' \
+    '(-s --system)'{-s,--system}'[Remove system state (system and users linked to it)]' \
+    '(-u --user)'{-u,--user}'[Remove the state for a given user or current user if empty]:' \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+function _zsysctl_state_save {
+  _arguments \
+    '--auto[Signal this is an automated request triggered by script]' \
+    '--no-update-bootmenu[Do not update bootmenu on system state save]' \
+    '(-s --system)'{-s,--system}'[Save complete system state (users and system)]' \
+    '(-u --user)'{-u,--user}'[Save the state for a given user or current user if empty]:' \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
+function _zsysctl_version {
+  _arguments \
+    '(-v --verbose)'{-v,--verbose}'[issue INFO (-v) and DEBUG (-vv) output]'
+}
+
