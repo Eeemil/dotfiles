@@ -524,14 +524,6 @@
               (company-quickhelp-color-foreground "goldenrod")
               )
 
-            (use-package company-auctex
-              :config
-              (company-auctex-init)
-              )
-            (use-package company-bibtex
-              :config
-              (add-to-list 'company-backends 'company-bibtex)
-              )
     #+END_SRC
 ** Cursor movement, navigation, marking
 
