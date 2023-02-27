@@ -742,6 +742,8 @@ fi
 export PATH="${HOME}/.yarn/bin/:${PATH}"
 export PATH="${HOME}/bin:${PATH}"
 export PATH="${HOME}/.local/bin:${PATH}"
+export DENO_INSTALL="${HOME}/.deno"
+export PATH="${DENO_INSTALL}/bin:${PATH}"
 # Ruby might be fun
 export PATH="${HOME}/.rbenv/bin:${PATH}"
 if (( $+commands[rbenv] )); then
@@ -819,9 +821,6 @@ fi
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 fpath=("${DOTFILES}/zsh/completions" "${DOTFILES}/zsh/functions" $fpath)
-for completion_file in $(ls "${DOTFILES}/zsh/completions"); do
-    source "${DOTFILES}/zsh/completions/${completion_file}"
-done
 autoload -U compinit && compinit
 
 # Cleanup duplicates from PATH
