@@ -657,7 +657,7 @@ alias xclip='xclip -r -selection c'
 # wanip command: use fastest tool to get external IP as discussed in
 # https://unix.stackexchange.com/questions/22615/how-can-i-get-my-external-ip-address-in-a-shell-script
 if (( $+commands[dig] )); then
-    alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
+    alias wanip='dig -4 +short myip.opendns.com @resolver1.opendns.com'
 elif (( $+commands[GET] )); then
     alias wanip='GET http://whatismyip.akamai.com'
 elif (( $+commands[curl] )); then
