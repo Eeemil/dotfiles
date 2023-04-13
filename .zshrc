@@ -674,6 +674,9 @@ if (( $+commands[rg] )); then
     alias rgd='rg --glob=!dist/'
 fi
 
+# Hack for making watch work with aliases
+alias watch='watch '
+
 # use python3 if available
 if (( $+commands[pip3] )); then
     alias pip=pip3
