@@ -476,53 +476,53 @@
     CLOSED: [2018-08-13 mån 21:07]
     Switched to Company <2018-08-13 mån 21:07>
     #+BEGIN_SRC emacs-lisp
-            (use-package company
-              :config
-              (global-company-mode)
-              (setq company-tooltip-limit 10)
-              (setq company-dabbrev-downcase 0)
-              (setq company-idle-delay 0.33)
-              (setq company-echo-delay 0)
-              (setq company-minimum-prefix-length 2)
-              (setq company-selection-wrap-around t)
-              (setq company-tooltip-align-annotations t)
-              (setq company-transformers '(company-sort-by-occurrence)) ; weight by frequency
-              (setq company-backends '((company-capf :with company-yasnippet)))
-              ;; Add yasnippet support for all company backends
-              ;; https://github.com/syl20bnr/spacemacs/pull/179
-              (defvar company-mode/enable-yas t
-                "Enable yasnippet for all backends.")
+      (use-package company
+        :config
+        (global-company-mode)
+        (setq company-tooltip-limit 10)
+        (setq company-dabbrev-downcase 0)
+        (setq company-idle-delay 0.33)
+        (setq company-echo-delay 0)
+        (setq company-minimum-prefix-length 2)
+        (setq company-selection-wrap-around t)
+        (setq company-tooltip-align-annotations t)
+        (setq company-transformers '(company-sort-by-backend-importance)) ; weight by frequency
+        ;; (setq company-backends '((company-capf :with company-yasnippet)))
+        ;; Add yasnippet support for all company backends
+        ;; https://github.com/syl20bnr/spacemacs/pull/179
+        ;;(defvar company-mode/enable-yas t
+        ;;  "Enable yasnippet for all backends.")
 
-              (defun company-mode/backend-with-yas (backend)
-                (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-                    backend
-                  (append (if (consp backend) backend (list backend))
-                          '(:with company-yasnippet))))
+        ;; (defun company-mode/backend-with-yas (backend)
+        ;;   (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+        ;;       backend
+        ;;     (append (if (consp backend) backend (list backend))
+        ;;             '(:with company-yasnippet))))
 
-              (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
-              (define-key company-active-map (kbd "<return>") nil)
-              (define-key company-active-map (kbd "RET") nil)
-              (define-key company-active-map (kbd "<tab>") #'company-complete-selection)
-              (define-key company-active-map (kbd "C-j") #'company-complete-selection)
-              :custom-face
-              (company-preview ((t (:background "gray25"))))
-              (company-scrollbar-bg ((t (:background "chocolate4"))))
-              (company-scrollbar-fg ((t (:background "dark red"))))
-              (company-tooltip ((t (:background "#000075" :foreground "dark goldenrod"))))
-              (company-tooltip-selection ((t (:background "#000040"))))
-              :delight " c-any"
-              )
-            (use-package company-box
-                :ensure t
-                :hook (company-mode . company-box-mode)
-                )
-            (use-package company-quickhelp
-              :config
-              (company-quickhelp-mode)
-              :custom
-              (company-quickhelp-color-background "#000075")
-              (company-quickhelp-color-foreground "goldenrod")
-              )
+        ;; (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+        (define-key company-active-map (kbd "<return>") nil)
+        (define-key company-active-map (kbd "RET") nil)
+        (define-key company-active-map (kbd "<tab>") #'company-complete-selection)
+        (define-key company-active-map (kbd "C-j") #'company-complete-selection)
+        :custom-face
+        (company-preview ((t (:background "gray25"))))
+        (company-scrollbar-bg ((t (:background "chocolate4"))))
+        (company-scrollbar-fg ((t (:background "dark red"))))
+        (company-tooltip ((t (:background "#000075" :foreground "dark goldenrod"))))
+        (company-tooltip-selection ((t (:background "#000040"))))
+        :delight " c-any"
+        )
+      (use-package company-box
+          :ensure t
+          :hook (company-mode . company-box-mode)
+          )
+      (use-package company-quickhelp
+        :config
+        (company-quickhelp-mode)
+        :custom
+        (company-quickhelp-color-background "#000075")
+        (company-quickhelp-color-foreground "goldenrod")
+        )
 
     #+END_SRC
 ** Cursor movement, navigation, marking
@@ -921,7 +921,7 @@
   (use-package lsp-mode
        :ensure t
        :config
-       (setq lsp-completion-provider :none)
+       ;;(setq lsp-completion-provider :none)
   )
   (use-package lsp-ui
        :ensure t
