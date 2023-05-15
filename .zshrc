@@ -429,11 +429,11 @@ function waitforsuccess {
 
 # read environment file and print its output
 function .env {
-    if [ ! -f ".env" ]; then
-        echo "Error: no .env file found"
+    local envfile=${1:-".env"}
+    if [ ! -f "${envfile}" ]; then
+        echo "Error: no ${envfile} file found"
         return -1
     fi
-    local envfile=${1:-".env"}
     echo "########## Loading ${envfile}..."
     if (( $+commands[pygmentize] )); then
         pygmentize -l bash ${envfile}
