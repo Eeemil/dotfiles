@@ -1026,9 +1026,13 @@
    #+BEGIN_SRC emacs-lisp
      (use-package docker-compose-mode)
    #+END_SRC
-** YAML mode
+** k8s-mode
    #+BEGIN_SRC emacs-lisp
-     (use-package yaml-mode)
+     (use-package k8s-mode
+       :ensure t
+       :hook (k8s-mode . yas-minor-mode)
+       :mode "\\.yaml\\'"
+     )
    #+END_SRC
 ** GO mode
    #+BEGIN_SRC emacs-lisp
