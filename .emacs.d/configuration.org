@@ -1054,26 +1054,29 @@
 
    Tide: Typescript magic
    #+BEGIN_SRC emacs-lisp :results silent
-     (use-package typescript-mode)
-     (use-package tide)
-     (defun setup-tide-mode ()
-       (interactive)
-       (tide-setup)
-       (flycheck-mode +1)
-       (setq flycheck-check-syntax-automatically '(save mode-enabled))
-       (eldoc-mode +1)
-       (eldoc-box-hover-mode +1)
-       (tide-hl-identifier-mode +1)
-       (prettier-mode +1)
-       (company-mode +1))
-     ;; aligns annotation to the right hand side
-     (setq company-tooltip-align-annotations t)
-     ;; formats the buffer before saving
-     ;;(add-hook 'before-save-hook 'tide-format-before-save)
-     (setq tide-format-options '(:indentSize 2 :tabSize 2))
-     (add-hook 'typescript-mode-hook #'setup-typescript-mode)
+          (use-package typescript-mode
+            :mode "\\.ts\\'"
+                  "\\.mjs\\'"
+            )
+          (use-package tide)
+          (defun setup-tide-mode ()
+            (interactive)
+            (tide-setup)
+            (flycheck-mode +1)
+            (setq flycheck-check-syntax-automatically '(save mode-enabled))
+            (eldoc-mode +1)
+            (eldoc-box-hover-mode +1)
+            (tide-hl-identifier-mode +1)
+            (prettier-mode +1)
+            (company-mode +1))
+          ;; aligns annotation to the right hand side
+          (setq company-tooltip-align-annotations t)
+          ;; formats the buffer before saving
+          ;;(add-hook 'before-save-hook 'tide-format-before-save)
+          (setq tide-format-options '(:indentSize 2 :tabSize 2))
+          (add-hook 'typescript-mode-hook #'setup-typescript-mode)
 
-     (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
+          (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
    #+END_SRC
    Deno stuff, won't work with tide though.
    #+BEGIN_SRC emacs-lisp :results silent
@@ -1090,8 +1093,8 @@
      Web-mode
    #+BEGIN_SRC emacs-lisp :results silent
      (use-package eglot)
-     (defvar ts-use-tide t "Load tide-mode when loading .ts")
-     (defvar ts-use-lsp nil "Load lsp-mode when loading .ts")
+     (defvar ts-use-tide nil "Load tide-mode when loading .ts")
+     (defvar ts-use-lsp t "Load lsp-mode when loading .ts")
      (defvar ts-use-deno-lsp nil "Load lsp-mode with deno when loading .ts")
      (defvar ts-use-eglot nil "Load eglot when loading .ts")
      (add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))
