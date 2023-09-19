@@ -668,6 +668,11 @@ if (( $+commands[rg] )); then
     alias rgd='rg --glob=!dist/'
 fi
 
+if (( $+commands[eza] )); then
+    alias l='eza -l --icons'
+fi
+
+
 # Hack for making watch work with aliases
 alias watch='watch '
 
