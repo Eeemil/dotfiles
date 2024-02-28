@@ -713,63 +713,7 @@ alias -g znodocker='| grep -vE "/var/lib/[a-z0-9]{64}"'
 # ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹  ┗━╸╹ ╹┗┛ ╹╹┗╸┗━┛╹ ╹╹ ╹┗━╸╹ ╹ ╹   ┗┛ ╹ ╹╹┗╸╹╹ ╹┗━┛┗━╸┗━╸┗━┛
 # custom environment variables
 
-export EDITOR="emacsclient -t"
-export ALTERNATE_EDITOR=""
-
-export GOPATH=$HOME/.go/workspace
-export GEM_HOME=$HOME/gems
-# Node version manager
-export NVM_DIR="$HOME/.nvm"
-
-# user docker buildkit please
-export DOCKER_BUILDKIT=1
-
-if (( $+commands[rg] )); then
-    # Ripgrep configuration file
-    # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
-    export RIPGREP_CONFIG_PATH=$DOTFILES/.ripgreprc
-fi
-
-# Force non-deprecated python in gcloud et. al.
-if (( $+commands[gcloud] )); then
-    export CLOUDSDK_PYTHON=python3
-    export CLOUDSDK_GSUTIL_PYTHON=python3
-    export CLOUDSDK_BQ_PYTHON=python3
-fi
-# ┏━┓┏━┓╺┳╸╻ ╻
-# ┣━┛┣━┫ ┃ ┣━┫
-# ╹  ╹ ╹ ╹ ╹ ╹
-# path
-
-export PATH="${HOME}/.yarn/bin/:${PATH}"
-export PATH="${HOME}/bin:${PATH}"
-export PATH="${HOME}/.local/bin:${PATH}"
-export DENO_INSTALL="${HOME}/.deno"
-export PATH="${DENO_INSTALL}/bin:${PATH}"
-# Ruby might be fun
-export PATH="${HOME}/.rbenv/bin:${PATH}"
-if (( $+commands[rbenv] )); then
-    eval "$(rbenv init -)"
-    export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-fi
-
-# Yarn: js/ts package manager
-if (( $+commands[yarn] )); then
-    export PATH="$PATH:$(yarn global bin)"
-fi
-
-# Anaconda: Python/ML stuff
-# Contains A LOT of binaries conflicting with system binaries (such as python
-# and curl) so lets load it manually whenever I type "anaconda" in terminal
-function anaconda {
-    echo $PATH | grep "/anaconda3/bin" &>/dev/null
-    if [ $? -ne 0 ]; then
-        export PATH=$HOME/anaconda3/bin:$PATH
-    fi
-    #unload this function "anaconda" so that binary "anaconda" can be used
-    unset -f anaconda
-    echo 'Anaconda binaries added to $PATH'
-}
+# Moved all non-interactive envs to .zshenv
 
 # pyenv
 if [[ -d "$HOME/.pyenv" ]]; then
@@ -777,9 +721,6 @@ if [[ -d "$HOME/.pyenv" ]]; then
     command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
 fi
-
-# Go
-export PATH=$PATH:$GOPATH/bin
 
 # Less with syntax highlighting if pygmentize is available
 if (( $+commands[pygmentize] )); then
@@ -801,12 +742,6 @@ zstyle ':completion:*' matcher-list '' \
 # ┣━┛┣╸ ┣┳┛╺━╸┣━┫┃ ┃┗━┓ ┃    ┃  ┃ ┃┃┗┫┣╸ ┃┃╺┓
 # ╹  ┗━╸╹┗╸   ╹ ╹┗━┛┗━┛ ╹    ┗━╸┗━┛╹ ╹╹  ╹┗━┛
 # per-host config
-
-# At university?
-if [ "$(hostname -d)" = "cs.umu.se" ]; then
-    # ctrl+d = leave shell
-    unsetopt ignoreeof
-fi
 
 # Local configuration?
 if [ -f "${HOME}/.locals.zsh" ]; then
