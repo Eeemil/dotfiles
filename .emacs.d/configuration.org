@@ -98,6 +98,15 @@
    #+BEGIN_SRC emacs-lisp
      (setq vc-follow-symlinks t)
    #+END_SRC
+
+** Set exec-patch from shell .zshenv
+   #+BEGIN_SRC emacs-lisp :results silent
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (setq exec-path-from-shell-arguments nil)
+  (exec-path-from-shell-initialize))
+   #+END_SRC
 ** Emacs cosmetics
    Uniquifies/resolves buffer name collisions
 
