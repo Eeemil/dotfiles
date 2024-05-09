@@ -727,6 +727,12 @@ if (( $+commands[pygmentize] )); then
     export LESSOPEN="| pygmentize %s 2>/dev/null"
 fi
 
+# snap installed ripgrep might not found ripgreprc
+if (( $+commands[rg] )); then
+    export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+fi
+
+
 # ╺━┓┏━┓╻ ╻   ┏┓ ┏━╸╻ ╻┏━┓╻ ╻╻┏━┓╻ ╻┏━┓
 # ┏━┛┗━┓┣━┫   ┣┻┓┣╸ ┣━┫┣━┫┃┏┛┃┃ ┃┃ ┃┣┳┛
 # ┗━╸┗━┛╹ ╹   ┗━┛┗━╸╹ ╹╹ ╹┗┛ ╹┗━┛┗━┛╹┗╸
