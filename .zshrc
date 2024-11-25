@@ -267,6 +267,10 @@ fi
 # ┗━╸┗━┛┗━┛ ╹ ┗━┛╹ ╹   ╹  ┗━┛╹ ╹┗━╸ ╹ ╹┗━┛╹ ╹┗━┛
 # custom functions
 
+ssht() {
+    ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" "${@}"
+}
+
 # cd to git root
 cdgr() {
     local git_root=$(git rev-parse --show-toplevel 2>/dev/null)
@@ -759,9 +763,14 @@ fi
 # ┗━┛ ╹ ╹ ╹┗━╸╹┗╸   ┗━┛ ╹ ┗━┛╹  ╹
 # other stuff
 
+NVM_DIR="${HOME}/.nvm"
 # NVM
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+ASDF_DIR="${HOME}/.asdf"
+[ -s "${ASDF_DIR}/asdf.sh" ] && \. "${ASDF_DIR}/asdf.sh"  # This loads asdf
+
 
 fpath=("${DOTFILES}/zsh/completions" "${DOTFILES}/zsh/functions" $fpath)
 autoload -U compinit && compinit
