@@ -736,6 +736,9 @@ if (( $+commands[rg] )); then
     export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 fi
 
+# kubectl krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 
 # ╺━┓┏━┓╻ ╻   ┏┓ ┏━╸╻ ╻┏━┓╻ ╻╻┏━┓╻ ╻┏━┓
 # ┏━┛┗━┓┣━┫   ┣┻┓┣╸ ┣━┫┣━┫┃┏┛┃┃ ┃┃ ┃┣┳┛
